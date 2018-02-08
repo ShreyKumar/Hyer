@@ -1,0 +1,19 @@
+--- Description of the Part-Time and Labour Job Finder application and system ---
+ 
+The goal of the application, dubbed 'Hayer' (pronounced like 'Hire'), is to make hiring for small, temporary jobs easy for both employers and employees. Currently, the internet is a great hub for finding full-time and part-time jobs. Unfortunately, formal job postings, requiring resumes and cover letters, have become the norm. Nowadays, smaller, labourous or single-day jobs are drowned out in the noise. Our goal is to make it easy for people to find small jobs, as well to find willing workers for their jobs; all in a casual manner, without the fuss of a resume and cover letter.
+This application aims to reinvigorate communities and simplify the job market.
+
+
+-- Goals --
+People tend to have a specialization. Some know how to tune a piano, while others tune cars. Some can paint rooms, while others paint grooms. These craftsman and artisans can always lend a helping hand, especially in our growing centralized, dense urban communities. Our goal is to connect those specializations with those who need it. Say you wanted to have one of your rooms painted but you are too busy to do so, posting your job on Hayer lets you find someone nearby that is qualified, affordable and available. Or, say you are an excellent photographer, you can post your freelance services on Hayer to be alerted of any nearby jobs.
+
+- Speculation about Desirable Solution: -
+We plan on integrating an Uber-like map user interface with a Kijiji/Craigslist backend. We want the user experience to be as simple and basic as possible, while remaining credible and trustworthy. We plan on integrating user verification, user reviews as well as a 2-factor authorization to build confidence between the employers and the employees. 
+
+- Non-goal -
+Dominate the world.
+
+--- Overview ---
+We are going to have two types of users on our application: an employee and an employer. Users will be able to switch between the two or maintain a hybrid state, but the workflows can be simply classed as one or the other.
+
+An employer begins with a job they have. From here, 
