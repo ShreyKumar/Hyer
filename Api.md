@@ -1,5 +1,5 @@
 # Hayer API
----
+
 ## Jobs
 
 POST /job --> Add new job
@@ -14,8 +14,6 @@ POST /job/{job ID} --> Update job with specific job ID
 
 DELETE /job/{job ID} --> Delete (archive) job with specific job ID
 
-
----
 ## Users
 
 POST /user --> Create user
