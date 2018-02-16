@@ -7,7 +7,7 @@ __Backend team__:
   - Patrick
   - Raymond
   - Ryan
-<br><br>
+
 __Frontend team__:
   - Shrey
   - Tim
