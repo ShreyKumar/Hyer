@@ -52,7 +52,7 @@ PUT /user/username --> Update user with specific username
 
 DELETE /user/username --> Delete user with specific username
 
-### User
+#### User
 {
 
   id: integer
