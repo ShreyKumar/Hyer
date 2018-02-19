@@ -9,7 +9,7 @@ Ryan Ro: Ryan has experience with the back-end of mobile applications, and datab
 
 Raymond Choi: Raymond is looking to expand his knowledge in the back end of web systems. His goal is to learn more about APIs. Both the use and the design (creation) of one. He is also looking to expand his knowledge with databases and their interation into web systems.
 
-Tim Xie: Looking for hand-on practice and experience on some larger projects, especially the enteraction between front/backend. 
+Tim Xie: Looking for hand-on practice and experience on some larger projects, especially the interaction between front/backend.
 
 __Team Goals:__
 
@@ -24,3 +24,40 @@ Every member of the team has taken a database course, thus we are all interested
 One of our team learning goals are to learn how to use Kanban effectively in a software development ecosystem. The Kanban board will allow the team to view and update the progress of the developement quickly and simply. It will also allow for work to be pulled by individuals in the team rather than pushed to individuals. Which will improve our efficiency when working together, so we can focus on parts that are integrated. Given that we are all students and we all cannot devote all of our time to this project, Kanban lets us have an incremental ecosystem that lets us develop at our own pace and schedules.
 
 From our learning goals we have determined which parts of Haier will be the most important to develop and the focus of our attention. As mentioned earlier the login system, job posts, job requests, and the display of jobs are the most important parts of Haier. These parts will create the most useful workflow for a user. A user will be able to create an account, view the available jobs and when a suitable is found request a job. The user will also be able to list a job and accept requests. As these parts of Haier will be an extremely heavy workload, we may have to omit the job log. The log, is intended to show what jobs a user has done in the past. It is not integral to the rest of system, so it does not have to be included for our MVP. We may also have to omit Paypal integration, where users are paid through Paypal when a job is completed. Lastly, we will also probably omit the reporting system in which an admin resolves conflicts between users in regards to payment and job completion. 
+
+__Checkpoints__:
+For our projects, we have made three checkpoints, instead of omitting anything, since we do not know how quickly we may finish, and currently our checkpoints are named, Minimum Viable Product, Polish, and Extra. Where Minimum Viable Product is what we want prioritize and get done. Polish to be additional implementations we wish to implement if we have time, and Extra, where we listed ideas that we thought would be cool or interesting, but realistically, is more of a niche add to our project. The items in the checkpoints are ordered by priority as well. We chose to work in this order, as when Checkpoint 1 is finished, our product will usable and meet the goals in the project description. Additionally we get to work with Firebase (number 4 in Checkpoint 1), and work on an API (number 1 in Checkpoint 1), integrate back-end and front-end (throughout all numbers in Checkpoint 1) so it also meets all our individual goals for the project as well.
+
+Checkpoint 1 - Minimum Viable Product:
+  1. Requests (Send and Receive job requests) - API
+    - View request: Job posting - everything inside
+    - Button to accept or decline (if accept, share details)
+  2. Basic List of jobs
+  3. Preferences
+  4. Login, Sign up, email (and phone verification)
+    - First name
+    - Last name
+    - Age
+    - Bio
+  5. Profile
+    - 1 picture upload system
+    
+Checkpoint 2 - Polish:
+  1. Google Maps
+    - Each pin represents a user (employer or employee)
+    - Basic Details: First name, Last name, Age
+    - Button to view profile
+    - Button to send request
+  2. Payment system (Basic Wallet)
+  3. Timer
+  4. Rating system
+
+Checkpoint 3 - Extra:
+  1. Broadcast
+  2. Extra pictures
+  3. Social Media Logins
+  4. Job log - (Instagram)
+  5. Paypal
+  6. Stripe
+  7. Report System (Admin account)
+
