@@ -1,7 +1,6 @@
-
 __Personal Goals:__
 
-Shreyansh Kumar:
+Shreyansh Kumar: Shreyansh has had experience with both front end and backend, since his main goal is to learn React he has decided to stick to React. Shreyansh also has an appreciation and interest for clean UI frameworks and as such, he has decided to use stay with frontend.
 
 Patrick Ghandour: Patrick has had experience working on both the front-end and the back-end of mobile applications. Since he prefers the back-end, he has been assigned to the back-end team. Given that he's familiar with Express, his goals for this project is to better familiarize himself with designing a RESTful API, learning how to use Firebase as a database and user management system, as well as learning how to improve his TDD and CI knowledge and experience.
 
@@ -60,4 +59,3 @@ Checkpoint 3 - Extra:
   5. Paypal
   6. Stripe
   7. Report System (Admin account)
-
