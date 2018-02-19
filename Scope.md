@@ -1,4 +1,4 @@
-Personal Goals:
+__Personal Goals:__
 
 Shreyansh Kumar: Shreyansh has had experience with both front end and backend, since his main goal is to learn React he has decided to stick to React. Shreyansh also has an appreciation and interest for clean UI frameworks and as such, he has decided to use stay with frontend.
 
@@ -10,7 +10,7 @@ Raymond Choi: Raymond is looking to expand his knowledge in the back end of web 
 
 Tim Xie: Looking for hand-on practice and experience on some larger projects, especially the enteraction between front/backend.
 
-Team Goals:
+__Team Goals:__
 
 Learning about more APIs that are available online is a team goal that we all agreed on. APIs such as Twilio and Google Maps will provide features are useful for Haier users. For example, Twilio can be used to send SMS messages. It can be integrated into the account creation process so that real phone numbers are given and users can be confirmed as being real users. Furthermore, we can also include it to increase security through 2-factor authentication. A robust account creation system will therefore be a major focus in our development of Haier. Furthermore, it is also extremely important that our users can view responses and requests for jobs. To help, we will integrate Google Maps into the UI to show what jobs are available in the vicinity of the user. Therefore, there will be a signficant focus on user interface design and implementation. We need to get this part right, or else the app will have no chance of success. We also want to focus our attention on the way users interact with the webpage to select jobs and to view more information about them. There are many paths we can take (modals, separate pages, pop-ups) and this is a design decision we'll have to evaluate.
 
