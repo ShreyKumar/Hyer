@@ -1,7 +1,7 @@
 
 __Personal Goals:__
 
-Shreyansh Kumar:
+Shreyansh Kumar: Shreyansh has had experience with both front end and backend, since his main goal is to learn React he has decided to stick to React. Shreyansh also has an appreciation and interest for clean UI frameworks and as such, he has decided to use stay with frontend.
 
 Patrick Ghandour: Patrick has had experience working on both the front-end and the back-end of mobile applications. Since he prefers the back-end, he has been assigned to the back-end team. Given that he's familiar with Express, his goals for this project is to better familiarize himself with designing a RESTful API, learning how to use Firebase as a database and user management system, as well as learning how to improve his TDD and CI knowledge and experience.
 
@@ -9,7 +9,7 @@ Ryan Ro:
 
 Raymond Choi: Raymond is looking to expand his knowledge in the back end of web systems. His goal is to learn more about APIs. Both the use and the design (creation) of one. He is also looking to expand his knowledge with databases and their interation into web systems.
 
-Tim:
+Tim: Tim would prefer to have an exposure to frontend frameworks as he is very experienced in backend and would like to try and learn something different. 
 
 __Team Goals:__
 
@@ -23,4 +23,4 @@ Every member of the team has taken a database course, thus we are all interested
 
 One of our team learning goals are to learn how to use Kanban effectively in a software development ecosystem. The Kanban board will allow the team to view and update the progress of the developement quickly and simply. It will also allow for work to be pulled by individuals in the team rather than pushed to individuals. Which will improve our efficiency when working together, so we can focus on parts that are integrated. Given that we are all students and we all cannot devote all of our time to this project, Kanban lets us have an incremental ecosystem that lets us develop at our own pace and schedules.
 
-From our learning goals we have determined which parts of Haier will be the most important to develop and the focus of our attention. As mentioned earlier the login system, job posts, job requests, and the display of jobs are the most important parts of Haier. These parts will create the most useful workflow for a user. A user will be able to create an account, view the available jobs and when a suitable is found request a job. The user will also be able to list a job and accept requests. As these parts of Haier will be an extremely heavy workload, we may have to omit the job log. The log, is intended to show what jobs a user has done in the past. It is not integral to the rest of system, so it does not have to be included for our MVP. We may also have to omit Paypal integration, where users are paid through Paypal when a job is completed. Lastly, we will also probably omit the reporting system in which an admin resolves conflicts between users in regards to payment and job completion. 
+From our learning goals we have determined which parts of Haier will be the most important to develop and the focus of our attention. As mentioned earlier the login system, job posts, job requests, and the display of jobs are the most important parts of Haier. These parts will create the most useful workflow for a user. A user will be able to create an account, view the available jobs and when a suitable is found request a job. The user will also be able to list a job and accept requests. As these parts of Haier will be an extremely heavy workload, we may have to omit the job log. The log, is intended to show what jobs a user has done in the past. It is not integral to the rest of system, so it does not have to be included for our MVP. We may also have to omit Paypal integration, where users are paid through Paypal when a job is completed. Lastly, we will also probably omit the reporting system in which an admin resolves conflicts between users in regards to payment and job completion.
