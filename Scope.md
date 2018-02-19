@@ -1,17 +1,16 @@
-
-__Personal Goals:__
+Personal Goals:
 
 Shreyansh Kumar: Shreyansh has had experience with both front end and backend, since his main goal is to learn React he has decided to stick to React. Shreyansh also has an appreciation and interest for clean UI frameworks and as such, he has decided to use stay with frontend.
 
 Patrick Ghandour: Patrick has had experience working on both the front-end and the back-end of mobile applications. Since he prefers the back-end, he has been assigned to the back-end team. Given that he's familiar with Express, his goals for this project is to better familiarize himself with designing a RESTful API, learning how to use Firebase as a database and user management system, as well as learning how to improve his TDD and CI knowledge and experience.
 
-Ryan Ro:
+Ryan Ro: Ryan has experience with the back-end of mobile applications, and databases, and thus is part of the back-end team. Additionally, since he is taking a front-end course this semester, he thought it would be a nice balance if he worked the back-end for this course. He is looking to expand his knowledge on what is already made and ready to use, such as Firebase, and universally useful API's and getting used to how to integrate them, to save time for future projects.
 
 Raymond Choi: Raymond is looking to expand his knowledge in the back end of web systems. His goal is to learn more about APIs. Both the use and the design (creation) of one. He is also looking to expand his knowledge with databases and their interation into web systems.
 
-Tim: Tim would prefer to have an exposure to frontend frameworks as he is very experienced in backend and would like to try and learn something different. 
+Tim Xie: Looking for hand-on practice and experience on some larger projects, especially the enteraction between front/backend.
 
-__Team Goals:__
+Team Goals:
 
 Learning about more APIs that are available online is a team goal that we all agreed on. APIs such as Twilio and Google Maps will provide features are useful for Haier users. For example, Twilio can be used to send SMS messages. It can be integrated into the account creation process so that real phone numbers are given and users can be confirmed as being real users. Furthermore, we can also include it to increase security through 2-factor authentication. A robust account creation system will therefore be a major focus in our development of Haier. Furthermore, it is also extremely important that our users can view responses and requests for jobs. To help, we will integrate Google Maps into the UI to show what jobs are available in the vicinity of the user. Therefore, there will be a signficant focus on user interface design and implementation. We need to get this part right, or else the app will have no chance of success. We also want to focus our attention on the way users interact with the webpage to select jobs and to view more information about them. There are many paths we can take (modals, separate pages, pop-ups) and this is a design decision we'll have to evaluate.
 
