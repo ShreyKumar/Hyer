@@ -5,7 +5,7 @@ Shreyansh Kumar:
 
 Patrick Ghandour: Patrick has had experience working on both the front-end and the back-end of mobile applications. Since he prefers the back-end, he has been assigned to the back-end team. Given that he's familiar with Express, his goals for this project is to better familiarize himself with designing a RESTful API, learning how to use Firebase as a database and user management system, as well as learning how to improve his TDD and CI knowledge and experience.
 
-Ryan Ro:
+Ryan Ro: Ryan has experience with the back-end of mobile applications, and databases, and thus is part of the back-end team. Additionally, since he is taking a front-end course this semester, he thought it would be a nice balance if he worked the back-end for this course. He is looking to expand his knowledge on what is already made and ready to use, such as Firebase, and universally useful API's and getting used to how to integrate them, to save time for future projects.
 
 Raymond Choi: Raymond is looking to expand his knowledge in the back end of web systems. His goal is to learn more about APIs. Both the use and the design (creation) of one. He is also looking to expand his knowledge with databases and their interation into web systems.
 
