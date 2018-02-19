@@ -1,4 +1,4 @@
-# Hayer API
+# Hyer API
 
 ## Jobs
 
