@@ -9,7 +9,7 @@ Ryan Ro: Ryan has experience with the back-end of mobile applications, and datab
 
 Raymond Choi: Raymond is looking to expand his knowledge in the back end of web systems. His goal is to learn more about APIs. Both the use and the design (creation) of one. He is also looking to expand his knowledge with databases and their interation into web systems.
 
-Tim:
+Tim Xie: Looking for hand-on practice and experience on some larger projects, especially the enteraction between front/backend. 
 
 __Team Goals:__
 
