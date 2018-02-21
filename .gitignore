@@ -1,0 +1,17 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# expo
+frontend/Hyer/.expo/
+
+# dependencies
+frontend/Hyer/node_modules
+
+# misc
+frontend/Hyer/.env.local
+frontend/Hyer/.env.development.local
+frontend/Hyer/.env.test.local
+frontend/Hyer/.env.production.local
+
+frontend/Hyer/npm-debug.log*
+frontend/Hyer/yarn-debug.log*
+frontend/Hyer/yarn-error.log*
