@@ -1,0 +1,53 @@
+<html>
+   <head>
+      <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+      <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+      <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+    </head>
+   <body>
+    <h3>Add Job</h3>
+    <form action="/jobs" method="POST">
+      <input type="text" placeholder="Job Name" name="jobName">
+      <input type="text" placeholder="Description" name="jobDescription">
+      <input type="text" placeholder="X coordinate" name="xCoordinate">
+      <input type="text" placeholder="Y coordinate" name="yCoordinate">
+      <input type="text" placeholder="Pay Value" name="payValue">
+      <input type="text" placeholder="Pay Type" name="payType">
+      <input type="text" placeholder="Job Duration" name="jobDuration">
+      <input type="text" placeholder="Photo" name="jobPhoto">
+      <input type="text" placeholder="Tags" name="jobTags">
+      <input type="text" placeholder="Prerequisites" name="jobPrerequisites">
+      <input type="text" placeholder="Employer" name="jobEmployer">
+      <input type="text" placeholder="Status" name="jobStatus">
+      <button type="submit">Add Job</button>
+    </form>
+
+    <p>Get Job by ID</p>
+    <form action="/jobs" method="GET">
+      <input type="text" placeholder="Job ID" name="jobID">
+      <button type="submit">Get Job</button>
+    </form>
+
+    <h3>Add User</h3>
+    <form action="/users" method="POST">
+      <input type="text" placeholder="First Name" name="firstName">
+      <input type="text" placeholder="Last Name" name="lastName">
+      <input type="text" placeholder="Username" name="username">
+      <input type="text" placeholder="Email" name="email">
+      <input type="text" placeholder="Phone Number" name="phoneNumber">
+      <input type="text" placeholder="Bio" name="userBio">
+      <input type="text" placeholder="Photo" name="userPhoto">
+      <button type="submit">Add User</button>
+    </form>
+    
+    <p>Get User by ID</p>
+    <form action="/users" method="GET">
+      <input type="text" placeholder="User ID" name="userID">
+      <button type="submit">Get User</button>
+    </form>
+      
+      
+      
+      
+      
+</html>
