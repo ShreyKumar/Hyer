@@ -1,12 +1,26 @@
 import React from 'react';
-import { Text } from "react-native";
-import { Container } from "native-base";
+import { Container, Title, Form, Item, Input, Content, Button, Text, Label } from "native-base";
 
 export default class Login extends React.Component {
   render() {
     return (
       <Container className="login-container">
-        <Text>Login</Text>
+        <Title>Login</Title>
+        <Content>
+          <Form>
+            <Item floatingLabel>
+              <Label>Email</Label>
+              <Input />
+            </Item>
+            <Item floatingLabel last>
+              <Label>Password</Label>
+              <Input />
+            </Item>
+            <Button primary>
+              <Text>Login</Text>
+            </Button>
+          </Form>
+        </Content>
       </Container>
     )
   }
