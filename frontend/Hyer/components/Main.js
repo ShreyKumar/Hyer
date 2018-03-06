@@ -13,6 +13,12 @@ import NavigationBar from "react-native-navbar";
 
 
 export default class Main extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      view: "login"
+    }
+  }
 
   render() {
     const titleConfig = {
@@ -21,22 +27,29 @@ export default class Main extends React.Component {
 
     const rightButtonConfig = {
       title: "Login",
-      handler: () => alert("Show Login")
+      handler: () => this.setState({view: "login"})
     }
     const leftButtonConfig = {
       title: "Sign up",
-      handler: () => alert("Show signup")
+      handler: () => this.setState({view: "signup"})
+    }
+
+    var ret;
+
+    if(this.state.view == "login"){
+      ret = (<Login />)
+    } else {
+      ret = (<Signup />)
     }
 
     return (
       <Container className="main-container">
         <NavigationBar
-          title={titleConfig}
-          rightButton={rightButtonConfig}
-          leftButton={leftButtonConfig}
+            title={titleConfig}
+            rightButton={rightButtonConfig}
+            leftButton={leftButtonConfig}
         />
-        <Login />
-        <Signup />
+        {ret}
       </Container>
     )
   }
