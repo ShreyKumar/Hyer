@@ -13,7 +13,7 @@ var config = {
   };
 firebase.initializeApp(config);
 
-// Create Job
+// Create Job (POST /jobs)
 app.post('/jobs', (req, res) => {
     var jobsRef = firebase.database().ref("jobs/")
     jobsRef.push({
@@ -32,7 +32,7 @@ app.post('/jobs', (req, res) => {
     res.send('Successfuly received job posting')
 })
 
-// Get job with given job ID.
+// Get job with given job ID. (GET /jobs/{job ID})
 app.get('/jobs', (req, res) => {
     var jobsRef = firebase.database().ref("jobs/")
     jobsRef.once("value", function(snapshot) {
@@ -46,7 +46,7 @@ app.get('/jobs', (req, res) => {
     console.log('GETTING job with ID ' + req.query.jobID)
 })
 
-// Create User
+// Create User (POST /users)
 app.post('/users', (req, res) => {
     var jobsRef = firebase.database().ref("users/")
     jobsRef.push({
@@ -61,7 +61,7 @@ app.post('/users', (req, res) => {
     res.send('Successfuly received user creation')
 })
 
-// Get User by ID
+// Get User by ID (GET /users/{user ID})
 app.get('/users', (req, res) => {
     var usersRef = firebase.database().ref("users/")
     usersRef.once("value", function(snapshot) {
@@ -75,12 +75,13 @@ app.get('/users', (req, res) => {
     console.log('GETTING user with ID ' + req.query.userID)
 })
 
-
+// When you go to localhost:3000, 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html')
+    var HTMLfile = __dirname + '/index.html'
+    res.sendFile(HTMLfile)
 })
 
 app.listen(3000, function() {
-    console.log("connected on 3k")
+    console.log("connected on port 3000")
 })
 
