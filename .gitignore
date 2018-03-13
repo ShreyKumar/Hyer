@@ -7,6 +7,7 @@ frontend/Hyer/.expo/
 # dependencies
 frontend/Hyer/node_modules
 frontend/Hyer/node_modules/.*
+frontend/Hyer/yarn.lock
 
 # misc
 frontend/Hyer/.env.local
