@@ -1,29 +1,54 @@
 import React from 'react';
-import Main from "./components/Main.js";
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import {Container, Header, Title, Content} from "native-base";
+
+//components
+import Login from "./components/Login.js";
+import Signup from "./components/Signup.js";
 
 export default class App extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      "view": "login"
+    }
+
+  }
+
+  changeToSignup = () => {
+    alert("sign up");
+    //this.setState({login: false})
+  }
+
+  changeToLogin = () => {
+    alert("login");
+
+    //this.setState({login: true})
+  }
+
   render() {
     return (
-      <Main />
-      /*
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-        <Text>Do you knoe da wae?</Text>
-        <Main />
-      </View>
-      */
+      <Container style={styles.container}>
+        <Header style={styles.header}>
+          <Title>Hyer</Title>
+        </Header>
+
+        <Content>
+          <Button onPress={() => this.setState({"view": "signup"})} style={{marginBottom: 50}} title="Click Signup" />
+          <Button onPress={() => this.setState({"view": "login"})} title="Click Login" />
+
+          {(this.state.view == "login") ? <Login />: <Signup />}
+        </Content>
+
+      </Container>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
+  header: {
+    paddingTop: 27
+  }
 });

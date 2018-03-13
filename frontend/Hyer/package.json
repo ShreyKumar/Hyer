@@ -23,6 +23,7 @@
     "native-base": "^2.3.9",
     "react": "16.2.0",
     "react-native": "0.52.0",
+    "react-native-emoji": "^1.2.0",
     "react-native-navbar": "^2.1.0"
   }
 }

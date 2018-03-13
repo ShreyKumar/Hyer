@@ -1,7 +1,23 @@
 import React from 'react';
+import { TextInput } from "react-native";
 import { Container, Title, Form, Item, Input, Content, Button, Text, Label } from "native-base";
 
+//use emojis to censor password
+import Emoji from "react-native-emoji";
+
 export default class Login extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      email: "",
+      password: ""
+    }
+  }
+
+  testLogin = function(){
+    alert("login")
+  }
+
   render() {
     return (
       <Container className="login-container">
@@ -10,13 +26,13 @@ export default class Login extends React.Component {
           <Form>
             <Item floatingLabel>
               <Label>Email</Label>
-              <Input />
+              <Input onChangeText={() => this.setState({"email": this.value})}/>
             </Item>
             <Item floatingLabel last>
               <Label>Password</Label>
               <Input />
             </Item>
-            <Button primary>
+            <Button block style={{marginTop: 30}} onPress={() => this.testLogin}>
               <Text>Login</Text>
             </Button>
           </Form>

@@ -25,7 +25,9 @@ export default class Signup extends React.Component {
               <Label>Password</Label>
               <TextInput secureTextEntry={true} maxLength={3} />
             </Item>
-            <Button><Text>Sign up</Text></Button>
+            <Button block>
+              <Text>Sign up</Text>
+            </Button>
           </Form>
         </Content>
       </Container>
