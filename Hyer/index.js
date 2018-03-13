@@ -76,7 +76,7 @@ app.get('/users', (req, res) => {
 })
 
 app.delete('/remove/:id', (req, res) => {
-    let id = parseInt(req.params.id);
+    let id = req.params.id;
     var userArray = firebase.database().ref('/users');
     userArray.child(id).remove(); 
     res.send('Successfuly removed the user');
