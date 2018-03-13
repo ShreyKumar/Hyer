@@ -12,21 +12,24 @@ export default class App extends React.Component {
     this.state = {
       "view": "login"
     }
-
+    this.navbar = null
   }
 
-  changeToSignup = () => {
-    alert("sign up");
-    //this.setState({login: false})
+  success = () => {
+    alert("success")
   }
 
-  changeToLogin = () => {
-    alert("login");
-
-    //this.setState({login: true})
-  }
 
   render() {
+    if(this.state.view == "login" || this.state.view == "signup"){
+      this.navbar = (
+        <View>
+          <Button onPress={() => this.setState({"view": "signup"})} style={{marginBottom: 50}} title="Signup" />
+          <Button onPress={() => this.setState({"view": "login"})} title="Login" />
+        </View>
+      )
+    }
+
     return (
       <Container style={styles.container}>
         <Header style={styles.header}>
@@ -34,10 +37,11 @@ export default class App extends React.Component {
         </Header>
 
         <Content>
-          <Button onPress={() => this.setState({"view": "signup"})} style={{marginBottom: 50}} title="Click Signup" />
-          <Button onPress={() => this.setState({"view": "login"})} title="Click Login" />
+          {this.navbar}
+          {(this.state.view == "login") ? <Login updateMain={this.success.bind(this)}/>: null}
+          {(this.state.view == "signup") ? <Signup updateMain={this.success.bind(this)}/>: null}
 
-          {(this.state.view == "login") ? <Login />: <Signup />}
+
         </Content>
 
       </Container>

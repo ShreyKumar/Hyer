@@ -14,9 +14,6 @@ export default class Login extends React.Component {
     }
   }
 
-  testLogin = function(){
-    alert("login")
-  }
 
   render() {
     return (
@@ -32,7 +29,7 @@ export default class Login extends React.Component {
               <Label>Password</Label>
               <Input />
             </Item>
-            <Button block style={{marginTop: 30}} onPress={() => this.testLogin}>
+            <Button block style={{marginTop: 30}} onPress={() => this.props.updateMain()}>
               <Text>Login</Text>
             </Button>
           </Form>
