@@ -75,6 +75,13 @@ app.get('/users', (req, res) => {
     console.log('GETTING user with ID ' + req.query.userID)
 })
 
+app.delete('/remove/:id', (req, res) => {
+    let id = parseInt(req.params.id);
+    var userArray = firebase.database().ref('/users');
+    userArray.child(id).remove(); 
+    res.send('Successfuly removed the user');
+});
+
 // When you go to localhost:3000, 
 app.get('/', (req, res) => {
     var HTMLfile = __dirname + '/index.html'
