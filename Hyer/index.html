@@ -5,27 +5,29 @@
       <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script>
-        function submit() {
-          let num = $('#number').val();
-          console.log("Delete attempt");
-          $.ajax({
-            url: '/delete/user/' + num,
-            type: 'DELETE',
-            success: function result() {
-              console.log("Deleted");
-            }
-          });
-        }
-        function submit2() {
-          let num = $('#number2').val();
-          console.log("Delete attempt");
-          $.ajax({
-            url: '/delete/job/' + num,
-            type: 'DELETE',
-            success: function result() {
-              console.log("Deleted");
-            }
-          });
+        $(document).ready(function() {
+          function submit() {
+            let num = $('#number').val();
+            console.log("Delete attempt");
+            $.ajax({
+              url: '/delete/user/' + num,
+              type: 'DELETE',
+              success: function result() {
+                console.log("Deleted");
+              }
+            });
+          }
+          function submit2() {
+            let num = $('#number2').val();
+            console.log("Delete attempt");
+            $.ajax({
+              url: '/delete/job/' + num,
+              type: 'DELETE',
+              success: function result() {
+                console.log("Deleted");
+              }
+            });
+          }
         }
       </script>
     </head>
