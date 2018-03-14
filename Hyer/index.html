@@ -3,9 +3,36 @@
       <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
       <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
       <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script>
+        function submit() {
+          let num = $('#number').val();
+          console.log("Delete attempt");
+          $.ajax({
+            url: '/delete/user/' + num,
+            type: 'DELETE',
+            success: function result() {
+              console.log("Deleted");
+              // location.reload(true);
+            }
+          });
+        }
+        function submit2() {
+          let num = $('#number2').val();
+          console.log("Delete attempt");
+          $.ajax({
+            url: '/delete/job/' + num,
+            type: 'DELETE',
+            success: function result() {
+              console.log("Deleted");
+              // location.reload(true);
+            }
+          });
+        }
+      </script>
     </head>
    <body>
-    <h3>Add Job</h3>
+    <p>Add Job</p>
     <form action="/jobs" method="POST">
       <input type="text" placeholder="Job Name" name="jobName">
       <input type="text" placeholder="Description" name="jobDescription">
@@ -28,7 +55,7 @@
       <button type="submit">Get Job</button>
     </form>
 
-    <h3>Add User</h3>
+    <p>Add User</p>
     <form action="/users" method="POST">
       <input type="text" placeholder="First Name" name="firstName">
       <input type="text" placeholder="Last Name" name="lastName">
@@ -45,8 +72,14 @@
       <input type="text" placeholder="User ID" name="userID">
       <button type="submit">Get User</button>
     </form>
-      
-    
+
+    <p>Delete a user</p>
+    <input type="text" id="number" placeholder="User ID" name="number"></input>
+    <button id="rmButton" onclick="submit()" value="Remove user">Delete User</button>
+
+    <p>Delete a job</p>
+    <input type="text" id="number2" placeholder="Job ID" name="number2"></input>
+    <button id="rmButton" onclick="submit2()" value="Remove user">Delete Job</button>
       
       
       

@@ -75,11 +75,18 @@ app.get('/users', (req, res) => {
     console.log('GETTING user with ID ' + req.query.userID)
 })
 
-app.delete('/remove/:id', (req, res) => {
-    let id = req.params.id;
+app.delete('/delete/user/:userID', (req, res) => {
+    let id = req.params.userID;
     var userArray = firebase.database().ref('/users');
     userArray.child(id).remove(); 
     res.send('Successfuly removed the user');
+});
+
+app.delete('/delete/job/:jobID', (req, res) => {
+    let id = req.params.jobID;
+    var userArray = firebase.database().ref('/jobs');
+    userArray.child(id).remove();
+    res.send('Successfuly removed the job');
 });
 
 // When you go to localhost:3000, 
