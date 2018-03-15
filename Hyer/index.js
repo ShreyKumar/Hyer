@@ -13,80 +13,136 @@ var config = {
   };
 firebase.initializeApp(config);
 
-// Create Job (POST /jobs)
-app.post('/jobs', (req, res) => {
-    var jobsRef = firebase.database().ref("jobs/")
-    jobsRef.push({
-        name: req.body.jobName,
-        description: req.body.jobDescription,
-        coordinates: {x: req.body.xCoordinate, y: req.body.yCoordinate },
-        pay: {value: req.body.payValue, type: req.body.payType },
-        duration: req.body.jobDuration,
-        photo: req.body.jobPhoto,
-        tags: req.body.jobTags,
-        prerequisites: req.body.jobPrerequisites,
-        employer: req.body.jobEmployer,
-        status: req.body.jobStatus
-    })
-    console.log('POSTED /jobs')
-    res.send('Successfuly received job posting')
-})
-
-// Get job with given job ID. (GET /jobs/{job ID})
-app.get('/jobs', (req, res) => {
-    var jobsRef = firebase.database().ref("jobs/")
-    jobsRef.once("value", function(snapshot) {
-        snapshot.forEach(function(child) {
-            var jobID = child.key;
-            if (jobID == req.query.jobID){
-                res.send(child.val())
-            }
-        })
-    })
-    console.log('GETTING job with ID ' + req.query.jobID)
-})
-
 // Create User (POST /users)
 app.post('/users', (req, res) => {
-    var jobsRef = firebase.database().ref("users/")
-    jobsRef.push({
-        name: {firstName: req.body.firstName, lastName: req.body.lastName },
-        username: req.body.username,
+    var ref = firebase.database().ref("users/" + req.body.username)
+    ref.set({
+        name: {firstName: req.body.firstName, lastName: req.body.lastName},
         email: req.body.email,
         phoneNumber: req.body.phoneNumber,
-        bio: req.body.userBio,
-        photo: req.body.userPhoto,
+        bio: req.body.bio,
+        photo: req.body.photo,
     })
-    console.log('POSTED /users')
-    res.send('Successfuly received user creation')
+    console.log('POST ' + req.body.username);
+    res.send('Successfully created ' + req.body.username);
 })
 
 // Get User by ID (GET /users/{user ID})
+// Currently GET /users
 app.get('/users', (req, res) => {
-    var usersRef = firebase.database().ref("users/")
-    usersRef.once("value", function(snapshot) {
-        snapshot.forEach(function(child) {
-            var userID = child.key;
-            if (userID == req.query.userID){
-                res.send(child.val())
-            }
-        })
+    var ref = firebase.database().ref("users/" + req.query.userID);
+    ref.once("value", function(snapshot) {
+        res.send(snapshot.val());
     })
-    console.log('GETTING user with ID ' + req.query.userID)
+    console.log('GET ' + req.query.userID);
 })
 
-app.delete('/delete/user/:userID', (req, res) => {
-    let id = req.params.userID;
-    var userArray = firebase.database().ref('/users');
-    userArray.child(id).remove(); 
-    res.send('Successfuly removed the user');
-});
+app.post('/put/users', (req, res) => {
+	var ref = firebase.database().ref("users/" + req.body.userID);
+	var update = {};
+	if (req.body.firstName != '') {
+		update.name = {};
+		update.name.firstName = req.body.firstName;
+	} if (req.body.lastName != '') {
+		if (req.body.firstName == '') {
+			update.name = {};
+		}
+		update.name.lastName = req.body.lastName;
+	} if (req.body.email != '') {
+		update.email = req.body.email;
+	} if (req.body.phoneNumber != '') {
+		update.phoneNumber = req.body.phoneNumber;
+	} if (req.body.bio != '') {
+		update.bio = req.body.bio;
+	} if (req.body.photo != '') {
+		update.photo = req.body.photo;
+	}
+	ref.update(update)
+	res.send('Successfully updated ' + req.body.userID);
+})
 
-app.delete('/delete/job/:jobID', (req, res) => {
-    let id = req.params.jobID;
-    var userArray = firebase.database().ref('/jobs');
-    userArray.child(id).remove();
-    res.send('Successfuly removed the job');
+// Delete user with given user ID. (DELETE /users/{user ID})
+app.post('/delete/users', (req, res) => {
+    var ref = firebase.database().ref("users/" + req.body.userID);
+    ref.remove();
+    console.log('DELETE ' + req.body.userID);
+    res.send('Successfully deleted ' + req.body.userID);
+})
+
+// Create Job (POST /jobs)
+app.post('/jobs', (req, res) => {
+    var ref = firebase.database().ref("jobs")
+    ref.push({
+        name: req.body.name,
+        description: req.body.description,
+        coordinates: {x: req.body.xCoordinate, y: req.body.yCoordinate},
+        pay: {value: req.body.value, type: req.body.type},
+        duration: req.body.duration,
+        photo: req.body.photo,
+        tags: req.body.tags,
+        prerequisites: req.body.prerequisites,
+        employer: req.body.employer,
+        status: req.body.status
+    })
+    console.log('POST ' + req.body.jobName);
+    res.send('Successfuly created ' + req.body.jobName);
+})
+
+// Get job with given job ID. (GET /jobs/{job ID})
+// Currently GET /jobs
+app.get('/jobs', (req, res) => {
+    var ref = firebase.database().ref("jobs/" + req.query.jobID)
+    ref.once("value", function(snapshot) {
+        res.send(snapshot.val());
+    })
+    console.log('GET ' + req.query.jobID)
+})
+
+app.post('/put/jobs', (req, res) => {
+	var ref = firebase.database().ref("jobs/" + req.body.jobID);
+	var update = {};
+	if (req.body.name != '') {
+		update.name = req.body.name;
+	} if (req.body.description != '') {
+		update.description = req.body.description;
+	} if (req.body.xCoordinate != '') {
+		update.coordinates = {};
+		update.coordinates.xCoordinate = req.body.xCoordinate;
+	} if (req.body.yCoordinate != '') {
+		if (req.body.xCoordinate == '') {
+			update.coordinates = {};
+		}
+		update.coordinates.yCoordinate = req.body.yCoordinate;
+	} if (req.body.value != '') {
+		update.pay = {};
+		update.pay.value = req.body.value;
+	} if (req.body.type != '') {
+		if (req.body.value == '') {
+			update.pay = {};
+		}
+		update.pay.type = req.body.type;
+	} if (req.body.duration != '') {
+		update.duration = req.body.duration;
+	} if (req.body.photo != '') {
+		update.phtoto = req.body.photo;
+	} if (req.body.tags != '') {
+		update.tags = req.body.tags;
+	} if (req.body.prerequisites != '') {
+		update.prerequisites = req.body.prerequisites;
+	} if (req.body.employer != '') {
+		update.employer = req.body.employer;
+	} if (req.body.status != '') {
+		update.status = req.body.status;
+	}
+	ref.update(update)
+	res.send('Successfully updated ' + req.body.userID);
+})
+
+app.post('/delete/jobs', (req, res) => {
+    var ref = firebase.database().ref("jobs/" + req.body.jobID);
+    ref.remove();
+    console.log('DELETE ' + req.body.jobID);
+    res.send('Successfully deleted ' + req.body.jobID);
 });
 
 // When you go to localhost:3000, 
@@ -98,4 +154,3 @@ app.get('/', (req, res) => {
 app.listen(3000, function() {
     console.log("connected on port 3000")
 })
-
