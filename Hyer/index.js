@@ -27,14 +27,22 @@ app.post('/users', (req, res) => {
     res.send('Successfully created ' + req.body.username);
 })
 
-// Get User by ID (GET /users/{user ID})
-// Currently GET /users
+// Get all users
 app.get('/users', (req, res) => {
+	var ref = firebase.database().ref("users");
+	ref.once("value", function(snapshot) {
+		res.send(snapshot.val());
+	})
+	console.log('GET all users');
+})
+
+// Get User by ID (GET /users?userID={...})
+app.get('/users?:userID', (req, res) => {
     var ref = firebase.database().ref("users/" + req.query.userID);
     ref.once("value", function(snapshot) {
         res.send(snapshot.val());
     })
-    console.log('GET ' + req.query.userID);
+    console.log('GET user ' + req.query.userID);
 })
 
 app.post('/put/users', (req, res) => {
@@ -88,14 +96,22 @@ app.post('/jobs', (req, res) => {
     res.send('Successfuly created ' + req.body.jobName);
 })
 
-// Get job with given job ID. (GET /jobs/{job ID})
-// Currently GET /jobs
+// Get all jobs
 app.get('/jobs', (req, res) => {
+	var ref = firebase.database().ref("jobs");
+	ref.once("value", function(snapshot) {
+		res.send(snapshot.val());
+	})
+	console.log('GET all jobs');
+})
+
+// Get job with given job ID. (GET /jobs/{job ID})
+app.get('/jobs?:jobID', (req, res) => {
     var ref = firebase.database().ref("jobs/" + req.query.jobID)
     ref.once("value", function(snapshot) {
         res.send(snapshot.val());
     })
-    console.log('GET ' + req.query.jobID)
+    console.log('GET job ' + req.query.jobID)
 })
 
 app.post('/put/jobs', (req, res) => {
