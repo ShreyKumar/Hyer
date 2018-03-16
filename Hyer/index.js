@@ -27,22 +27,31 @@ app.post('/users', (req, res) => {
     res.send('Successfully created ' + req.body.username);
 })
 
-// Get all users
+// Get all users or a specific user with a username.
 app.get('/users', (req, res) => {
-	var ref = firebase.database().ref("users");
-	ref.once("value", function(snapshot) {
-		res.send(snapshot.val());
-	})
-	console.log('GET all users');
-})
 
-// Get User by ID (GET /users?userID={...})
-app.get('/users?:userID', (req, res) => {
-    var ref = firebase.database().ref("users/" + req.query.userID);
-    ref.once("value", function(snapshot) {
-        res.send(snapshot.val());
-    })
-    console.log('GET user ' + req.query.userID);
+	var ref = firebase.database().ref("users/")
+	// Get user by username
+	if (req.query.username != undefined) {
+		console.log("Attempting to GET user with username: " + req.query.username)
+		ref.once("value", function(snapshot) {
+			if (snapshot.hasChild(req.query.username)){
+				res.send(snapshot.child(req.query.username).val())
+				console.log('Success, found user.')
+			} else {
+				res.sendStatus(400)
+				console.log('Failure, no user with given username')
+			}
+		})
+
+	// Get all users
+	} else {
+		ref.once("value", function(snapshot) {
+			res.send(snapshot.val());
+		})
+		console.log('GET all users');
+	}
+
 })
 
 app.post('/put/users', (req, res) => {
@@ -92,26 +101,56 @@ app.post('/jobs', (req, res) => {
         employer: req.body.employer,
         status: req.body.status
     })
-    console.log('POST ' + req.body.jobName);
-    res.send('Successfuly created ' + req.body.jobName);
+    console.log('POST ' + req.body.name);
+    res.send('Successfuly created ' + req.body.name);
 })
 
-// Get all jobs
+// Get a specific job or all jobs.
 app.get('/jobs', (req, res) => {
+
+	// Get job by ID
+	if (req.query.jobID != undefined) {
+		// Algorithm: Get all jobs, then check if it has the ID as a child.
+		console.log("Attempting to GET job with jobID: " + req.query.jobID)
+		var ref = firebase.database().ref("jobs/")
+		ref.once("value").then(function(snapshot) {
+				if (snapshot.hasChild(req.query.jobID)){
+					// Found matching job
+					res.send(snapshot.child(req.query.jobID).val())
+					console.log("Success, found job with ID.")
+				} else {
+					// No corresponding job
+					res.sendStatus(400)
+					console.log("Failure, no job with the given ID.")
+				}
+			})
+
+	// Get job by name
+	} else if (req.query.jobName != undefined) {
+		console.log("Attempting to GET job with jobName:" + req.query.jobName)
+		var ref = firebase.database().ref("jobs/")
+		ref.once("value").then(function(snapshot) {
+			var jobsObject = snapshot.val()
+
+			for (var jobID in jobsObject) {
+				if (jobsObject[jobID].name == req.query.jobName) {
+					res.send(jobsObject[jobID])
+					console.log("Success, found job with the name.")
+					return;
+				}
+			}
+			res.sendStatus(400)
+			console.log("Failure, no job with the given name.")
+		})
+			
+	// Get all jobs
+	} else {
 	var ref = firebase.database().ref("jobs");
 	ref.once("value", function(snapshot) {
 		res.send(snapshot.val());
 	})
 	console.log('GET all jobs');
-})
-
-// Get job with given job ID. (GET /jobs/{job ID})
-app.get('/jobs?:jobID', (req, res) => {
-    var ref = firebase.database().ref("jobs/" + req.query.jobID)
-    ref.once("value", function(snapshot) {
-        res.send(snapshot.val());
-    })
-    console.log('GET job ' + req.query.jobID)
+	}
 })
 
 app.post('/put/jobs', (req, res) => {
