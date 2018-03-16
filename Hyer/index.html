@@ -29,6 +29,12 @@
       <button type="submit">Add Job</button>
     </form>
     
+    <p>Search for a Job by name</p>
+    <form action="/jobs" method="GET">
+      <input type="text" placeholder="Job Name" name="jobName">
+      <button type="submit">Get Job</button>
+    </form>
+
     <p>Get Job by ID</p>
     <form action="/jobs" method="GET">
       <input type="text" placeholder="Job ID" name="jobID">
@@ -78,15 +84,15 @@
       <button type="submit">Add User</button>
     </form>
     
-    <p>Get User by ID</p>
+    <p>Get User by username</p>
     <form action="/users" method="GET">
-      <input type="text" placeholder="User ID" name="userID">
+      <input type="text" placeholder="Username" name="username">
       <button type="submit">Get User</button>
     </form>
 
     <p>Delete a user</p>
     <form action="/delete/users" method="POST">
-      <input type="text" placeholder="User ID" name="userID">
+      <input type="text" placeholder="Username" name="username">
       <button type="submit">Delete User</button>
     </form>
 
