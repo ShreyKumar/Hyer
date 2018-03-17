@@ -3,8 +3,8 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import {Container, Header, Title, Content} from "native-base";
 
 //components
-import Login from "./components/Login.js";
-import Signup from "./components/Signup.js";
+import Login from "./components/Auth/Login.js";
+import Signup from "./components/Auth/Signup.js";
 import Profile from "./components/Profile.js";
 import PhoneVerification from "./components/PhoneVerification.js";
 
