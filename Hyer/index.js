@@ -93,8 +93,8 @@ app.post('/jobs', (req, res) => {
         name: req.body.name,
         description: req.body.description,
         coordinates: {x: req.body.xCoordinate, y: req.body.yCoordinate},
-        pay: {value: req.body.value, type: req.body.type},
-        duration: req.body.duration,
+        pay: {value: parseFloat(req.body.value), type: req.body.type},
+        duration: parseFloat(req.body.duration),
         photo: req.body.photo,
         tags: req.body.tags,
         prerequisites: req.body.prerequisites,
@@ -142,14 +142,39 @@ app.get('/jobs', (req, res) => {
 			res.sendStatus(400)
 			console.log("Failure, no job with the given name.")
 		})
-			
+
+	// Get all jobs by order
+	} else if(req.query.orderby != undefined) {
+		var ref = firebase.database().ref("jobs/")
+		var jobs = {"jobs" : []}
+		if(req.query.orderby == "duration") {
+			console.log('GET all jobs by duration')
+			ref.orderByChild("duration").on("value", function(snapshot) {
+				snapshot.forEach(function(child) {
+					jobs.jobs.push(child.key)
+        		});
+				res.send(jobs);
+			});
+		} else if (req.query.orderby == "pay") {
+			console.log('GET all jobs by pay')
+			ref.orderByChild("pay").on("value", function(snapshot) {
+				snapshot.forEach(function(child) {
+					jobs.jobs.push(child.key)
+        		});
+				res.send(jobs);
+			});
+		} else {
+			res.sendStatus(400)
+			console.log("Failure, improper query.")
+		}
+
 	// Get all jobs
 	} else {
-	var ref = firebase.database().ref("jobs");
-	ref.once("value", function(snapshot) {
-		res.send(snapshot.val());
-	})
-	console.log('GET all jobs');
+		var ref = firebase.database().ref("jobs");
+		ref.once("value", function(snapshot) {
+			res.send(snapshot.val());
+		})
+		console.log('GET all jobs');
 	}
 })
 
