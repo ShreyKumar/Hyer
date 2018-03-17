@@ -6,6 +6,7 @@ import {Container, Header, Title, Content} from "native-base";
 import Login from "./components/Login.js";
 import Signup from "./components/Signup.js";
 import Profile from "./components/Profile.js";
+import PhoneVerification from "./components/PhoneVerification.js";
 
 export default class App extends React.Component {
   constructor(props){
@@ -19,7 +20,7 @@ export default class App extends React.Component {
   success = () => {
     //do evaluation and redirect to appropriate function
     alert("success")
-    this.setState({"view": "profile"})
+    this.setState({"view": "phoneverification"})
   }
 
 
@@ -45,6 +46,7 @@ export default class App extends React.Component {
           {(this.state.view == "login") ? <Login updateMain={this.success.bind(this)}/>: null}
           {(this.state.view == "signup") ? <Signup updateMain={this.success.bind(this)}/>: null}
           {(this.state.view == "profile") ? <Profile /> : null}
+          {(this.state.view == "phoneverification") ? <PhoneVerification /> : null}
 
         </Content>
 
