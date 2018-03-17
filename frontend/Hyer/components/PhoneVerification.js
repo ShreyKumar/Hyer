@@ -1,39 +1,27 @@
 import React from "react";
 import {Text} from "react-native";
-import {Container, Content, Card, CardItem, Form, Input, Item, Label} from "native-base";
+import {Container, Content} from "native-base";
+
+//get all the other shit
+import Step1 from "./PhoneVerification/Step1.js";
+import Step2 from "./PhoneVerification/Step2.js";
 
 export default class PhoneVerification extends React.Component {
   constructor(props){
     super(props);
 
-    this.hint = null
-  }
+    this.state = {
+      "view": "step1"
+    }
 
-  showMsg = () => {
-    this.hint = (
-      <CardItem>
-        <Text>Test</Text>
-      </CardItem>
-    )
-    alert("pressed")
   }
 
   render(){
     return (
       <Container>
         <Content>
-          <Card>
-            <CardItem>
-              <Text>Please verify your phone below</Text>
-            </CardItem>
-            <CardItem>
-              <Item floatingLabel>
-                <Label>Phone number</Label>
-                <Input onPress={() => this.showMsg()}/>
-              </Item>
-            </CardItem>
-            {this.hint}
-          </Card>
+          <Step1 />
+          <Step2 />
         </Content>
       </Container>
     )
