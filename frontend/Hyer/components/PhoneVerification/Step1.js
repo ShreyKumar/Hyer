@@ -25,7 +25,7 @@ export default class Step1 extends React.Component {
             </Text>
           </CardItem>
         </Card>
-        <Button block style={{marginTop: 30}}>
+        <Button block style={{marginTop: 30}} onPress={() => this.props.updateMain()}>
           <Text>Verify</Text>
         </Button>
       </View>

@@ -16,12 +16,19 @@ export default class PhoneVerification extends React.Component {
 
   }
 
+  phoneactivated = () => {
+    alert("activated!");
+  }
+
+  verify = () => {
+    this.setState({"view": "step2"});
+  }
+
   render(){
     return (
       <Container>
         <Content>
-          <Step1 />
-          <Step2 />
+          {(this.state.view == "step1") ? <Step1 updateMain={this.verify.bind(this)}/> : <Step2 updateMain={this.phoneactivated.bind(this)}/>}
         </Content>
       </Container>
     )
