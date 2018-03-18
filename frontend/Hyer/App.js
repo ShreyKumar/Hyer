@@ -7,6 +7,7 @@ import Login from "./components/Auth/Login.js";
 import Signup from "./components/Auth/Signup.js";
 import Profile from "./components/Profile.js";
 import PhoneVerification from "./components/PhoneVerification.js";
+import Jobs from "./components/Jobs.js";
 
 export default class App extends React.Component {
   constructor(props){
@@ -31,6 +32,7 @@ export default class App extends React.Component {
           <Button onPress={() => this.setState({"view": "signup"})} style={{marginBottom: 50}} title="Signup" />
           <Button onPress={() => this.setState({"view": "login"})} title="Login" />
           <Button onPress={() => this.setState({"view": "profile"})} title="Profile" />
+          <Button onPress={() => this.setState({"view": "jobs"})} title="Jobs" />
         </View>
       )
     }
@@ -47,6 +49,7 @@ export default class App extends React.Component {
           {(this.state.view == "signup") ? <Signup updateMain={this.success.bind(this)}/>: null}
           {(this.state.view == "profile") ? <Profile /> : null}
           {(this.state.view == "phoneverification") ? <PhoneVerification /> : null}
+          {(this.state.view == "jobs") ? <Jobs /> : null}
 
         </Content>
 

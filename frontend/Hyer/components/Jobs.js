@@ -5,6 +5,8 @@ import {Container, Content, Card, CardItem} from "native-base";
 export default class Jobs extends React.Component {
   constructor(props){
     super(props);
+
+    console.log(fetch("https://hyer.herokuapp.com/jobs"))
   }
 
   render(){

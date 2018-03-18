@@ -23,7 +23,12 @@ export default class Step2 extends React.Component {
       <View className="step2">
         <Card>
           <CardItem>
-            <Input onChangeText={this.setInputCode.bind(this)} value={this.props.thisVal} maxLength={4}/>
+            <Input
+              onChangeText={this.setInputCode.bind(this)}
+              value={this.props.thisVal}
+              maxLength={4}
+              keyboardType="numeric"
+              />
           </CardItem>
           <CardItem>
             <Text>
