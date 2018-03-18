@@ -6,7 +6,25 @@ export default class Jobs extends React.Component {
   constructor(props){
     super(props);
 
-    console.log(fetch("https://hyer.herokuapp.com/jobs"))
+    this.testArr = [(<Text key="hello">Hello </Text>), (<Text key="there">There</Text>)];
+
+    fetch("https://hyer.herokuapp.com/jobs", {
+      method: "GET",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    }).then((response) => {
+      alert("found jobs");
+      console.log("start response");
+      response.json().then((data) => {
+        console.log(data)
+      })
+
+      console.log("end reponse");
+    }).catch((error) => {
+      console.error(error);
+    })
   }
 
   render(){
@@ -14,6 +32,7 @@ export default class Jobs extends React.Component {
       <Container>
         <Content>
           <Text>Jobs</Text>
+          {this.testArr}
         </Content>
       </Container>
     );
