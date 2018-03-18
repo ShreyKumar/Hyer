@@ -16,7 +16,7 @@ __Github__:
 [Yreamiest](https://github.com/csc302-winter-2018/proj-Yreamiest)
 
 __Google Docs__:
-[Project Outline](https://docs.google.com/document/d/16u7_o-7rxEUnZ6T8p2n8twuFfpY-YzFTKmIxhn9UAjw/), 
+[Project Outline](https://docs.google.com/document/d/16u7_o-7rxEUnZ6T8p2n8twuFfpY-YzFTKmIxhn9UAjw/),
 [Project Description](https://docs.google.com/document/d/1Jw-KPys9iVTEl5lxs6hGzPLhntMtl48Yr0JoAEfVToQ/)
 
 __Slack__:
