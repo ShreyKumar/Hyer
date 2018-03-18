@@ -6,7 +6,11 @@ export default class Jobs extends React.Component {
   constructor(props){
     super(props);
 
-    this.testArr = [(<Text key="hello">Hello </Text>), (<Text key="there">There</Text>)];
+    this.state = {
+      "loaded": false
+    }
+
+    this.jobs = []
 
     fetch("https://hyer.herokuapp.com/jobs", {
       method: "GET",
@@ -19,7 +23,27 @@ export default class Jobs extends React.Component {
       console.log("start response");
       response.json().then((data) => {
         console.log(data)
+
+        for(row in data){
+          this.jobs.push({
+            id: row,
+            info: data[row]
+          })
+          console.log("inside");
+          console.log(this.jobs);
+        }
+
+
       })
+
+      setTimeout(() => {
+        console.log("saved?");
+        console.log(this.jobs);
+
+        if(this.jobs != []){
+          this.setState({"loaded": true})
+        }
+      }, 2000)
 
       console.log("end reponse");
     }).catch((error) => {
@@ -28,14 +52,39 @@ export default class Jobs extends React.Component {
   }
 
   render(){
-    return (
-      <Container>
-        <Content>
+
+    if(this.state.loaded){
+      return (
+        <Container>
+          <Content>
           <Text>Jobs</Text>
-          {this.testArr}
-        </Content>
-      </Container>
-    );
+          {
+            this.jobs.map((eachJob) => {
+                console.log(this.jobs);
+                return (
+                  <Card key={eachJob["id"]}>
+                    <CardItem>
+                      <Text>
+                        {eachJob["info"]["name"]}
+                      </Text>
+                    </CardItem>
+                    <CardItem>
+                      <Text>
+                        {eachJob["info"]["description"]}
+                      </Text>
+                    </CardItem>
+                  </Card>
+                )
+            })
+          }
+          </Content>
+        </Container>
+      )
+    } else {
+      return (<Text>Loading jobs...</Text>);
+    }
   }
+
+
 
 }
