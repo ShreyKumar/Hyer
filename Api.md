@@ -46,11 +46,11 @@ DELETE /job/{job ID} --> Delete job with specific job ID
 
 POST /user --> Create user
 
-GET /user/username --> Retriever user with specific username
+GET /user/ID --> Retriever user with specific ID
 
-PUT /user/username --> Update user with specific username
+PUT /user/ID --> Update user with specific ID
 
-DELETE /user/username --> Delete user with specific username
+DELETE /user/ID --> Delete user with specific username
 
 #### User
 {
