@@ -93,7 +93,8 @@ app.post('/jobs', (req, res) => {
         name: req.body.name,
         description: req.body.description,
         coordinates: {x: req.body.xCoordinate, y: req.body.yCoordinate},
-        pay: {value: parseFloat(req.body.value), type: req.body.type},
+        pay: parseFloat(req.body.value),
+        type: req.body.type,
         duration: parseFloat(req.body.duration),
         photo: req.body.photo,
         tags: req.body.tags,
@@ -194,13 +195,9 @@ app.post('/put/jobs', (req, res) => {
 		}
 		update.coordinates.yCoordinate = req.body.yCoordinate;
 	} if (req.body.value != '') {
-		update.pay = {};
-		update.pay.value = req.body.value;
+		update.pay = req.body.value;
 	} if (req.body.type != '') {
-		if (req.body.value == '') {
-			update.pay = {};
-		}
-		update.pay.type = req.body.type;
+		update.type = req.body.type;
 	} if (req.body.duration != '') {
 		update.duration = req.body.duration;
 	} if (req.body.photo != '') {
