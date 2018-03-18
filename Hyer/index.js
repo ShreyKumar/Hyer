@@ -92,7 +92,7 @@ app.post('/jobs', (req, res) => {
     ref.push({
         name: req.body.name,
         description: req.body.description,
-        coordinates: {x: req.body.xCoordinate, y: req.body.yCoordinate},
+        coordinates: {x: parseFloat(req.body.xCoordinate), y: parseFloat(req.body.yCoordinate)},
         pay: parseFloat(req.body.value),
         type: req.body.type,
         duration: parseFloat(req.body.duration),
@@ -105,6 +105,20 @@ app.post('/jobs', (req, res) => {
     console.log('POST ' + req.body.name);
     res.send('Successfuly created ' + req.body.name);
 })
+
+function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+	var R = 6371
+	var dLat = deg2rad(lat2 - lat1)
+	var dLon = deg2rad(lon2 - lon1)
+	var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2)
+	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+	var d = R * c;
+	return d
+}
+
+function deg2rad(deg) {
+	return deg * (Math.PI / 180)
+}
 
 // Get a specific job or all jobs.
 app.get('/jobs', (req, res) => {
@@ -169,6 +183,20 @@ app.get('/jobs', (req, res) => {
 			console.log("Failure, improper query.")
 		}
 
+	// Get all jobs within the defined distance
+	} else if(req.query.lat != undefined && req.query.lon != undefined && req.query.km != undefined) {
+		var ref = firebase.database().ref("jobs/")
+		var jobs = {"jobs" : []}
+		console.log('GET all jobs within given distance')
+		ref.once("value", function(snapshot) {
+			snapshot.forEach(function(child) {
+				if(getDistanceFromLatLonInKm(child.val().coordinates.x, child.val().coordinates.y, parseFloat(req.query.lat), parseFloat(req.query.lon)) <= parseFloat(req.query.km)) {
+					jobs.jobs.push(child.key)
+				}
+			});
+			res.send(jobs);
+		});
+
 	// Get all jobs
 	} else {
 		var ref = firebase.database().ref("jobs");
@@ -188,18 +216,18 @@ app.post('/put/jobs', (req, res) => {
 		update.description = req.body.description;
 	} if (req.body.xCoordinate != '') {
 		update.coordinates = {};
-		update.coordinates.xCoordinate = req.body.xCoordinate;
+		update.coordinates.xCoordinate = parseFloat(req.body.xCoordinate);
 	} if (req.body.yCoordinate != '') {
 		if (req.body.xCoordinate == '') {
 			update.coordinates = {};
 		}
-		update.coordinates.yCoordinate = req.body.yCoordinate;
+		update.coordinates.yCoordinate = parseFloat(req.body.yCoordinate);
 	} if (req.body.value != '') {
-		update.pay = req.body.value;
+		update.pay = parseFloat(req.body.value);
 	} if (req.body.type != '') {
 		update.type = req.body.type;
 	} if (req.body.duration != '') {
-		update.duration = req.body.duration;
+		update.duration = parseFloat(req.body.duration);
 	} if (req.body.photo != '') {
 		update.photo = req.body.photo;
 	} if (req.body.tags != '') {
