@@ -3,7 +3,7 @@ import { TextInput } from "react-native";
 import { Container, Title, Form, Item, Input, Content, Button, Text, Label } from "native-base";
 
 //use emojis to censor password
-import Emoji from "react-native-emoji";
+//import Emoji from "react-native-emoji"; // Crashes on emulator
 
 export default class Login extends React.Component {
   constructor(props){

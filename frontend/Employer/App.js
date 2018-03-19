@@ -7,7 +7,7 @@ import Login from "./components/Auth/Login.js";
 import Signup from "./components/Auth/Signup.js";
 import Profile from "./components/Profile.js";
 import PhoneVerification from "./components/PhoneVerification.js";
-import Jobs from "./components/Jobs.js";
+import Jobs from "./components/Job/JobHome.js";
 
 export default class App extends React.Component {
   constructor(props){
@@ -60,9 +60,8 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
+  header: {
+    paddingTop: 27
+  }
 });
