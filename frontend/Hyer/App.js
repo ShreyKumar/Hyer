@@ -8,12 +8,14 @@ import Signup from "./components/Auth/Signup.js";
 import Profile from "./components/Profile.js";
 import PhoneVerification from "./components/PhoneVerification.js";
 import Jobs from "./components/Jobs.js";
+import JobInfo from "./components/JobInfo.js";
 
 export default class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      "view": "login"
+      "view": "login",
+      "thisjobid": ""
     }
     this.navbar = null
   }
@@ -22,6 +24,13 @@ export default class App extends React.Component {
     //do evaluation and redirect to appropriate function
     alert("success")
     this.setState({"view": "phoneverification"})
+  }
+
+  changeToJobInfo = (id) => {
+    this.setState({
+      "view": "jobinfo",
+      "thisjobid": id
+    })
   }
 
 
@@ -49,7 +58,8 @@ export default class App extends React.Component {
           {(this.state.view == "signup") ? <Signup updateMain={this.success.bind(this)}/>: null}
           {(this.state.view == "profile") ? <Profile /> : null}
           {(this.state.view == "phoneverification") ? <PhoneVerification /> : null}
-          {(this.state.view == "jobs") ? <Jobs /> : null}
+          {(this.state.view == "jobs") ? <Jobs updateMain={this.changeToJobInfo.bind(this)} /> : null}
+          {(this.state.view == "jobinfo") ? <JobInfo id={this.state.thisjobid} /> : null}
 
         </Content>
 

@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text} from "react-native";
+import {View, Text, Button} from "react-native";
 import {Container, Content, Card, CardItem} from "native-base";
 
 export default class Jobs extends React.Component {
@@ -72,6 +72,9 @@ export default class Jobs extends React.Component {
                       <Text>
                         {eachJob["info"]["description"]}
                       </Text>
+                    </CardItem>
+                    <CardItem>
+                      <Button onPress={() => this.props.updateMain(eachJob["id"])} title="More info" />
                     </CardItem>
                   </Card>
                 )
