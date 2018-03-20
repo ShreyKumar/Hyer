@@ -7,19 +7,19 @@ export default class JobPost extends React.Component {
     super(props);
 
     this.state = {
-        url : "https://hyer.herokuapp.com/jobs/",
+        url : "https://hyer.herokuapp.com/jobs",
         post : {
-            name: "1",
-            description: "1",
-            coordinates: {x: 1, y: 1},
-            pay: "1",
-            type: "1",
-            duration: "1",
-            photo: "1",
-            tags: "1",
-            prerequisites: "1",
-            employer: "1",
-            status: "1"
+            name: null,
+            description: null,
+            coordinates: {x: 1, y: 1}, //TODO get using gps coord
+            pay: null,
+            type: null,
+            duration: null,
+            photo: null,
+            tags: null,
+            prerequisites: null,
+            employer: null, //TODO get username from profile
+            status: null
         }
     }
   }
@@ -96,7 +96,7 @@ export default class JobPost extends React.Component {
          tags: this.state.post.tags,
          prerequisites:this.state.post.prerequisites,
          employer: this.state.post.employer,
-         status: this.state.post.status,
+         status: this.state.post.status
       })
     }).then((response) => {
         console.log(response)

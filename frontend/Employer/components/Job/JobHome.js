@@ -10,6 +10,7 @@ export default class Jobs extends React.Component {
     super(props);
     this.state = {
         "view": "home",
+        "user": "tim" //TODO Get/set username from login/profile
     }
 
     this.view = null;
