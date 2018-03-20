@@ -7,7 +7,7 @@ export default class JobPost extends React.Component {
     super(props);
 
     this.state = {
-        url : "https://hyer.herokuapp.com/jobs",
+        url : "https://hyer.herokuapp.com/jobs/",
         post : {
             name: "1",
             description: "1",
@@ -82,7 +82,7 @@ export default class JobPost extends React.Component {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
+        'Content-type': 'application/json',
       },
       body: JSON.stringify({
          name: this.state.post.name,
@@ -96,13 +96,10 @@ export default class JobPost extends React.Component {
          tags: this.state.post.tags,
          prerequisites:this.state.post.prerequisites,
          employer: this.state.post.employer,
-         status: this.state.post.status
+         status: this.state.post.status,
       })
     }).then((response) => {
         console.log(response)
-      response.json().then((data) => {
-        console.log(data)
-      })
     }).catch((error) => {
       console.error(error);
     })
