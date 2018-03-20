@@ -4,6 +4,7 @@ var firebase = require('firebase')
 const app = express()
 
 app.use(bodyParser.urlencoded({extended: true}))
+app.use(require("body-parser").json())
 
 var config = {
 	apiKey: "AIzaSyATZQRhK6vLE47RVDkTZUHMTQySlJLabIA",
