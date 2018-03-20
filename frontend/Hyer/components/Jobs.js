@@ -52,7 +52,6 @@ export default class Jobs extends React.Component {
   }
 
   render(){
-
     if(this.state.loaded){
       return (
         <View>
@@ -85,7 +84,5 @@ export default class Jobs extends React.Component {
       return (<Text>Loading jobs...</Text>);
     }
   }
-
-
 
 }
