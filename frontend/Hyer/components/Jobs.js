@@ -1,6 +1,6 @@
 import React from "react";
 import {View, Text, Button} from "react-native";
-import {Container, Content, Card, CardItem} from "native-base";
+import {Card, CardItem} from "native-base";
 
 export default class Jobs extends React.Component {
   constructor(props){
@@ -55,8 +55,7 @@ export default class Jobs extends React.Component {
 
     if(this.state.loaded){
       return (
-        <Container>
-          <Content>
+        <View>
           <Text>Jobs</Text>
           {
             this.jobs.map((eachJob) => {
@@ -80,8 +79,7 @@ export default class Jobs extends React.Component {
                 )
             })
           }
-          </Content>
-        </Container>
+        </View>
       )
     } else {
       return (<Text>Loading jobs...</Text>);

@@ -31,6 +31,7 @@ export default class App extends React.Component {
       "view": "jobinfo",
       "thisjobid": id
     })
+    console.log(this.component);
   }
 
 
