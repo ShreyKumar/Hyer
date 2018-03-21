@@ -4,6 +4,7 @@ var firebase = require('firebase')
 const app = express()
 
 app.use(bodyParser.urlencoded({extended: true}))
+app.use(require("body-parser").json())
 
 var config = {
 	apiKey: "AIzaSyATZQRhK6vLE47RVDkTZUHMTQySlJLabIA",
@@ -22,6 +23,7 @@ app.post('/users', (req, res) => {
         phoneNumber: req.body.phoneNumber,
         bio: req.body.bio,
         photo: req.body.photo,
+	password: req.body.password
     })
     console.log('POST ' + req.body.username);
     res.send('Successfully created ' + req.body.username);
@@ -73,6 +75,8 @@ app.post('/put/users', (req, res) => {
 		update.bio = req.body.bio;
 	} if (req.body.photo != '') {
 		update.photo = req.body.photo;
+	} if (req.body.password != '') {
+		update.password = req.body.password;
 	}
 	ref.update(update)
 	res.send('Successfully updated ' + req.body.userID);

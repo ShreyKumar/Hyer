@@ -9,8 +9,50 @@ export default class Login extends React.Component {
   constructor(props){
     super(props)
     this.state = {
+      validated: false,
       email: "",
       password: ""
+    }
+  }
+
+  validate = () => {
+    if(this.state.validated){
+      //check with backend here
+      console.log("email");
+      console.log(this.state.email);
+
+      console.log("pwd");
+      console.log(this.state.password)
+
+      //if user is found, log user in and send him to phone verification if 
+      this.props.updateMain()
+
+    }
+  }
+
+  validateEmail = (email) => {
+    this.setState({
+      "email": email
+    })
+
+    if(email.length == 0){
+      alert("empty email!")
+      this.setState({"validated": false})
+    } else {
+      this.setState({"validated": true})
+    }
+  }
+
+  validatePassword = (pwd) => {
+    this.setState({
+      "password": pwd
+    })
+
+    if(pwd.length == 0){
+      alert("empty email!")
+      this.setState({"validated": false})
+    } else {
+      this.setState({"validated": true})
     }
   }
 
@@ -23,16 +65,17 @@ export default class Login extends React.Component {
           <Form>
             <Item floatingLabel>
               <Label>Email</Label>
-              <Input onChangeText={() => this.setState({"email": this.value})}/>
+              <Input value={this.props.email} onChangeText={this.validateEmail.bind(this)}/>
             </Item>
             <Item floatingLabel last>
               <Label>Password</Label>
-              <Input />
+              <Input value={this.props.password} onChangeText={this.validatePassword.bind(this)}/>
             </Item>
-            <Button block style={{marginTop: 30}} onPress={() => this.props.updateMain()}>
+            <Button block style={{marginTop: 30}} onPress={this.validate.bind(this)}>
               <Text>Login</Text>
             </Button>
           </Form>
+          {(!this.state.validated) ? <Text>Please make sure you haven't left any field blank!</Text> : null}
         </Content>
       </Container>
     )
