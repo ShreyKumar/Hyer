@@ -183,7 +183,7 @@ app.get('/jobs', (req, res) => {
 			console.log("Failure, improper query.")
 		}
 
-	// Get all jobs within the defined distance
+	// Get all jobs within the given distance
 	} else if(req.query.lat != undefined && req.query.lon != undefined && req.query.km != undefined) {
 		var ref = firebase.database().ref("jobs/")
 		var jobs = {"jobs" : []}
