@@ -1,0 +1,11 @@
+script:
+  - cd Hyer
+  - npm install
+  - npm install request
+  - npm install chai
+  - npm install chai-http
+  - npm install firebase
+  - npm install express
+  - npm install body-parser
+notifications:
+  email: false
