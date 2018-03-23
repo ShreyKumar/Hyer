@@ -9,6 +9,8 @@ It makes use of nodemon to referesh the server whenever a change occurs.
 
 then, proceed to go to localhost:3000
 
+NOTE: Use 192.168.0.xxx:3000 when using expo
+
 There, the interface will let you add and look up users very simply. Keep in mind, when filling out a form, make sure that ALL slots are filled.
 
 ## File structure info:
