@@ -9,7 +9,7 @@ For the backend side of the app, we set up a Firebase NoSQL database, to hold bo
 
 ## What differed from our original plan
 For this deliverable, our plan was to have a complete minimum viable product built, which would have included both applications complete, but with our lack of knowledge as a group, we ran into more obstacles than we had originally planned and are behind on schedule. Initially we planned to meet in person often to communicate what needs to be done, what is currently being worked on, and what is done. However, we decided that it would be much easier and less of a hassle to just communicate our progress through Slack. Communication through Slack was extremely efficient due to the fact that we are working in small teams and we split into smaller groups within the team (frontend and backend). Due to that, it was easy to keep track of progress.
-![alt text](https://github.com/csc302-winter-2018/proj-Yreamiest/blob/master/doc/phase2/85b93fb24be3011195530b2ac24266e0.png?raw=true)
+![alt text](https://github.com/csc302-winter-2018/proj-Yreamiest/blob/master/doc/doc%20images/slack.png?raw=true)
 
 ## Teamwork reflection and process
 ### What went well:
@@ -17,11 +17,11 @@ For this deliverable, our plan was to have a complete minimum viable product bui
 * Team generally co-operated well and there were little to no internal conflicts, which allowed us to be relatively productive.
 * Communication during team meetings was generally very good, everyone brought in great ideas which allowed us to develop a full-proof plan of exactly how we plan to execute the project
 * We created an interface that we would use to test our API throughout the development process. It assisted in detecting bugs and fixing them.
-![alt text](https://github.com/csc302-winter-2018/proj-Yreamiest/blob/master/doc/phase2/8a4dec9da93580ec56b1757ad95723f8.png?raw=true)
+![alt text](https://github.com/csc302-winter-2018/proj-Yreamiest/blob/master/doc/doc%20images/testing.png?raw=true)
 * The automated tested made sure no one on the backend team would commit code that would produce errors and bugs.
-![alt text](https://github.com/csc302-winter-2018/proj-Yreamiest/blob/master/doc/phase2/de280fa048ebf735abe09ad176ee7093.png?raw=true)
+![alt text](https://github.com/csc302-winter-2018/proj-Yreamiest/blob/master/doc/doc%20images/auto%20testing.png?raw=true)
 * The Kanban board allowed us to quickly see what needs to be worked on and who is working on what. Which greatly increased our efficency
-![alt text](https://github.com/csc302-winter-2018/proj-Yreamiest/blob/master/doc/phase2/5eee768212792878739d3923d488864b.png?raw=true)
+![alt text](https://github.com/csc302-winter-2018/proj-Yreamiest/blob/master/doc/doc%20images/kanban.png?raw=true)
 
 ### What did not go well:
 * Communication outside team meetings needs significant improvement, some members are not able to hear announcements on time which ended up with them missing meetings.
