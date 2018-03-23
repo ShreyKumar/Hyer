@@ -61,3 +61,6 @@ We hope to implement additional endpoints for the frontend to work with more eas
 2. Accepting requests directly in the app, with there not needing third-party communication (booleans and assigninment to jobs)
 3. More location based selection (Google Maps)
 4. Ratings system for the users of the app.
+
+### Our current progress
+Despite our obstacles, we are still very realistically going to be able to get most of the the things done that we had originally planned for our next deliverable. Our backend is sufficient in working as a bare MVP, however our frontend connection to the backend needs more work, and we are going to shift some backend members to the frontend, as at first we thought the backend would give us more problem, however that was not the case. The remaining members of the backend team will polish and add extra features the backend so the frontend will be simpler to implement. If we had to give a numeric value for our goals for this deliverable, it would be 80% for the backend, and 40% for the frontend. But with the knowledge we gained during this deliverable and shifting our members to where they are needed most, the frontend is relatively a repetitive code structure where most of the heavy lifting will be done with the backend code.
