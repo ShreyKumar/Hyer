@@ -2,7 +2,7 @@
 
 ## What was built
 ### Frontend
-For the frontend side of the app, we managed to set up a React Native app based off the plan we made earlier in the previous phase. We did not make much changes from the last phase as we spent did spend a large amount of time planning and making sure there are no discrepancies in our app. We managed to create simple login, signup, requests, profile views for our app. Much of our time was spent researching how to use newer technologies which we had no knowledge of initially.
+For the frontend side of the app, we managed to set up a React Native app based off the plan we made earlier in the previous phase. We did not make much changes from the last phase as we did spend a large amount of time planning and making sure there are no discrepancies in our app. We managed to create a simple login, signup, requests, profile, jobs views for our app. Much of our time was spent researching how to use newer technologies which we had no knowledge of initially. We also managed to display the list of jobs and thus create the "More info" job view which contains extra information about a specific job.
 
 ### Backend
 For the backend side of the app, we set up a Firebase NoSQL database, to hold both users and jobs. We also set up an Express.js application for the server, handling HTTP requests, to different endpoints, to view, add, modify, or delete data in the database, for our frontend to use. For this deliverable we were able to complete enough, so that the most basic functionality can work on the frontend. In other words, we still can, and will, implement more endpoints for certain features of our app, however everything can currently work by calling multiple requests to modify the database. Certain additional features such as searching for jobs relative to our location were completed. Similar to the frontend, a lot of our time was used, learning how to use new things, which we have not used before, which slowed down our development process.
@@ -40,8 +40,8 @@ For this deliverable, our plan was to have a complete minimum viable product bui
 
 #### `/screenshots` directory
 Along with these we also have other screenshots of the app inside the screenshots directory. Generally speaking, each PNG file should correspond to a view on the main app.
-* `login.PNG` 
-* `signup.PNG` 
+* `login.PNG`
+* `signup.PNG`
 * `jobs.PNG` - The Jobs view where a list of all available jobs should be displayed.
 * `detailed_job.PNG` - A detailed view of a given job. Includes more information like Pay, Type, Location, etc.
 * `phone_auth.PNG` - Screen 1 of the Phone auth system where a text is sent out to the number provided and validation is done to make sure its valid.
