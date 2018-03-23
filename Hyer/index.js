@@ -117,18 +117,13 @@ app.post('/jobs', (req, res) => {
     res.send(key);
 })
 
-function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-	var R = 6371
-	var dLat = deg2rad(lat2 - lat1)
-	var dLon = deg2rad(lon2 - lon1)
-	var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2)
-	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
-	var d = R * c;
-	return d
+function getDistance(lat1, lon1, lat2, lon2) {
+	var a = Math.pow(Math.sin(deg2rad(lat2 - lat1) / 2), 2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.pow(Math.sin(deg2rad(lon2 - lon1) / 2), 2)
+	return 6378.13 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
 }
 
 function deg2rad(deg) {
-	return deg * (Math.PI / 180)
+	return deg * Math.PI / 180
 }
 
 // Get a specific job or all jobs.
@@ -201,7 +196,7 @@ app.get('/jobs', (req, res) => {
 		console.log('GET all jobs within given distance')
 		ref.once("value", function(snapshot) {
 			snapshot.forEach(function(child) {
-				if(getDistanceFromLatLonInKm(child.val().coordinates.x, child.val().coordinates.y, parseFloat(req.query.lat), parseFloat(req.query.lon)) <= parseFloat(req.query.km)) {
+				if(getDistance(child.val().coordinates.x, child.val().coordinates.y, parseFloat(req.query.lat), parseFloat(req.query.lon)) <= parseFloat(req.query.km)) {
 					jobs.jobs.push(child.key)
 				}
 			});
