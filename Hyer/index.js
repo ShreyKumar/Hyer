@@ -1,99 +1,137 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-var firebase = require('firebase')
+const express = require("express")
+const bodyParser = require("body-parser")
+var firebase = require("firebase")
 const app = express()
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(require("body-parser").json())
 
 var config = {
 	apiKey: "AIzaSyATZQRhK6vLE47RVDkTZUHMTQySlJLabIA",
-	authDomain: " haier-89e55 .firebaseapp.com",
+	authDomain: "haier-89e55.firebaseapp.com",
 	databaseURL: "https://haier-89e55.firebaseio.com",
-	storageBucket: "haier-89e55.appspot.com",
+	storageBucket: "gs://haier-89e55.appspot.com",
   };
-firebase.initializeApp(config);
+firebase.initializeApp(config)
 
-// Create User (POST /users)
-app.post('/users', (req, res) => {
-    var ref = firebase.database().ref("users/" + req.body.username)
-    ref.set({
-        name: {firstName: req.body.firstName, lastName: req.body.lastName},
-        email: req.body.email,
-        phoneNumber: req.body.phoneNumber,
-        bio: req.body.bio,
-        photo: req.body.photo,
-		password: req.body.password
-    })
-    console.log('POST ' + req.body.username);
-    res.send('Successfully created ' + req.body.username);
-})
 
-// Get all users or a specific user with a username.
-app.get('/users', (req, res) => {
-
-	var ref = firebase.database().ref("users/")
-	// Get user by username
-	if (req.query.username != undefined) {
-		console.log("Attempting to GET user with username: " + req.query.username)
-		ref.once("value", function(snapshot) {
-			if (snapshot.hasChild(req.query.username)){
+// Get users (GET /users)
+app.get("/users", (req, res) => {
+	var ref = firebase.database().ref("users")
+	ref.once("value").then(function(snapshot) {
+		// Get user by username
+		if (req.query.username) {
+			if (snapshot.hasChild(req.query.username)) {
 				res.send(snapshot.child(req.query.username).val())
-				console.log('Success, found user.')
+				console.log("GET /users/" + req.query.username)
 			} else {
 				res.sendStatus(400)
-				console.log('Failure, no user with given username')
+				console.log("get at /users/" + req.query.username + " failed: username does not exist")
 			}
-		})
-
-	// Get all users
-	} else {
-		ref.once("value", function(snapshot) {
-			res.send(snapshot.val());
-		})
-		console.log('GET all users');
-	}
-
-})
-
-app.post('/put/users', (req, res) => {
-	var ref = firebase.database().ref("users/" + req.body.userID);
-	var update = {};
-	if (req.body.firstName != '') {
-		update.name = {};
-		update.name.firstName = req.body.firstName;
-	} if (req.body.lastName != '') {
-		if (req.body.firstName == '') {
-			update.name = {};
 		}
-		update.name.lastName = req.body.lastName;
-	} if (req.body.email != '') {
-		update.email = req.body.email;
-	} if (req.body.phoneNumber != '') {
-		update.phoneNumber = req.body.phoneNumber;
-	} if (req.body.bio != '') {
-		update.bio = req.body.bio;
-	} if (req.body.photo != '') {
-		update.photo = req.body.photo;
-	} if (req.body.password != '') {
-		update.password = req.body.password;
-	}
-	ref.update(update)
-	res.send('Successfully updated ' + req.body.userID);
+		// Get users
+		else {
+			res.send(snapshot.val())
+			console.log("GET /users")
+		}
+	}, function(err) {
+			res.sendStatus(400)
+			console.log(err)
+	})
 })
 
-// Delete user with given user ID. (DELETE /users/{user ID})
-app.post('/delete/users', (req, res) => {
-    var ref = firebase.database().ref("users/" + req.body.userID);
+// Create a user (POST /users)
+app.post("/users", (req, res) => {
+    var ref = firebase.database().ref("users")
+    ref.once("value").then(function(snapshot) {
+    	if (snapshot.hasChild(req.body.username)) {
+    		res.sendStatus(400)
+    		console.log("post at /users/" + req.body.username + " failed: username exists")
+    	} else {
+    		ref.child(req.body.username).set({
+    			password: req.body.password,
+        		name: {firstName: req.body.firstName, lastName: req.body.lastName},
+        		email: req.body.email,
+        		phoneNumber: req.body.phoneNumber,
+        		bio: req.body.bio,
+        		photo: req.body.photo
+    		}).then(function() {
+    			res.sendStatus(200)
+    			console.log("POST /users/" + req.body.username)
+    		}, function(err) {
+    			res.sendStatus(400)
+    			console.log(err)
+    		})
+    	}
+    }, function(err) {
+    	res.sendStatus(400)
+    	console.log(err)
+    })
+})
+
+// Update a user (POST /put/users)
+// May be changed to (PUT /users)
+app.post('/put/users', (req, res) => {
+	var ref = firebase.database().ref("users");
 	ref.once("value").then(function(snapshot) {
-    	if(snapshot.exists()) {
-    		ref.remove();
-    		console.log('DELETE ' + req.body.userID);
-    		res.send('Successfully deleted ' + req.body.userID);
+		if (snapshot.hasChild(req.body.username)) {
+			var update = {};
+			if (req.body.password) {
+				update.password = req.body.password;
+			} if (req.body.firstName) {
+				update.name = {};
+				update.name.firstName = req.body.firstName;
+			} if (req.body.lastName) {
+				if (!req.body.firstName) {
+					update.name = {};
+				}
+				update.name.lastName = req.body.lastName;
+			} if (req.body.email) {
+				update.email = req.body.email;
+			} if (req.body.phoneNumber) {
+				update.phoneNumber = req.body.phoneNumber;
+			} if (req.body.bio) {
+				update.bio = req.body.bio;
+			} if (req.body.photo) {
+				update.photo = req.body.photo;
+			}
+			ref.update(update).then(function() {
+				res.sendStatus(200)
+				console.log("UPDATE /users/" + req.body.username)
+			}, function(err) {
+				res.sendStatus(400)
+				console.log(err)
+			})
+		} else {
+			res.sendStatus(400)
+			console.log("UPDATE /users/" + req.body.username + " failed: username does not exist")
+		}
+	}, function(err) {
+		res.sendStatus(400)
+		console.log(err)
+	})
+})
+
+// Delete user. (POST /delete/users)
+app.post("/delete/users", (req, res) => {
+    var ref = firebase.database().ref("users")
+	ref.once("value").then(function(snapshot) {
+    	if (snapshot.hasChild(req.body.username)) {
+    		ref.child(req.body.username).remove().then(function() {
+    			res.sendStatus(200)
+    			console.log("DELETE /users/" + req.body.username)
+    		}, function(err) {
+    			res.sendStatus(400)
+    			console.log(err)
+    		})
     	} else {
     		res.sendStatus(400)
+    		console.log("DELETE /users/" + req.body.username + " failed: username does not exist")
     	}
+  	}, function(err) {
+  		res.sendStatus(400)
+  		console.log(err)
   	});
 })
 
@@ -216,33 +254,33 @@ app.get('/jobs', (req, res) => {
 app.post('/put/jobs', (req, res) => {
 	var ref = firebase.database().ref("jobs/" + req.body.jobID);
 	var update = {};
-	if (req.body.name != '') {
+	if (req.body.name) {
 		update.name = req.body.name;
-	} if (req.body.description != '') {
+	} if (req.body.description) {
 		update.description = req.body.description;
-	} if (req.body.xCoordinate != '') {
+	} if (req.body.xCoordinate) {
 		update.coordinates = {};
 		update.coordinates.xCoordinate = parseFloat(req.body.xCoordinate);
-	} if (req.body.yCoordinate != '') {
-		if (req.body.xCoordinate == '') {
+	} if (req.body.yCoordinate ) {
+		if (!req.body.xCoordinate) {
 			update.coordinates = {};
 		}
 		update.coordinates.yCoordinate = parseFloat(req.body.yCoordinate);
-	} if (req.body.value != '') {
+	} if (req.body.value) {
 		update.pay = parseFloat(req.body.value);
-	} if (req.body.type != '') {
+	} if (req.body.type) {
 		update.type = req.body.type;
-	} if (req.body.duration != '') {
+	} if (req.body.duration) {
 		update.duration = parseFloat(req.body.duration);
-	} if (req.body.photo != '') {
+	} if (req.body.photo) {
 		update.photo = req.body.photo;
-	} if (req.body.tags != '') {
+	} if (req.body.tags) {
 		update.tags = req.body.tags;
-	} if (req.body.prerequisites != '') {
+	} if (req.body.prerequisites) {
 		update.prerequisites = req.body.prerequisites;
-	} if (req.body.employer != '') {
+	} if (req.body.employer) {
 		update.employer = req.body.employer;
-	} if (req.body.status != '') {
+	} if (req.body.status) {
 		update.status = req.body.status;
 	}
 	ref.update(update)
