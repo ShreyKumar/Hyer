@@ -28,12 +28,15 @@ For this deliverable, our plan was to have a complete minimum viable product bui
 * Some internal deadlines were missed which ended up with leaving us barely any time to test and generally gave the frontend team very little head-way to convert the backend API to its frontend interface.
 * There were some communication issues when planning out the design for the API, it was not up to the standards as we wanted it to be. There was little communication from everyone else and the plan was implemented even though the endpoints needed to be changed/re-adjusted.
 
-## Artifacts
-![test](../screenshots/login.PNG)
-<img src="../screenshots/jobs.PNG" width="250px" height="500px" />
-<b>Existing list of Jobs</b>
-<img src="../screenshots/detailed_job.PNG" width="250px" height="500px" />
-<b>Upon clicking "More info", the user is taken to this screen where they are able to view the job in more detail</b>
+## Artifacts (App Screenshots)
+###### Image 1: Main Login screen for Hyer
+![Login](../screenshots/login.PNG)
+
+###### Image 2: Existing list of Jobs
+![List of Jobs](../screenshots/jobs.PNG)
+
+###### Image 3: Upon clicking "More info", the user is taken to this screen where they are able to view the job in more detail
+![More info](../screenshots/detailed_job.PNG)
 
 ## Technical highlights
 ### Frontend
