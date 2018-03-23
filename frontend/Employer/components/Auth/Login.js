@@ -3,7 +3,7 @@ import { TextInput } from "react-native";
 import { Container, Title, Form, Item, Input, Content, Button, Text, Label } from "native-base";
 
 //use emojis to censor password
-import Emoji from "react-native-emoji";
+//import Emoji from "react-native-emoji";
 
 export default class Login extends React.Component {
   constructor(props){
@@ -24,7 +24,7 @@ export default class Login extends React.Component {
       console.log("pwd");
       console.log(this.state.password)
 
-      //if user is found, log user in and send him to phone verification if 
+      //if user is found, log user in and send him to phone verification if
       this.props.updateMain()
 
     }
