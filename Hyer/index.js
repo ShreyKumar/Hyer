@@ -267,7 +267,7 @@ app.post('/delete/jobs', (req, res) => {
   	});
 });
 
-// When you go to localhost:3000, 
+// When you go to localhost:3000,
 app.get('/', (req, res) => {
     var HTMLfile = __dirname + '/index.html'
     res.sendFile(HTMLfile)
@@ -280,4 +280,3 @@ if (!module.parent) {
 }
 
 module.exports = app;
-
