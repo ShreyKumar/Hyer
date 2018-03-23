@@ -22,6 +22,7 @@ For the frontend side of the app, we managed to set up a React Native app based 
 As a beginner user of React Native, Shrey who was working primarily on the frontend and generally found it harder to completely understand its workflow. Though the learning curve was slightly challenging, it was not as difficult to develop a simple prototype and visualize everything.
 <br><br>
 A major bug that slowed down our progress was related to the use of states and props. Specifically for the Jobs view, since everything was being loaded as an array, the best way we thought to store it was through a state. Unfortunately, since that was not allowed, another alternative would be to set it part of the React Object itself. This turned out to be the better solution as it allowed us to access the variable effectively. In addition since the state was being called from React's render method itself, that needed to be put in a separate method without the React Component itself.
+A minor issue occured when requesting POST from React Native app using backend API, where backend recieve an empty body object. The bug was not present during backend development/testing since the issue is unique to fetch method, which was used solely by the frontend. 
 
 ### Backend
 
