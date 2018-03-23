@@ -24,16 +24,24 @@ For this deliverable, our plan was to have a complete minimum viable product bui
 ![alt text](https://github.com/csc302-winter-2018/proj-Yreamiest/blob/master/doc/phase2/5eee768212792878739d3923d488864b.png?raw=true)
 
 ### What did not go well:
-* Communication outside team meetings needs significant improvement, some members are not able to hear announcements on time which ended up with them missing meetings
-* Some internal deadlines were missed which ended up with leaving us barely any time to test and generally gave the frontend team very little head-way to convert the backend API to its frontend interface
+* Communication outside team meetings needs significant improvement, some members are not able to hear announcements on time which ended up with them missing meetings.
+* Some internal deadlines were missed which ended up with leaving us barely any time to test and generally gave the frontend team very little head-way to convert the backend API to its frontend interface.
 * There were some communication issues when planning out the design for the API, it was not up to the standards as we wanted it to be. There was little communication from everyone else and the plan was implemented even though the endpoints needed to be changed/re-adjusted.
+
+## Artifacts
+<img src="../screenshots/login.PNG" width="250px" height="500px" />
+<b>Main Login screen of our MVP </b>
+<img src="../screenshots/jobs.PNG" width="250px" height="500px" />
+<b>Existing list of Jobs</b>
+<img src="../screenshots/detailed_job.PNG" width="250px" height="500px" />
+<b>Upon clicking "More info", the user is taken to this screen where they are able to view the job in more detail</b>
 
 ## Technical highlights
 ### Frontend
 As a beginner user of React Native, Shrey who was working primarily on the frontend and generally found it harder to completely understand its workflow. Though the learning curve was slightly challenging, it was not as difficult to develop a simple prototype and visualize everything.
 <br><br>
 A major bug that slowed down our progress was related to the use of states and props. Specifically for the Jobs view, since everything was being loaded as an array, the best way we thought to store it was through a state. Unfortunately, since that was not allowed, another alternative would be to set it part of the React Object itself. This turned out to be the better solution as it allowed us to access the variable effectively. In addition since the state was being called from React's render method itself, that needed to be put in a separate method without the React Component itself.
-A minor issue occured when requesting POST from React Native app using backend API, where backend recieve an empty body object. The bug was not present during backend development/testing since the issue is unique to fetch method, which was used solely by the frontend. 
+A minor issue occured when requesting POST from React Native app using backend API, where backend recieve an empty body object. The bug was not present during backend development/testing since the issue is unique to fetch method, which was used solely by the frontend.
 
 ### Backend
 With our whole team being new to firebase, it took some time getting used to how to use the realtime database. One of the biggest problems was that we simply could not fetch child nodes from firebase due to it being asynchronous, and somebody could be updating the exact child at the exact time, causing errors. Therefore we had to use a snapshot of the database before fetching data. Finding out when to create the snapshot, and how to access data, was troublesome and took us an excessive amount of time figuring out. Additionally, with some members being completely new to JavaScript this semester, and others not being used to it's asynchronous nature, and working with callbacks, it posed some time to get used to. Another shortcut, we used was that since HTML forms do not support PUT, and DELETE, and having trouble with Jquery's AJAX, we used a POST request to a separate endpoint for these types of requests. In general our backend team has learned a significant amount on Express.js, and Firebase.
@@ -45,6 +53,7 @@ We hope to have all the frontend styling completely finished with a Google Maps 
 2. A Frontend interface for the wallet system to add/subtract values, integrated with Stripe in the backend
 3. Phone and email authentication fully working.
 4. Timer system to check the amount of time the employee spends at the job and gets paid automatically through the wallet as soon as both sides stop the timer
+5. Ratings interface implemented with the API, clearly visible through the profile
 
 ### Backend
 We hope to implement additional endpoints for the frontend to work with more easily, and so that we can support more features. Since we mostly figured things out, we know that this time around, we will not run into as many problems that take so much time to figure out ourselves, and can implement these with much higher efficiency. These additional features include:
