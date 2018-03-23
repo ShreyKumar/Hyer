@@ -17,7 +17,9 @@ For this deliverable, our plan was to have a complete minimum viable product bui
 * Team generally co-operated well and there were little to no internal conflicts, which allowed us to be relatively productive.
 * Communication during team meetings was generally very good, everyone brought in great ideas which allowed us to develop a full-proof plan of exactly how we plan to execute the project
 * We created an interface that we would use to test our API throughout the development process. It assisted in detecting bugs and fixing them.
+![alt text](https://github.com/csc302-winter-2018/proj-Yreamiest/blob/master/doc/phase2/8a4dec9da93580ec56b1757ad95723f8.png?raw=true)
 * The automated tested made sure no one on the backend team would commit code that would produce errors and bugs.
+![alt text](https://github.com/csc302-winter-2018/proj-Yreamiest/blob/master/doc/phase2/de280fa048ebf735abe09ad176ee7093.png?raw=true)
 
 ### What did not go well:
 * Communication outside team meetings needs significant improvement, some members are not able to hear announcements on time which ended up with them missing meetings
