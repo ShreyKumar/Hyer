@@ -16,6 +16,8 @@ For this deliverable, our plan was to have a complete minimum viable product bui
 * We generally had a very detailed and strong plan going into this phase, which we expressed strong confidence over as we took into account every technical challenge that we might face. We discussed technologies in great detail and agreed upon with confidence on how we are going to use such technologies in our overall project.
 * Team generally co-operated well and there were little to no internal conflicts, which allowed us to be relatively productive.
 * Communication during team meetings was generally very good, everyone brought in great ideas which allowed us to develop a full-proof plan of exactly how we plan to execute the project
+* We created an interface that we would use to test our API throughout the development process. It assisted in detecting bugs and fixing them.
+* The automated tested made sure no one on the backend team would commit code that would produce errors and bugs.
 
 ### What did not go well:
 * Communication outside team meetings needs significant improvement, some members are not able to hear announcements on time which ended up with them missing meetings
