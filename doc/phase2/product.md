@@ -23,6 +23,8 @@ For this deliverable, our plan was to have a complete minimum viable product bui
 
 ## Artifacts
 <img src="../screenshots/login.PNG" width="250px" height="500px" />
+<img src="../screenshots/jobs.PNG" width="250px" height="500px" />
+<img src="../screenshots/detailed_job.PNG" width="250px" height="500px" />
 
 ## Technical highlights
 ### Frontend
