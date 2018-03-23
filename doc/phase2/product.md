@@ -23,8 +23,11 @@ For this deliverable, our plan was to have a complete minimum viable product bui
 
 ## Artifacts
 <img src="../screenshots/login.PNG" width="250px" height="500px" />
+<b>Main Login screen of our MVP </b>
 <img src="../screenshots/jobs.PNG" width="250px" height="500px" />
+<b>Existing list of Jobs</b>
 <img src="../screenshots/detailed_job.PNG" width="250px" height="500px" />
+<b>Upon clicking "More info", the user is taken to this screen where they are able to view the job in more detail</b>
 
 ## Technical highlights
 ### Frontend
