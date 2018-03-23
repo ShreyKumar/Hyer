@@ -1,5 +1,6 @@
-# proj-Yreamiest Backend
+# proj-Yreamiest Hyer
 
+## Backend
 ## How to use the backend:
 
 to run server for development and testing use: 
@@ -26,3 +27,14 @@ UI : index.html
   apiKey: AIzaSyATZQRhK6vLE47RVDkTZUHMTQySlJLabIA
   
 
+
+## Frontend
+## How to run frontend:
+
+cd to frontend/Hyer or frontend/Employer
+
+npm install
+
+npm run android or npm run ios
+
+from expo app (emulator/device), scan QR code or search for given address. For detailed android emulator setup refer to https://facebook.github.io/react-native/docs/getting-started.html

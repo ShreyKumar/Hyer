@@ -2,7 +2,7 @@
 
 ## What was built
 ### Frontend
-For the frontend side of the app, we managed to set up a React Native app based off the plan we made earlier in the previous phase. We did not make much changes from the last phase as we spent did spend a large amount of time planning and making sure there are no discrepancies in our app. We managed to create simple login, signup, requests, profile views for our app. Much of our time was spent researching how to use newer technologies which we had no knowledge of initially.
+For the frontend side of the app, we managed to set up a React Native app based off the plan we made earlier in the previous phase. We did not make much changes from the last phase as we did spend a large amount of time planning and making sure there are no discrepancies in our app. We managed to create a simple login, signup, requests, profile, jobs views for our app. Much of our time was spent researching how to use newer technologies which we had no knowledge of initially. We also managed to display the list of jobs and thus create the "More info" job view which contains extra information about a specific job.
 
 ### Backend
 For the backend side of the app, we set up a Firebase NoSQL database, to hold both users and jobs. We also set up an Express.js application for the server, handling HTTP requests, to different endpoints, to view, add, modify, or delete data in the database, for our frontend to use. For this deliverable we were able to complete enough, so that the most basic functionality can work on the frontend. In other words, we still can, and will, implement more endpoints for certain features of our app, however everything can currently work by calling multiple requests to modify the database. Certain additional features such as searching for jobs relative to our location were completed. Similar to the frontend, a lot of our time was used, learning how to use new things, which we have not used before, which slowed down our development process.
@@ -38,6 +38,19 @@ For this deliverable, our plan was to have a complete minimum viable product bui
 #### Image 3: Upon clicking "More info", the user is taken to this screen where they are able to view the job in more detail
 ![More info](../screenshots/detailed_job.PNG)
 
+#### `/screenshots` directory
+Along with these we also have other screenshots of the app inside the screenshots directory. Generally speaking, each PNG file should correspond to a view on the main app.
+* `login.PNG` 
+* `login_android.png` 
+* `signup.PNG` 
+* `jobs.PNG` - The Jobs view where a list of all available jobs should be displayed.
+* `detailed_job.PNG` - A detailed view of a given job. Includes more information like Pay, Type, Location, etc.
+* `phone_auth.PNG` - Screen 1 of the Phone auth system where a text is sent out to the number provided and validation is done to make sure its valid.
+* `phone_auth2.PNG` - Screen 2 of the Phone auth system where space is provided to enter the code from the text message that was just sent out to the user. The user then has the option to enter the code and if correct it is taken to the next screen the profile page
+* `profile.PNG` - Profile of a user, includes a simple Bio, first name, last name and age. Profile picture image functionality to be added in the next phase.
+* `profile_android.png` - Profile of current user, running on android. 
+* `jobPosting_employer.png` - Job posting view for employer app. 
+
 ## Technical highlights
 ### Frontend
 As a beginner user of React Native, Shrey who was working primarily on the frontend and generally found it harder to completely understand its workflow. Though the learning curve was slightly challenging, it was not as difficult to develop a simple prototype and visualize everything.
@@ -63,7 +76,4 @@ We hope to implement additional endpoints for the frontend to work with more eas
 2. Accepting requests directly in the app, with there not needing third-party communication (booleans and assigninment to jobs)
 3. More location based selection (Google Maps)
 4. Ratings system for the users of the app.
-5. Additional query for jobs
-
-### Our current progress
-Despite our obstacles, we are still very realistically going to be able to get most of the the things done that we had originally planned for our next deliverable. Our backend is sufficient in working as a bare MVP, however our frontend connection to the backend needs more work, and we are going to shift some backend members to the frontend, as at first we thought the backend would give us more problem, however that was not the case. The remaining members of the backend team will polish and add extra features the backend so the frontend will be simpler to implement. If we had to give a numeric value for our goals for this deliverable, it would be 80% for the backend, and 40% for the frontend. But with the knowledge we gained during this deliverable and shifting our members to where they are needed most, the frontend is relatively a repetitive code structure where most of the heavy lifting will be done with the backend code.
+5. Query for jobs
