@@ -41,12 +41,15 @@ For this deliverable, our plan was to have a complete minimum viable product bui
 #### `/screenshots` directory
 Along with these we also have other screenshots of the app inside the screenshots directory. Generally speaking, each PNG file should correspond to a view on the main app.
 * `login.PNG` 
+* `login_android.png` 
 * `signup.PNG` 
 * `jobs.PNG` - The Jobs view where a list of all available jobs should be displayed.
 * `detailed_job.PNG` - A detailed view of a given job. Includes more information like Pay, Type, Location, etc.
 * `phone_auth.PNG` - Screen 1 of the Phone auth system where a text is sent out to the number provided and validation is done to make sure its valid.
 * `phone_auth2.PNG` - Screen 2 of the Phone auth system where space is provided to enter the code from the text message that was just sent out to the user. The user then has the option to enter the code and if correct it is taken to the next screen the profile page
 * `profile.PNG` - Profile of a user, includes a simple Bio, first name, last name and age. Profile picture image functionality to be added in the next phase.
+* `profile_android.png` - Profile of current user, running on android. 
+* `jobPosting_employer.png` - Job posting view for employer app. 
 
 ## Technical highlights
 ### Frontend
