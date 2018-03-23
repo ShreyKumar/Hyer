@@ -9,7 +9,7 @@ For the backend side of the app, we set up a Firebase NoSQL database, to hold bo
 
 ## What differed from our original plan
 For this deliverable, our plan was to have a complete minimum viable product built, which would have included both applications complete, but with our lack of knowledge as a group, we ran into more obstacles than we had originally planned and are behind on schedule. Initially we planned to use a kanban board to communicate what needs to be done, what is currently being worked on, and what is done. However, we decided that it would be much easier and less of a hassle to just communicate our progress through Slack. Communication through Slack was extremely efficient due to the fact that we are working in small teams and we split into smaller groups within the team (frontend and backend). Due to that, it was easy to keep track of progress.
-![alt text](https://gyazo.com/85b93fb24be3011195530b2ac24266e0)
+![alt text](https://github.com/csc302-winter-2018/proj-Yreamiest/blob/master/doc/phase2/85b93fb24be3011195530b2ac24266e0.png?raw=true)
 
 ## Teamwork reflection and process
 ### What went well:
