@@ -20,6 +20,8 @@ For this deliverable, our plan was to have a complete minimum viable product bui
 ![alt text](https://github.com/csc302-winter-2018/proj-Yreamiest/blob/master/doc/phase2/8a4dec9da93580ec56b1757ad95723f8.png?raw=true)
 * The automated tested made sure no one on the backend team would commit code that would produce errors and bugs.
 ![alt text](https://github.com/csc302-winter-2018/proj-Yreamiest/blob/master/doc/phase2/de280fa048ebf735abe09ad176ee7093.png?raw=true)
+* The Kanban board allowed us to quickly see what needs to be worked on and who is working on what. Which greatly increased our efficency
+![alt text](https://github.com/csc302-winter-2018/proj-Yreamiest/blob/master/doc/phase2/5eee768212792878739d3923d488864b.png?raw=true)
 
 ### What did not go well:
 * Communication outside team meetings needs significant improvement, some members are not able to hear announcements on time which ended up with them missing meetings
