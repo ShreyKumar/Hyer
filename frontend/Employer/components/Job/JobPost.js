@@ -8,10 +8,11 @@ export default class JobPost extends React.Component {
 
     this.state = {
         url : "https://hyer.herokuapp.com/jobs",
+        latitude: null,
+        longitude: null,
         post : {
             name: null,
             description: null,
-            coordinates: {x: 1, y: 1}, //TODO get using gps coord
             pay: null,
             type: null,
             duration: null,
@@ -71,6 +72,20 @@ export default class JobPost extends React.Component {
     );
   }
 
+  componentDidMount() {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          this.setState({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+            error: null,
+          });
+        },
+        (error) => this.setState({ error: error.message }),
+        { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+      );
+    }
+
   _updatePost(key, value){
     let post = Object.assign({}, this.state.post);
     post[key] = value;
@@ -87,8 +102,8 @@ export default class JobPost extends React.Component {
       body: JSON.stringify({
          name: this.state.post.name,
          description: this.state.post.description,
-         xCoordinate: this.state.post.coordinates.x,
-         yCoordinate: this.state.post.coordinates.y,
+         xCoordinate: this.state.latitude,
+         yCoordinate: this.state.longitude,
          value: this.state.post.pay,
          type: this.state.post.type,
          duration: this.state.post.duration,
@@ -100,6 +115,11 @@ export default class JobPost extends React.Component {
       })
     }).then((response) => {
         console.log(response)
+        if (response.status != 200) {
+            alert("Invalid Posting! Please review your input!");
+        } else {
+            alert("Success! We'll notify you when a request has been made!");
+        }
     }).catch((error) => {
       console.error(error);
     })

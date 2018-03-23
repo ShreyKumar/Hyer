@@ -14,7 +14,8 @@ export default class JobRequest extends React.Component {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-      }
+      },
+      query: {username:"Tim"}
     }).then((response) => {
       alert("found jobs");
       console.log("start response");
