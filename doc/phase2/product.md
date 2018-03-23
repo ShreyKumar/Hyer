@@ -2,9 +2,13 @@
 
 ## What was built
 ### Frontend
-For the frontend side of the app, we managed to set up a React Native app based off the plan we made earlier in the previous phase. We did not make much changes from the last phase as we spent did spend a large amount of time planning and making sure there are no discrepancies in our app. We managed to create simple login, signup, requests, profile views for our app with minimal backend functionality. Much of our time was spent researching how to use newer technologies which both the frontend and backend teams had no knowledge of initially.
+For the frontend side of the app, we managed to set up a React Native app based off the plan we made earlier in the previous phase. We did not make much changes from the last phase as we spent did spend a large amount of time planning and making sure there are no discrepancies in our app. We managed to create simple login, signup, requests, profile views for our app. Much of our time was spent researching how to use newer technologies which we had no knowledge of initially.
 
 ### Backend
+For the backend side of the app, we set up a Firebase NoSQL database, to hold both users and jobs. We also set up an Express.js application for the server, handling HTTP requests, to different endpoints, to view, add, modify, or delete data in the database, for our frontend to use. For this deliverable we were able to complete enough, so that the most basic functionality can work on the frontend. In other words, we still can, and will, implement more endpoints for certain features of our app, however everything can currently work by calling multiple requests to modify the database. Certain additional features such as searching for jobs relative to our location were completed. Similar to the frontend, a lot of our time was used, learning how to use new things, which we have not used before, which slowed down our development process.
+
+## What differed from our original plan
+For this deliverable, our plan was to have a complete minimum viable product built, which would have included both applications complete, but with our lack of knowledge as a group, we ran into more obstacles than we had originally planned and are behind on schedule.
 
 ## Teamwork reflection and process
 ### What went well:
@@ -25,6 +29,7 @@ A major bug that slowed down our progress was related to the use of states and p
 A minor issue occured when requesting POST from React Native app using backend API, where backend recieve an empty body object. The bug was not present during backend development/testing since the issue is unique to fetch method, which was used solely by the frontend. 
 
 ### Backend
+With our whole team being new to firebase, it took some time getting used to how to use the realtime database. One of the biggest problems was that we simply could not fetch child nodes from firebase due to it being asynchronous, and somebody could be updating the exact child at the exact time, causing errors. Therefore we had to use a snapshot of the database before fetching data. Finding out when to create the snapshot, and how to access data, was troublesome and took us an excessive amount of time figuring out. Additionally, with some members being completely new to JavaScript this semester, and others not being used to it's asynchronous nature, and working with callbacks, it posed some time to get used to. Another shortcut, we used was that since HTML forms do not support PUT, and DELETE, and having trouble with Jquery's AJAX, we used a POST request to a separate endpoint for these types of requests. In general our backend team has learned a significant amount on Express.js, and Firebase.
 
 ## Our plan for the future
 ### Frontend
@@ -35,3 +40,8 @@ We hope to have all the frontend styling completely finished with a Google Maps 
 4. Timer system to check the amount of time the employee spends at the job and gets paid automatically through the wallet as soon as both sides stop the timer
 
 ### Backend
+We hope to implement additional endpoints for the frontend to work with more easily, and so that we can support more features. Since we mostly figured things out, we know that this time around, we will not run into as many problems that take so much time to figure out ourselves, and can implement these with much higher efficiency. These additional features include:
+1. Payments (starting off with transfering in-app currency, and later with Stripe/Paypal)
+2. Accepting requests directly in the app, with there not needing third-party communication (booleans and assigninment to jobs)
+3. More location based selection (Google Maps)
+4. Ratings system for the users of the app.
