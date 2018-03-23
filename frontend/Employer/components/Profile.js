@@ -5,38 +5,44 @@ import {Container, Content, Card, CardItem} from "native-base";
 export default class Profile extends React.Component {
   constructor(props){
     super(props)
+
+    this.state = {
+        username : this.props.username,
+        user : this.props.user
+    }
   }
+
   render() {
     return (
       <Container className="profile">
         <Content>
           <Card>
             <CardItem header>
-              <Text>Firstname</Text>
+              <Text>Username</Text>
             </CardItem>
 
             <CardItem>
-              <Text>Shrey</Text>
+              <Text>{this.state.username}</Text>
             </CardItem>
           </Card>
 
           <Card>
             <CardItem header>
-              <Text>Lastname</Text>
+              <Text>Name</Text>
             </CardItem>
 
             <CardItem>
-              <Text>Kumar</Text>
+              <Text>{this.state.user.name.lastName}, {this.state.user.name.firstName}</Text>
             </CardItem>
           </Card>
 
           <Card>
             <CardItem header>
-              <Text>Age</Text>
+              <Text>Email</Text>
             </CardItem>
 
             <CardItem>
-              <Text>21</Text>
+              <Text>{this.state.user.email}</Text>
             </CardItem>
           </Card>
 
@@ -46,7 +52,7 @@ export default class Profile extends React.Component {
             </CardItem>
 
             <CardItem>
-              <Text>U of T student</Text>
+              <Text>{this.state.user.bio}</Text>
             </CardItem>
           </Card>
         </Content>

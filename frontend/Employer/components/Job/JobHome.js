@@ -10,9 +10,8 @@ export default class Jobs extends React.Component {
     super(props);
     this.state = {
         "view": "home",
-        "user": "tim" //TODO Get/set username from login/profile
+        "username": this.props.username
     }
-
     this.view = null;
 
   }
@@ -36,7 +35,7 @@ export default class Jobs extends React.Component {
         <Container>
             <Content>
                 <View>
-                {(this.state.view == "post") ? <JobPost/> : null}
+                {(this.state.view == "post") ? <JobPost username={this.state.username}/> : null}
                 {(this.state.view == "request") ? <JobRequest/> : null}
                 {this.view}
                 </View>

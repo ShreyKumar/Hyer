@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text} from "react-native";
+import {View, Text, KeyboardAvoidingView} from "react-native";
 import {Container, Button, Form, Item, Input, Label, Content, Card, CardItem} from "native-base";
 
 export default class JobPost extends React.Component {
@@ -12,43 +12,43 @@ export default class JobPost extends React.Component {
         longitude: null,
         post : {
             name: null,
-            description: null,
+            description: "N/A",
             pay: null,
             type: null,
             duration: null,
             photo: null,
-            tags: null,
-            prerequisites: null,
-            employer: null, //TODO get username from profile
+            tags: "",
+            prerequisites: "N/A",
+            employer: this.props.username,
             status: null
         }
     }
+    console.log(this.state.username);
   }
 
   render(){
     return (
       <Container>
         <Content>
-          <Text>Create new job posting</Text>
           <Form>
             <Item floatingLabel>
-              <Label>Name</Label>
+              <Label>Job Name</Label>
               <Input onChangeText={(value) => this._updatePost("name", value)}/>
             </Item>
             <Item floatingLabel>
-              <Label>Description</Label>
+              <Label>Job Description</Label>
               <Input onChangeText={(value) => this._updatePost("description", value)}/>
             </Item>
             <Item floatingLabel>
-              <Label>Pay</Label>
+              <Label>Total Pay</Label>
               <Input onChangeText={(value) => this._updatePost("pay", value)}/>
             </Item>
             <Item floatingLabel>
-              <Label>Type</Label>
+              <Label>Job Type</Label>
               <Input onChangeText={(value) => this._updatePost("type", value)}/>
             </Item>
             <Item floatingLabel>
-              <Label>Duration</Label>
+              <Label>Job Duration</Label>
               <Input onChangeText={(value) => this._updatePost("duration", value)}/>
             </Item>
             <Item floatingLabel>
@@ -56,7 +56,7 @@ export default class JobPost extends React.Component {
               <Input onChangeText={(value) => this._updatePost("employer", value)}/>
             </Item>
             <Item floatingLabel>
-              <Label>Status</Label>
+              <Label>Job Status</Label>
               <Input onChangeText={(value) => this._updatePost("status", value)}/>
             </Item>
             <Item floatingLabel>
@@ -72,6 +72,7 @@ export default class JobPost extends React.Component {
     );
   }
 
+// Get GPS coordinates
   componentDidMount() {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -110,13 +111,13 @@ export default class JobPost extends React.Component {
          photo: this.state.post.photo,
          tags: this.state.post.tags,
          prerequisites:this.state.post.prerequisites,
-         employer: this.state.post.employer,
+         employer: this.state.username,
          status: this.state.post.status
       })
     }).then((response) => {
         console.log(response)
         if (response.status != 200) {
-            alert("Invalid Posting! Please review your input!");
+            alert("Invalid Fields!");
         } else {
             alert("Success! We'll notify you when a request has been made!");
         }

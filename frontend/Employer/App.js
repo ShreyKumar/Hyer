@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, KeyboardAvoidingView } from 'react-native';
 import {Container, Header, Title, Content} from "native-base";
 
 //components
@@ -13,9 +13,38 @@ export default class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      "view": "login"
+      view: "login",
+      username: "timxi", //TODO should be set when logged in
+      user: {
+        firstname: null,
+        email: null,
+        lastname: null,
+        email: null,
+        bio: null
+      }
     }
     this.navbar = null
+    var url = "https://hyer.herokuapp.com/users"
+
+    fetch(url, { // GET user info from server
+        method: "GET",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        query: JSON.stringify({
+            username: this.state.username //TODO cannot query properly?
+        })
+    }).then((response) => {
+        if (response.status == 200){
+            response.json().then((data) => {
+                this.setState({user: data[this.state.username]})
+                console.log(this.state.user)
+            })
+        }
+    }).catch((error) => {
+        console.log(error);
+    })
   }
 
   success = () => {
@@ -47,10 +76,9 @@ export default class App extends React.Component {
           {this.navbar}
           {(this.state.view == "login") ? <Login updateMain={this.success.bind(this)}/>: null}
           {(this.state.view == "signup") ? <Signup updateMain={this.success.bind(this)}/>: null}
-          {(this.state.view == "profile") ? <Profile /> : null}
+          {(this.state.view == "profile") ? <Profile username={this.state.username} user={this.state.user}/> : null}
           {(this.state.view == "phoneverification") ? <PhoneVerification /> : null}
-          {(this.state.view == "jobs") ? <Jobs /> : null}
-
+          {(this.state.view == "jobs") ? <Jobs username={this.state.username}/> : null}
         </Content>
 
       </Container>

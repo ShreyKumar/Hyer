@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text} from "react-native";
+import {View, Text, Button} from "react-native";
 import {Container, Content, Card, CardItem} from "native-base";
 
 export default class JobRequest extends React.Component {
@@ -15,7 +15,6 @@ export default class JobRequest extends React.Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-      query: {username:"Tim"}
     }).then((response) => {
       alert("found jobs");
       console.log("start response");
@@ -33,7 +32,16 @@ export default class JobRequest extends React.Component {
     return (
       <Container>
         <Content>
-          <Text>Requests</Text>
+          <View>
+            <Button
+                onPress={() => alert("Job Request Accepted!")}
+                color="#2db300"
+                title="Accept"/>
+            <Button
+                onPress={() => alert("Job Request Declined.")}
+                color="#ff0000"
+                title="Decline" />
+          </View>
         </Content>
       </Container>
     );
