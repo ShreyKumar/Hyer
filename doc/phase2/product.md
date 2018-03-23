@@ -22,8 +22,7 @@ For this deliverable, our plan was to have a complete minimum viable product bui
 * There were some communication issues when planning out the design for the API, it was not up to the standards as we wanted it to be. There was little communication from everyone else and the plan was implemented even though the endpoints needed to be changed/re-adjusted.
 
 ## Artifacts
-![Login](../screenshots/login.PNG)
-
+<img src="../screenshots/login.PNG" width="150px" height="400px" />
 
 ## Technical highlights
 ### Frontend
