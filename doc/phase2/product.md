@@ -61,3 +61,4 @@ We hope to implement additional endpoints for the frontend to work with more eas
 2. Accepting requests directly in the app, with there not needing third-party communication (booleans and assigninment to jobs)
 3. More location based selection (Google Maps)
 4. Ratings system for the users of the app.
+5. Query for jobs
