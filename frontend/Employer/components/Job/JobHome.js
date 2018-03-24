@@ -35,6 +35,7 @@ export default class Jobs extends React.Component {
         <Container>
             <Content>
                 <View>
+                <Text>Welcome {this.state.username} !</Text>
                 {(this.state.view == "post") ? <JobPost username={this.state.username}/> : null}
                 {(this.state.view == "request") ? <JobRequest/> : null}
                 {this.view}

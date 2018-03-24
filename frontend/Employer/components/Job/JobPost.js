@@ -16,8 +16,8 @@ export default class JobPost extends React.Component {
             pay: null,
             type: null,
             duration: null,
-            photo: null,
-            tags: "",
+            photo: "N/A",
+            tags: "N/A",
             prerequisites: "N/A",
             employer: this.props.username,
             status: null
@@ -30,6 +30,7 @@ export default class JobPost extends React.Component {
     return (
       <Container>
         <Content>
+          <KeyboardAvoidingView behavior="padding">
           <Form>
             <Item floatingLabel>
               <Label>Job Name</Label>
@@ -52,10 +53,6 @@ export default class JobPost extends React.Component {
               <Input onChangeText={(value) => this._updatePost("duration", value)}/>
             </Item>
             <Item floatingLabel>
-              <Label>Employer</Label>
-              <Input onChangeText={(value) => this._updatePost("employer", value)}/>
-            </Item>
-            <Item floatingLabel>
               <Label>Job Status</Label>
               <Input onChangeText={(value) => this._updatePost("status", value)}/>
             </Item>
@@ -67,6 +64,7 @@ export default class JobPost extends React.Component {
               <Text>Create Posting</Text>
             </Button>
           </Form>
+        </KeyboardAvoidingView>
         </Content>
       </Container>
     );
@@ -94,6 +92,20 @@ export default class JobPost extends React.Component {
   }
 
   postJob(){
+    console.log(JSON.stringify({
+                         name: this.state.post.name,
+                         description: this.state.post.description,
+                         xCoordinate: this.state.latitude,
+                         yCoordinate: this.state.longitude,
+                         value: this.state.post.pay,
+                         type: this.state.post.type,
+                         duration: this.state.post.duration,
+                         photo: this.state.post.photo,
+                         tags: this.state.post.tags,
+                         prerequisites:this.state.post.prerequisites,
+                         employer: this.state.username,
+                         status: this.state.post.status
+                      }))
     return fetch(this.state.url, {
       method: 'POST',
       headers: {

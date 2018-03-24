@@ -10,23 +10,43 @@ export default class Login extends React.Component {
     super(props)
     this.state = {
       validated: false,
+      logged: null,
       email: "",
       password: ""
     }
   }
 
   validate = () => {
+    this.setState({logged: false})
     if(this.state.validated){
       //check with backend here
-      console.log("email");
-      console.log(this.state.email);
-
-      console.log("pwd");
-      console.log(this.state.password)
+      console.log("Input Email: ", this.state.email);
+      console.log("Input Pwd: ", this.state.password)
 
       //if user is found, log user in and send him to phone verification if
-      this.props.updateMain()
-
+      fetch("https://hyer.herokuapp.com/users", {
+        method: "GET",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }).then((response) => {
+        response.json().then((users) => {
+            Object.keys(users).map((user) => {
+                if (users[user].email == this.state.email){
+                    console.log("Email Found: ", users[user].email)
+                    if (users[user].password == this.state.password){
+                        console.log("Password Match: ", users[user].password)
+                        this.props.updateMain(user, users[user])
+                        this.setState({logged: true})
+                        return
+                    }
+                }
+            })
+        })
+      }).catch((error) => {
+        console.log(error)
+      })
     }
   }
 
@@ -36,7 +56,6 @@ export default class Login extends React.Component {
     })
 
     if(email.length == 0){
-      alert("empty email!")
       this.setState({"validated": false})
     } else {
       this.setState({"validated": true})
@@ -49,7 +68,6 @@ export default class Login extends React.Component {
     })
 
     if(pwd.length == 0){
-      alert("empty email!")
       this.setState({"validated": false})
     } else {
       this.setState({"validated": true})

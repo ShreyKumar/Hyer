@@ -14,43 +14,22 @@ export default class App extends React.Component {
     super(props)
     this.state = {
       view: "login",
-      username: "timxi", //TODO should be set when logged in
+      username: "", //TODO should be set when logged in
       user: {
-        firstname: null,
-        email: null,
-        lastname: null,
-        email: null,
-        bio: null
+        name: {firstName: "", lastName: ""},
+        email: "",
+        bio: "",
+        password: ""
       }
     }
     this.navbar = null
     var url = "https://hyer.herokuapp.com/users"
-
-    fetch(url, { // GET user info from server
-        method: "GET",
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        query: JSON.stringify({
-            username: this.state.username //TODO cannot query properly?
-        })
-    }).then((response) => {
-        if (response.status == 200){
-            response.json().then((data) => {
-                this.setState({user: data[this.state.username]})
-                console.log(this.state.user)
-            })
-        }
-    }).catch((error) => {
-        console.log(error);
-    })
   }
 
-  success = () => {
+  success = (usr, userinfo) => {
     //do evaluation and redirect to appropriate function
-    alert("success")
-    this.setState({"view": "phoneverification"})
+    this.setState({username: usr, user: userinfo, view: "profile"})
+
   }
 
 
@@ -69,7 +48,7 @@ export default class App extends React.Component {
     return (
       <Container style={styles.container}>
         <Header style={styles.header}>
-          <Title>Hyer</Title>
+          <Title>Employer</Title>
         </Header>
 
         <Content>
