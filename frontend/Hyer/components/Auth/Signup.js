@@ -16,14 +16,35 @@ export default class Signup extends React.Component {
       errors: {}
     }
 
-    var prefix = "https://hyer.herokuapp.com";
 
   }
 
   validate = () => {
-    alert("validate me now");
+    //check if errors object is not null, then redirect if not
+    var prefix = "https://hyer.herokuapp.com";
+    fetch(prefix + "/users", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        firstName: this.state.firstname,
+        lastName: this.state.lastname,
+        email: this.state.email,
+        phoneNumber: "",
+        bio: "",
+        photo: ""
+      })
+    }).then((msg) => {
+      console.log(msg);
+      this.props.updateMain()
+    }).catch((err) => {
+      alert("error!")
+      console.error(err)
+    });
 
-    this.props.updateMain()
   }
 
   isEmail = (email) => {
