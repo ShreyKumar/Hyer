@@ -23,7 +23,7 @@ export default class Signup extends React.Component {
   validate = () => {
     alert("validate me now");
 
-    //this.props.updateMain()
+    this.props.updateMain()
   }
 
   isEmail = (email) => {
