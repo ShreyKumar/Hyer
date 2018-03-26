@@ -24,7 +24,7 @@ export default class Login extends React.Component {
       console.log("pwd");
       console.log(this.state.password)
 
-      //if user is found, log user in and send him to phone verification if 
+      //if user is found, log user in and send him to phone verification if
       this.props.updateMain()
 
     }
@@ -65,11 +65,11 @@ export default class Login extends React.Component {
           <Form>
             <Item floatingLabel>
               <Label>Email</Label>
-              <Input value={this.props.email} onChangeText={this.validateEmail.bind(this)}/>
+              <Input value={this.props.email} onChangeText={this.validateEmail.bind(this)} keyboardType="email-address"/>
             </Item>
             <Item floatingLabel last>
               <Label>Password</Label>
-              <Input value={this.props.password} onChangeText={this.validatePassword.bind(this)}/>
+              <Input value={this.props.password} onChangeText={this.validatePassword.bind(this)} secureTextEntry/>
             </Item>
             <Button block style={{marginTop: 30}} onPress={this.validate.bind(this)}>
               <Text>Login</Text>
