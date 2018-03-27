@@ -52,7 +52,6 @@ export default class Login extends React.Component {
               <Text>Login</Text>
             </Button>
           </Form>
-          {(!this.state.validated) ? <Text>Please make sure you haven't left any field blank!</Text> : null}
         </Content>
       </Container>
     )

@@ -11,7 +11,6 @@ export default class Profile extends React.Component {
       firstname: "",
       lastname: "",
       email: "",
-      age: "",
       bio: ""
     }
 
@@ -24,8 +23,7 @@ export default class Profile extends React.Component {
           firstname: data.name.firstName,
           lastname: data.name.lastName,
           email: data.email,
-          bio: data.bio,
-          age: data.age
+          bio: data.bio
         })
       })
     }).catch((err) => {
@@ -68,11 +66,11 @@ export default class Profile extends React.Component {
 
           <Card>
             <CardItem header>
-              <Text>Age</Text>
+              <Text>Email</Text>
             </CardItem>
 
             <CardItem>
-              <Text>{this.state.age}</Text>
+              <Text>{this.state.email}</Text>
             </CardItem>
           </Card>
 
