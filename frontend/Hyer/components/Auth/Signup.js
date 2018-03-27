@@ -32,6 +32,7 @@ export default class Signup extends React.Component {
         username: this.state.username,
         firstName: this.state.firstname,
         lastName: this.state.lastname,
+        password: this.state.password,
         email: this.state.email,
         phoneNumber: "",
         bio: "",
@@ -39,7 +40,7 @@ export default class Signup extends React.Component {
       })
     }).then((msg) => {
       console.log(msg);
-      this.props.updateMain()
+      this.props.updateMain(this.state.username)
     }).catch((err) => {
       alert("error!")
       console.error(err)

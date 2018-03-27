@@ -5,6 +5,33 @@ import {Container, Content, Card, CardItem} from "native-base";
 export default class Profile extends React.Component {
   constructor(props){
     super(props)
+
+    this.state = {
+      username: "",
+      firstname: "",
+      lastname: "",
+      email: "",
+      age: "",
+      bio: ""
+    }
+
+    var prefix = "https://hyer.herokuapp.com"
+    fetch(prefix + "/users?username=" + this.props.id).then((res) => {
+      alert("found profile");
+      res.json().then((data) => {
+        this.setState({
+          username: this.props.id,
+          firstname: data.name.firstName,
+          lastname: data.name.lastName,
+          email: data.email,
+          bio: data.bio,
+          age: data.age
+        })
+      })
+    }).catch((err) => {
+      console.error(err);
+    })
+
   }
   render() {
     return (
@@ -12,11 +39,20 @@ export default class Profile extends React.Component {
         <Content>
           <Card>
             <CardItem header>
+              <Text>Username</Text>
+            </CardItem>
+
+            <CardItem>
+              <Text>{this.state.username}</Text>
+            </CardItem>
+          </Card>
+          <Card>
+            <CardItem header>
               <Text>Firstname</Text>
             </CardItem>
 
             <CardItem>
-              <Text>Shrey</Text>
+              <Text>{this.state.firstname}</Text>
             </CardItem>
           </Card>
 
@@ -26,7 +62,7 @@ export default class Profile extends React.Component {
             </CardItem>
 
             <CardItem>
-              <Text>Kumar</Text>
+              <Text>{this.state.lastname}</Text>
             </CardItem>
           </Card>
 
@@ -36,7 +72,7 @@ export default class Profile extends React.Component {
             </CardItem>
 
             <CardItem>
-              <Text>21</Text>
+              <Text>{this.state.age}</Text>
             </CardItem>
           </Card>
 
@@ -46,7 +82,7 @@ export default class Profile extends React.Component {
             </CardItem>
 
             <CardItem>
-              <Text>U of T student</Text>
+              <Text>{this.state.bio}</Text>
             </CardItem>
           </Card>
         </Content>
