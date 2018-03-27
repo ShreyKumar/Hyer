@@ -210,7 +210,7 @@ app.get('/jobs', (req, res) => {
 			console.log('GET all jobs by duration')
 			ref.orderByChild("duration").on("value", function(snapshot) {
 				snapshot.forEach(function(child) {
-					jobs.jobs.push(child.key)
+					jobs.jobs.push(JSON.parse('{"' + child.key + '":' + JSON.stringify(child) + '}'))
         		});
 				res.send(jobs);
 			});
@@ -218,7 +218,7 @@ app.get('/jobs', (req, res) => {
 			console.log('GET all jobs by pay')
 			ref.orderByChild("pay").on("value", function(snapshot) {
 				snapshot.forEach(function(child) {
-					jobs.jobs.push(child.key)
+					jobs.jobs.push(JSON.parse('{"' + child.key + '":' + JSON.stringify(child) + '}'))
         		});
 				res.send(jobs);
 			});
@@ -235,7 +235,7 @@ app.get('/jobs', (req, res) => {
 		ref.once("value", function(snapshot) {
 			snapshot.forEach(function(child) {
 				if(getDistance(child.val().coordinates.x, child.val().coordinates.y, parseFloat(req.query.lat), parseFloat(req.query.lon)) <= parseFloat(req.query.km)) {
-					jobs.jobs.push(child.key)
+					jobs.jobs.push(JSON.parse('{"' + child.key + '":' + JSON.stringify(child) + '}'))
 				}
 			});
 			res.send(jobs);
@@ -244,8 +244,12 @@ app.get('/jobs', (req, res) => {
 	// Get all jobs
 	} else {
 		var ref = firebase.database().ref("jobs");
+		var jobs = {"jobs" : []}
 		ref.once("value", function(snapshot) {
-			res.send(snapshot.val());
+			snapshot.forEach(function(child) {
+				jobs.jobs.push(JSON.parse('{"' + child.key + '":' + JSON.stringify(child) + '}'))
+			})
+			res.send(jobs);
 		})
 		console.log('GET all jobs');
 	}
