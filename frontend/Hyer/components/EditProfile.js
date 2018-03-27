@@ -4,7 +4,71 @@ import {Container, Content, Form, Item, Label, Input, Button, Card, CardItem} fr
 
 export default class EditProfile extends React.Component {
   constructor(props){
-    super(props)
+    super(props);
+
+    this.state = {
+      username: "",
+      firstname: "",
+      lastname: "",
+      email: "",
+      bio: ""
+    }
+
+    //get request to prefill profile
+    var prefix = "https://hyer.herokuapp.com";
+    fetch(prefix + "/users?username=" + this.props.id).then((resp) => {
+      resp.json().then((data) => {
+        alert("loaded!");
+        console.log(data);
+      })
+    }).catch((error) => {
+      alert("Error loading profile!");
+      console.error(error);
+    })
+
+  }
+
+  update = () => {
+    var prefix = "https://hyer.herokuapp.com";
+
+    var toSend = {
+      password: "",
+      phoneNumber: "",
+      photo: ""
+    }
+
+    if(this.state.username != ""){
+      toSend.username = this.state.username;
+    }
+
+    if(this.state.password != ""){
+      toSend.password = this.state.password;
+    }
+
+    if(this.state.firstname != ""){
+      toSend.firstName = this.state.firstname;
+    }
+
+    if(this.state.lastname != ""){
+      toSend.lastName = this.state.lastname;
+    }
+
+    if(this.state.bio != ""){
+      toSend.bio = this.state.bio
+    }
+
+    if(this.state.email != ""){
+      toSend.email = this.state.email
+    }
+
+    fetch(prefix + "/put/users", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(toSend)
+    })
   }
 
   render() {
@@ -43,7 +107,7 @@ export default class EditProfile extends React.Component {
               allowFontScaling />
             </CardItem>
           </Card>
-          <Button block style={{marginTop: 30}}>
+          <Button block style={{marginTop: 30}} onPress={() => this.update()}>
             <Text>Update</Text>
           </Button>
         </Form>
