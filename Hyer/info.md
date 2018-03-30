@@ -58,7 +58,7 @@ prerequisites
 employer  
 tags  
   
-Job also contains the fields applicants, hired, and status, where applicants and hired are both defaulted to empty strings, and status is defaulted to open when posted.
+Job also contains the fields applicants, hired, and status, where applicants and hired are both defaulted to empty strings, and status is defaulted to open when posted. Returns the key (jobID), when successfully posted.
 
 ## UPDATE JOBS
 Request body contains all the fields which POST has, with the addition of applicants, hired, and status.
@@ -74,4 +74,4 @@ Post Jobs: Post jobs with stored username for employer
 Payment: Update employer credits with negative amount of value * duration, and update hired credits with positive amount of value * duration  
 Apply for job: Updates job applicants with stored username  
 Hire applicant: Updates job hired with applicant and removes applicant from applicants  
-Look at applicants: Get jobs with employer as stored username
+Look at current jobs for applicants: Get jobs with employer as stored username
