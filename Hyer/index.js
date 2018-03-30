@@ -149,7 +149,9 @@ app.post('/jobs', (req, res) => {
         tags: req.body.tags,
         prerequisites: req.body.prerequisites,
         employer: req.body.employer,
-        status: req.body.status
+        status: req.body.status,
+	candidates: req.body.candidates,
+	hired: req.body.hired
     }).key
     console.log('POST ' + req.body.name);
     res.send(key);
@@ -286,9 +288,13 @@ app.post('/put/jobs', (req, res) => {
 		update.employer = req.body.employer;
 	} if (req.body.status) {
 		update.status = req.body.status;
+	} if (req.body.candidates) {
+		update.candidates = req.body.candidates;
+	} if (req.body.hired) {
+		update.hired = req.body.hired;
 	}
 	ref.update(update)
-	res.send('Successfully updated ' + req.body.userID);
+	res.send('Successfully updated ' + req.body.jobID);
 })
 
 app.post('/delete/jobs', (req, res) => {
