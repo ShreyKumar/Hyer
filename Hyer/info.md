@@ -44,6 +44,8 @@ THEN CHOOSE:
 km  
 (where all jobs outside the km radius will not be listed, like distance order longitude and latitiude must be given)  
   
+Unless searched by jobID, OMITS all jobs with status closed.
+  
 So all 3 can be used or only one. Obviously if anythign is used with jobID, the job with the given jobID will be returned unless you give a km and the job is outside the km radius. Get ALWAYS returns a javascript array of javascript objects which are {jobID: {job info}} (even if it is only one job or get by jobID). Example:  
 [{"-L8sEOpehZFN2gQOKKYz":{"applicants":"","description":"Mow the lawn","duration":2,"employer":"roryan","hired":"","latitude":0,"longitude":0,"name":"Mower Needed","pay":10,"photo":"n/a","prerequisites":"n/a","status":"open","tags":"mow, lawn, grass","type":"credits"}},{"-L8sEWe1tWemDnTyhLWS":{"applicants":"","description":"Clean the house","duration":3,"employer":"roryan","hired":"","latitude":10,"longitude":10,"name":"House Cleaner Needed","pay":20,"photo":"n/a","prerequisites":"n/a","status":"open","tags":"clean, house","type":"credits"}}]
 
@@ -77,6 +79,7 @@ Payment: Update employer credits with negative amount of value * duration, and u
 Apply for job: Updates job applicants with stored username  
 Hire applicant: Updates job hired with applicant and removes applicant from applicants  
 Look at current jobs for applicants: Get jobs with employer as stored username
+Close a job: Updates job and sets status to closed
 
 ### NOTE
 On get user or get jobs, if empty result is returned, even if its a viable search it will ALWAYS send response 400 (Bad Request). So if you search for your own jobs, but didnt post any jobs, it will still give you Bad Request.

@@ -180,7 +180,7 @@ app.get('/jobs', (req, res) => {
 		// Get job by search
 		else if (req.query.search) {
 			snapshot.forEach(function(childSnapshot) {
-				if (childSnapshot.child("name").val().match(new RegExp(req.query.search, "i")) || childSnapshot.child("tags").val().match(new RegExp(req.query.search, "i"))) {
+				if ((childSnapshot.child("name").val().match(new RegExp(req.query.search, "i")) || childSnapshot.child("tags").val().match(new RegExp(req.query.search, "i"))) && !(childSnapshot.child("status").val() == "closed")) {
 					var job = {}
 					job[childSnapshot.key] = childSnapshot.val()
 					jobs.push(job)
@@ -195,7 +195,7 @@ app.get('/jobs', (req, res) => {
 		// Get jobs by specific employer
 		else if (req.query.employer) {
 			snapshot.forEach(function(childSnapshot) {
-				if (childSnapshot.child("employer").val().match(new RegExp(req.query.employer))) {
+				if (childSnapshot.child("employer").val().match(new RegExp(req.query.employer)) && !(childSnapshot.child("status").val() == "closed")) {
 					var job = {}
 					job[childSnapshot.key] = childSnapshot.val()
 					jobs.push(job)
@@ -210,6 +210,7 @@ app.get('/jobs', (req, res) => {
 		// Get jobs
 		else {
 			snapshot.forEach(function(childSnapshot) {
+				if (!childSnapshot.child("status").val() == "closed")
 				var job = {}
 				job[childSnapshot.key] = childSnapshot.val()
 				jobs.push(job)
