@@ -184,12 +184,27 @@ app.get('/jobs', (req, res) => {
 					var job = {}
 					job[childSnapshot.key] = childSnapshot.val()
 					jobs.push(job)
-					console.log("GET /jobs" + " with " + req.query.search)
+					console.log("GET /jobs with " + req.query.search)
 				}
 			})
 			if (jobs.length == 0) {
 				res.sendStatus(400)
-				console.log("get /jobs/" + " with " + req.query.search + " failed: no jobs found")
+				console.log("get /jobs/ with " + req.query.search + " failed: no jobs found")
+			}
+		}
+		// Get jobs by specific employer
+		else if (req.query.employer) {
+			snapshot.forEach(function(childSnapshot) {
+				if (childSnapshot.child("employer").val().match(new RegExp(req.query.employer))) {
+					var job = {}
+					job[childSnapshot.key] = childSnapshot.val()
+					jobs.push(job)
+					console.log("GET /jobs by " + req.query.employer)
+				}
+			})
+			if (jobs.length == 0) {
+				res.sendStatus(400)
+				console.log("get /jobs/ by " + req.query.employer + " failed: no jobs found")
 			}
 		}
 		// Get jobs
