@@ -164,28 +164,44 @@ function deg2rad(deg) {
 	return deg * Math.PI / 180
 }
 
-// Get a specific job or all jobs.
+// Get jobs (GET /jobs)
 app.get('/jobs', (req, res) => {
-
-	// Get job by ID
-	if (req.query.jobID != undefined) {
-		// Algorithm: Get all jobs, then check if it has the ID as a child.
-		console.log("Attempting to GET job with jobID: " + req.query.jobID)
-		var ref = firebase.database().ref("jobs/")
-		ref.once("value").then(function(snapshot) {
-				if (snapshot.hasChild(req.query.jobID)){
-					// Found matching job
-					res.send(snapshot.child(req.query.jobID).val())
-					console.log("Success, found job with ID.")
-				} else {
-					// No corresponding job
-					res.sendStatus(400)
-					console.log("Failure, no job with the given ID.")
+	var ref = firebase.database().ref("jobs")
+	ref.once("value").then(function(snapshot) {
+		// Get job by jobID
+		if (req.query.jobID) {
+			if (snapshot.hasChild(req.query.jobID)) {
+				res.send(snapshot.child(req.query.jobID).val())
+				console.log("GET /jobs/" + req.query.jobID)
+			} else {
+				res.sendStatus(400)
+				console.log("GET /jobs/" + req.query.jobID + " failed: jobID does not exist")
+			}
+		}
+		// Get job by name
+		else if (req.query.jobName) {
+			var jobs = []
+			snapshot.forEach(function(childSnapshot) {
+				if (childSnapshot.child("name").includes(req.query.jobName)) {
+					jobs.push(JSON.stringify(childSnapshot.val()))
 				}
 			})
-
+			res.send(jobs)
+		}
+		// Get ordered jobs
+		else if (req.query.orderby) {
+			var jobs = []
+			if (req.query.orderby == "pay") {
+				snapshot.forEach(function(childSnapshot) {
+					ref.orderByChild("pay").once("value").then(function(snapshot) {
+						res.send(snapshot.val())
+					})
+				})
+			}
+		}
+	})
 	// Get job by name
-	} else if (req.query.jobName != undefined) {
+	else if (req.query.jobName != undefined) {
 		console.log("Attempting to GET job with jobName:" + req.query.jobName)
 		var ref = firebase.database().ref("jobs/")
 		ref.once("value").then(function(snapshot) {
