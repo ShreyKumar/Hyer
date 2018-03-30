@@ -24,9 +24,10 @@ export default class App extends React.Component {
 
   success = (username) => {
     //do evaluation and redirect to appropriate function
-    alert("success")
     this.setState({"thisuser": username})
-    this.setState({"view": "phoneverification"})
+    this.setState({"view": "profile"})
+    console.log("this user");
+    console.log(this.state.thisuser);
   }
 
   changeToJobInfo = (id) => {
@@ -37,8 +38,12 @@ export default class App extends React.Component {
     console.log(this.component);
   }
 
-  changeView = () => {
-
+  changeView = (view) => {
+    if(view == "editprofile"){
+      this.setState({"view": "editprofile"})
+    } else if(view == "profile"){
+      this.setState({"view": "profile"})
+    }
   }
 
 
@@ -46,10 +51,10 @@ export default class App extends React.Component {
     if(this.state.view == "login" || this.state.view == "signup"){
       this.navbar = (
         <View>
-          <Button onPress={() => this.setState({"view": "signup"})} style={{marginBottom: 50}} title="Signup" />
-          <Button onPress={() => this.setState({"view": "login"})} title="Login" />
-          <Button onPress={() => this.setState({"view": "profile"})} title="Profile" />
-          <Button onPress={() => this.setState({"view": "editprofile"})} title="Edit Profile" />
+          {(this.state.thisuser != "") ? <Button onPress={() => this.setState({"view": "signup"})} style={{marginBottom: 50}} title="Signup" /> : null }
+          {(this.state.thisuser != "") ? <Button onPress={() => this.setState({"view": "login"})} title="Login" /> : null}
+          {(this.state.thisuser != "") ? <Button onPress={() => this.setState({"view": "profile"})} title="Profile" /> : null}
+          {(this.state.thisuser != "") ? <Button onPress={() => this.setState({"view": "login", "thisuser": ""})} title="Log out" /> : null}
           <Button onPress={() => this.setState({"view": "jobs"})} title="Jobs" />
         </View>
       )

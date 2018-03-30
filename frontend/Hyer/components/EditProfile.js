@@ -7,7 +7,7 @@ export default class EditProfile extends React.Component {
     super(props);
 
     this.state = {
-      username: "",
+      username: this.props.id,
       firstname: "",
       lastname: "",
       email: "",
@@ -16,7 +16,7 @@ export default class EditProfile extends React.Component {
 
     //get request to prefill profile
     var prefix = "https://hyer.herokuapp.com";
-    fetch(prefix + "/users?username=" + this.props.id).then((resp) => {
+    fetch(prefix + "/users?username=" + this.state.username).then((resp) => {
       resp.json().then((data) => {
         alert("loaded!");
         console.log(data);
@@ -38,25 +38,33 @@ export default class EditProfile extends React.Component {
   update = () => {
     var prefix = "https://hyer.herokuapp.com";
 
+    console.log("get bio");
+    console.log(this.state.bio);
+
+    var toSend = {
+      username: this.state.username,
+      firstName: this.state.firstname,
+      lastName: this.state.lastname,
+      bio: this.state.bio,
+      email: this.state.email,
+      password: "",
+      phoneNumber: "",
+      photo: ""
+    }
+    console.log("to send");
+    console.log(toSend);
+
     fetch(prefix + "/put/users", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        username: this.state.username,
-        firstName: this.state.firstname,
-        lastName: this.state.lastname,
-        bio: this.state.bio,
-        email: this.state.email,
-        password: "",
-        phoneNumber: "",
-        photo: ""
-      })
+      body: JSON.stringify(toSend)
     }).then((resp) => {
       alert("updated!");
       console.log("updated profile");
+      this.props.changeView("profile")
       console.log(resp);
     }).catch((err) => {
       console.error(err);

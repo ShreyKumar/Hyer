@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text} from "react-native";
+import {View, Text, Button} from "react-native";
 import {Container, Content, Card, CardItem} from "native-base";
 
 export default class Profile extends React.Component {
@@ -83,6 +83,7 @@ export default class Profile extends React.Component {
               <Text>{this.state.bio}</Text>
             </CardItem>
           </Card>
+          <Button onPress={() => this.props.changeView("editprofile")} title="Edit Profile" />
         </Content>
       </Container>
     )
