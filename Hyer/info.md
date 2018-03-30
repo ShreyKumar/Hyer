@@ -77,3 +77,6 @@ Payment: Update employer credits with negative amount of value * duration, and u
 Apply for job: Updates job applicants with stored username  
 Hire applicant: Updates job hired with applicant and removes applicant from applicants  
 Look at current jobs for applicants: Get jobs with employer as stored username
+
+### NOTE
+On get user or get jobs, if empty result is returned, even if its a viable search it will ALWAYS send response 400 (Bad Request). So if you search for your own jobs, but didnt post any jobs, it will still give you Bad Request.
