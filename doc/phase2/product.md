@@ -40,9 +40,14 @@ For this deliverable, our plan was to have a complete minimum viable product bui
 
 #### `/screenshots` directory
 Along with these we also have other screenshots of the app inside the screenshots directory. Generally speaking, each PNG file should correspond to a view on the main app.
+<<<<<<< HEAD
+* `login.PNG`
+* `signup.PNG`
+=======
 * `login.PNG` 
 * `login_android.png` 
 * `signup.PNG` 
+>>>>>>> 8c43f10a85b1ad19e8abb31385a6ef549ba9ac08
 * `jobs.PNG` - The Jobs view where a list of all available jobs should be displayed.
 * `detailed_job.PNG` - A detailed view of a given job. Includes more information like Pay, Type, Location, etc.
 * `phone_auth.PNG` - Screen 1 of the Phone auth system where a text is sent out to the number provided and validation is done to make sure its valid.

@@ -96,7 +96,7 @@ app.post('/put/users', (req, res) => {
 			} if (req.body.photo) {
 				update.photo = req.body.photo;
 			}
-			ref.update(update).then(function() {
+			firebase.database().ref("users/" + req.body.username).update(update).then(function() {
 				res.sendStatus(200)
 				console.log("UPDATE /users/" + req.body.username)
 			}, function(err) {
