@@ -7,16 +7,12 @@
 	<body>
    		<h1>User Functions</h1>
 
-		<p>Get all users</p>
+		  <p>Get users</p>
       	<form action="/users" method="GET">
+          <input type="text" placeholder="Username" name="username">
       		<button type="submit">Get All Users</button>
     	</form>
 
-    	<p>Get a user by username</p>
-    	<form action="/users" method="GET">
-      		<input type="text" placeholder="Username" name="username">
-    		<button type="submit">Get User</button>
-    	</form>
 
     	<p>Add a user</p>
     	<form action="/users" method="POST">
@@ -41,6 +37,7 @@
       		<input type="text" placeholder="Phone Number" name="phoneNumber">
       		<input type="text" placeholder="Bio" name="bio">
       		<input type="text" placeholder="Photo" name="photo">
+          <input type="text" placeholder="Credits" name="credits">
       		<button type="submit">Update User</button>
     	</form>
 
@@ -51,30 +48,24 @@
     	</form>
 
     	<h1>Job Functions</h1>
-    
-    	<p>Get All Jobs</p>
-    	<form action="/jobs" method="GET">
-      		<button type="submit">Get All Jobs</button>
-    	</form>
 
-    	<form action="/jobs" method="GET">
-    		<input type="text" placeholder="Order By" name="orderby">
-    		<button type="submit">Get Jobs</button>
-    	</form>
+      <p>Get jobs</p>
+      <form action="/jobs" method="GET">
+          <input type="text" placeholder="Job ID" name="jobID">
+          <input type="text" placeholder="Search" name="search">
+          <input type="text" placeholder="Order" name="order">
+          <input type="text" placeholder="Latitude" name="latitude">
+          <input type="text" placeholder="Longitude" name="longitude">
+          <input type="text" placeholder="Kilometers" name="km">
+          <button type="submit">Get Job</button>
+      </form>
 
-    	<form action="/jobs" method="GET">
-    		<input type="text" placeholder="Latitude" name="lat">
-    		<input type="text" placeholder="Longitude" name="lon">
-    		<input type="text" placeholder="Kilometers" name="km">
-    		<button type="submit">Get Jobs</button>
-    	</form>
-
-    	<p>Add Job</p>
+    	<p>Add a job</p>
     	<form action="/jobs" method="POST">
       		<input type="text" placeholder="Job Name" name="name">
       		<input type="text" placeholder="Description" name="description">
-      		<input type="text" placeholder="X coordinate" name="xCoordinate">
-      		<input type="text" placeholder="Y coordinate" name="yCoordinate">
+      		<input type="text" placeholder="Longitude" name="longitude">
+      		<input type="text" placeholder="Latitude" name="latitude">
       		<input type="text" placeholder="Pay Value" name="value">
       		<input type="text" placeholder="Pay Type" name="type">
       		<input type="text" placeholder="Job Duration" name="duration">
@@ -84,32 +75,20 @@
       		<input type="text" placeholder="Tags" name="tags">
       		<button type="submit">Add Job</button>
     	</form>
-    
-    	<p>Search for a Job by name</p>
-    	<form action="/jobs" method="GET">
-      		<input type="text" placeholder="Job Name" name="jobName">
-      		<button type="submit">Get Job</button>
-    	</form>
 
-    	<p>Get Job by ID</p>
-    	<form action="/jobs" method="GET">
-      		<input type="text" placeholder="Job ID" name="jobID">
-      		<button type="submit">Get Job</button>
-    	</form>
-    
     	<p>Delete a job</p>
     	<form action="/delete/jobs" method="POST">
       		<input type="text" placeholder="Job ID" name="jobID">
       		<button type="submit">Delete Job</button>
     	</form>
-    
+
     	<p>Update a job</p>
     	<form action="/put/jobs" method="POST">
       		<input type="text" placeholder="Job ID" name="jobID">
       		<input type="text" placeholder="Job Name" name="name">
       		<input type="text" placeholder="Description" name="description">
-      		<input type="text" placeholder="X coordinate" name="xCoordinate">
-      		<input type="text" placeholder="Y coordinate" name="yCoordinate">
+      		<input type="text" placeholder="X coordinate" name="longitude">
+      		<input type="text" placeholder="Y coordinate" name="latitude">
       		<input type="text" placeholder="Pay Value" name="value">
       		<input type="text" placeholder="Pay Type" name="type">
       		<input type="text" placeholder="Job Duration" name="duration">
@@ -117,6 +96,7 @@
       		<input type="text" placeholder="Prerequisites" name="prerequisites">
       		<input type="text" placeholder="Employer" name="employer">
       		<input type="text" placeholder="Tags" name="tags">
+          <input type="text" placeholder="Status" name="status">
       		<input type="text" placeholder="Applicants" name="applicants">
       		<input type="text" placeholder="Hired" name="hired">
       		<button type="submit">Update Job</button>

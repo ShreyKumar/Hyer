@@ -3,9 +3,11 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import {Container, Header, Title, Content} from "native-base";
 
 //components
+import Start from "./components/Start.js";
 import Login from "./components/Auth/Login.js";
 import Signup from "./components/Auth/Signup.js";
 import Profile from "./components/Profile.js";
+import EditProfile from "./components/EditProfile.js";
 import PhoneVerification from "./components/PhoneVerification.js";
 import Jobs from "./components/Jobs.js";
 import JobInfo from "./components/JobInfo.js";
@@ -14,16 +16,25 @@ export default class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      "view": "login",
-      "thisjobid": ""
+      "view": "start",
+      "thisjobid": "",
+      "thisuser": ""
     }
-    this.navbar = null
+    this.navbar = null;
+
+    setTimeout(() => {
+      this.setState({"view": "login"})
+    }, 3500)
+
+
   }
 
-  success = () => {
+  success = (username) => {
     //do evaluation and redirect to appropriate function
-    alert("success")
-    this.setState({"view": "phoneverification"})
+    this.setState({"thisuser": username})
+    this.setState({"view": "profile"})
+    console.log("this user");
+    console.log(this.state.thisuser);
   }
 
   changeToJobInfo = (id) => {
@@ -34,14 +45,23 @@ export default class App extends React.Component {
     console.log(this.component);
   }
 
+  changeView = (view) => {
+    if(view == "editprofile"){
+      this.setState({"view": "editprofile"})
+    } else if(view == "profile"){
+      this.setState({"view": "profile"})
+    }
+  }
+
 
   render() {
     if(this.state.view == "login" || this.state.view == "signup"){
       this.navbar = (
         <View>
-          <Button onPress={() => this.setState({"view": "signup"})} style={{marginBottom: 50}} title="Signup" />
-          <Button onPress={() => this.setState({"view": "login"})} title="Login" />
-          <Button onPress={() => this.setState({"view": "profile"})} title="Profile" />
+          {(this.state.thisuser == "") ? <Button onPress={() => this.setState({"view": "signup"})} style={{marginBottom: 50}} title="Signup" /> : null }
+          {(this.state.thisuser == "") ? <Button onPress={() => this.setState({"view": "login"})} title="Login" /> : null}
+          {(this.state.thisuser != "") ? <Button onPress={() => this.setState({"view": "profile"})} title="Profile" /> : null}
+          {(this.state.thisuser != "") ? <Button onPress={() => this.setState({"view": "login", "thisuser": ""})} title="Log out" /> : null}
           <Button onPress={() => this.setState({"view": "jobs"})} title="Jobs" />
         </View>
       )
@@ -49,19 +69,19 @@ export default class App extends React.Component {
 
     return (
       <Container style={styles.container}>
-        <Header style={styles.header}>
-          <Title>Hyer</Title>
-        </Header>
+        {(this.state.view != "start") ? <Header style={styles.header}><Title>Hyer</Title></Header> : null}
 
         <Content>
           {this.navbar}
-          {(this.state.view == "login") ? <Login updateMain={this.success.bind(this)}/>: null}
-          {(this.state.view == "signup") ? <Signup updateMain={this.success.bind(this)}/>: null}
-          {(this.state.view == "profile") ? <Profile /> : null}
+          {(this.state.view == "login") ? <Login changeView={this.changeView.bind(this)} updateMain={this.success.bind(this)}/>: null}
+          {(this.state.view == "signup") ? <Signup changeView={this.changeView.bind(this)} updateMain={this.success.bind(this)}/>: null}
+          {(this.state.view == "profile") ? <Profile changeView={this.changeView.bind(this)} id={this.state.thisuser} /> : null}
+          {(this.state.view == "editprofile") ? <EditProfile changeView={this.changeView.bind(this)} id={this.state.thisuser} /> : null}
           {(this.state.view == "phoneverification") ? <PhoneVerification /> : null}
-          {(this.state.view == "jobs") ? <Jobs updateMain={this.changeToJobInfo.bind(this)} /> : null}
-          {(this.state.view == "jobinfo") ? <JobInfo id={this.state.thisjobid} /> : null}
+          {(this.state.view == "jobs") ? <Jobs changeView={this.changeView.bind(this)} updateMain={this.changeToJobInfo.bind(this)} /> : null}
+          {(this.state.view == "jobinfo") ? <JobInfo changeView={this.changeView.bind(this)} id={this.state.thisjobid} /> : null}
 
+          {(this.state.view == "start") ? <Start /> : null}
         </Content>
 
       </Container>
