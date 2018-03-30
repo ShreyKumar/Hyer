@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import {Container, Header, Title, Content} from "native-base";
 
 //components
+import Start from "./components/Start.js";
 import Login from "./components/Auth/Login.js";
 import Signup from "./components/Auth/Signup.js";
 import Profile from "./components/Profile.js";
@@ -15,11 +16,17 @@ export default class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      "view": "login",
+      "view": "start",
       "thisjobid": "",
       "thisuser": ""
     }
-    this.navbar = null
+    this.navbar = null;
+
+    setTimeout(() => {
+      this.setState({"view": "login"})
+    }, 3500)
+
+
   }
 
   success = (username) => {
@@ -51,8 +58,8 @@ export default class App extends React.Component {
     if(this.state.view == "login" || this.state.view == "signup"){
       this.navbar = (
         <View>
-          {(this.state.thisuser != "") ? <Button onPress={() => this.setState({"view": "signup"})} style={{marginBottom: 50}} title="Signup" /> : null }
-          {(this.state.thisuser != "") ? <Button onPress={() => this.setState({"view": "login"})} title="Login" /> : null}
+          {(this.state.thisuser == "") ? <Button onPress={() => this.setState({"view": "signup"})} style={{marginBottom: 50}} title="Signup" /> : null }
+          {(this.state.thisuser == "") ? <Button onPress={() => this.setState({"view": "login"})} title="Login" /> : null}
           {(this.state.thisuser != "") ? <Button onPress={() => this.setState({"view": "profile"})} title="Profile" /> : null}
           {(this.state.thisuser != "") ? <Button onPress={() => this.setState({"view": "login", "thisuser": ""})} title="Log out" /> : null}
           <Button onPress={() => this.setState({"view": "jobs"})} title="Jobs" />
@@ -62,9 +69,7 @@ export default class App extends React.Component {
 
     return (
       <Container style={styles.container}>
-        <Header style={styles.header}>
-          <Title>Hyer</Title>
-        </Header>
+        {(this.state.view != "start") ? <Header style={styles.header}><Title>Hyer</Title></Header> : null}
 
         <Content>
           {this.navbar}
@@ -76,6 +81,7 @@ export default class App extends React.Component {
           {(this.state.view == "jobs") ? <Jobs changeView={this.changeView.bind(this)} updateMain={this.changeToJobInfo.bind(this)} /> : null}
           {(this.state.view == "jobinfo") ? <JobInfo changeView={this.changeView.bind(this)} id={this.state.thisjobid} /> : null}
 
+          {(this.state.view == "start") ? <Start /> : null}
         </Content>
 
       </Container>
