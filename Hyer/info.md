@@ -1,5 +1,6 @@
 ## GET USERS
-If the request body contains username, it will return a javascript array containing the user whose name matches the given username (case sensitive).
+If the request body contains username, it will return a javascript array containing the user whose name matches the given username (case sensitive). Get ALWAYS returns a javascript array of javascript objects which are {username: {userinfo}} (even if it is only one user or get by username). Example:  
+[{"roryan":{"bio":"CS @ UofT","credits":0,"email":"ryan.ro@mail.utoronto.ca","firstName":"Ryan","lastName":"Ro","password":"roryan","phoneNumber":"private","photo":"n/a"}},{"test":{"bio":"","credits":0,"email":"","firstName":"","lastName":"","password":"","phoneNumber":"","photo":""}}]
 
 ## POST USERS
 Request body contains the following fields:  
@@ -43,7 +44,8 @@ THEN CHOOSE:
 km  
 (where all jobs outside the km radius will not be listed, like distance order longitude and latitiude must be given)  
   
-So all 3 can be used or only one. Obviously if anythign is used with jobID, the job with the given jobID will be returned unless you give a km and the job is outside the km radius.
+So all 3 can be used or only one. Obviously if anythign is used with jobID, the job with the given jobID will be returned unless you give a km and the job is outside the km radius. Get ALWAYS returns a javascript array of javascript objects which are {jobID: {job info}} (even if it is only one job or get by jobID). Example:  
+[{"-L8sEOpehZFN2gQOKKYz":{"applicants":"","description":"Mow the lawn","duration":2,"employer":"roryan","hired":"","latitude":0,"longitude":0,"name":"Mower Needed","pay":10,"photo":"n/a","prerequisites":"n/a","status":"open","tags":"mow, lawn, grass","type":"credits"}},{"-L8sEWe1tWemDnTyhLWS":{"applicants":"","description":"Clean the house","duration":3,"employer":"roryan","hired":"","latitude":10,"longitude":10,"name":"House Cleaner Needed","pay":20,"photo":"n/a","prerequisites":"n/a","status":"open","tags":"clean, house","type":"credits"}}]
 
 ## POST JOBS
 Request boddy contains the following fields:  
