@@ -34,8 +34,8 @@ describe('Server', () => {
         var userInfo3 = {username: "c", userID: "a", firstName: "a", lastName: "a", email: "a", phoneNumber: "a", bio: "c", photo: "a", password: "a"}
 
         var jobInfo1 = {name: "a", description: "a", longitude: "1", latitude: "1", value: "3", type: "a", duration: "3", photo: "a", tags: "a", prerequisites: "a", employer: "a", status: "a", applicants: "a", hired: "a"}
-        var jobInfo2 = {name: "a", description: "a", longitude: "1", latitude: "1", value: "3", type: "a", duration: "3", photo: "a", tags: "a", prerequisites: "a", employer: "a", status: "a", applicants: "a", hired: "a"}
-        var jobInfo3 = {name: "a", description: "a", longitude: "1", latitude: "1", value: "3", type: "a", duration: "3", photo: "a", tags: "a", prerequisites: "a", employer: "a", status: "a", applicants: "a", hired: "a"}
+        var jobInfo2 = {name: "a", description: "a", longitude: "1", latitude: "1", value: "2", type: "a", duration: "2", photo: "a", tags: "a", prerequisites: "a", employer: "a", status: "a", applicants: "a", hired: "a"}
+        var jobInfo3 = {name: "a", description: "a", longitude: "1", latitude: "1", value: "1", type: "a", duration: "1", photo: "a", tags: "a", prerequisites: "a", employer: "a", status: "a", applicants: "a", hired: "a"}
 
         chai.request(app)
         .post('/users')
@@ -368,8 +368,8 @@ describe('Server', () => {
 
     describe('Test get jobs', () => {
         var temp1 = {applicants:"",description:"a",duration:3,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:3,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
-        var temp2 = {applicants:"",description:"a",duration:3,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:3,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
-        var temp3 = {applicants:"",description:"a",duration:3,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:3,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
+        var temp2 = {applicants:"",description:"a",duration:2,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:2,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
+        var temp3 = {applicants:"",description:"a",duration:1,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:1,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
         var expected1 = {}
         var expected2 = {}
         var expected3 = {}
@@ -390,8 +390,8 @@ describe('Server', () => {
 
     describe('Test get jobs by distance', () => {
         var temp1 = {applicants:"",description:"a",duration:3,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:3,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
-        var temp2 = {applicants:"",description:"a",duration:3,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:3,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
-        var temp3 = {applicants:"",description:"a",duration:3,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:3,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
+        var temp2 = {applicants:"",description:"a",duration:2,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:2,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
+        var temp3 = {applicants:"",description:"a",duration:1,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:1,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
         var expected1 = {}
         var expected2 = {}
         var expected3 = {}
@@ -414,6 +414,50 @@ describe('Server', () => {
             .get('/jobs?longitude=2&latitude=2&km=0')
             .end(function(error, response) {
                 var expected = {}
+                assert.equal(JSON.stringify(response.body), JSON.stringify(expected));
+                done();
+            });
+        });
+    });
+
+    describe('Test get jobs sorted by pay', () => {
+        var temp1 = {applicants:"",description:"a",duration:3,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:3,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
+        var temp2 = {applicants:"",description:"a",duration:2,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:2,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
+        var temp3 = {applicants:"",description:"a",duration:1,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:1,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
+        var expected1 = {}
+        var expected2 = {}
+        var expected3 = {}
+
+        it('Get jobs: should match', (done) => {
+            chai.request(app)
+            .get('/jobs?order=pay')
+            .end(function(error, response) {
+                expected1[key1] = temp1
+                expected2[key2] = temp2
+                expected3[key3] = temp3
+                var expected = [expected1, expected2, expected3]
+                assert.equal(JSON.stringify(response.body), JSON.stringify(expected));
+                done();
+            });
+        });
+    });
+
+    describe('Test get jobs sorted by distance', () => {
+        var temp1 = {applicants:"",description:"a",duration:3,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:3,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
+        var temp2 = {applicants:"",description:"a",duration:2,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:2,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
+        var temp3 = {applicants:"",description:"a",duration:1,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:1,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
+        var expected1 = {}
+        var expected2 = {}
+        var expected3 = {}
+
+        it('Get jobs: should match', (done) => {
+            chai.request(app)
+            .get('/jobs?order=pay')
+            .end(function(error, response) {
+                expected1[key1] = temp1
+                expected2[key2] = temp2
+                expected3[key3] = temp3
+                var expected = [expected1, expected2, expected3]
                 assert.equal(JSON.stringify(response.body), JSON.stringify(expected));
                 done();
             });
