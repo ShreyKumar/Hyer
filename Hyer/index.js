@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 3000
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(require("body-parser").json())
+var test = true
 
 var config = {
 	apiKey: "AIzaSyATZQRhK6vLE47RVDkTZUHMTQySlJLabIA",
@@ -15,8 +16,11 @@ var config = {
   };
 
 if(module.parent) {
-	console.log('Running on test config');
-		config = {
+	test = false
+	if(test) {
+		console.log('Running on test config');
+	}		
+	config = {
 	    apiKey: "AIzaSyCkuP6GeDvKQAFX64XPpO3ZAmdKg9znrWg",
 	    authDomain: "testing-2e99d.firebaseapp.com",
 	    databaseURL: "https://testing-2e99d.firebaseio.com",
@@ -40,10 +44,14 @@ app.get("/users", (req, res) => {
 				user = {}
 				user[req.query.username] = snapshot.child(req.query.username).val()
 				users.push(user)
-				console.log("GET /users/" + req.query.username)
+				if(test) {
+					console.log("GET /users/" + req.query.username)
+				}			
 			} else {
 				res.sendStatus(400)
-				console.log("get at /users/" + req.query.username + " failed: username does not exist")
+				if(test) {
+					console.log("get at /users/" + req.query.username + " failed: username does not exist")
+				}			
 			}
 		}
 		// Get users
@@ -53,13 +61,17 @@ app.get("/users", (req, res) => {
 				user[childSnapshot.key] = childSnapshot.val()
 				users.push(user)
 			})
-			console.log("GET /users")
+			if(test) {
+				console.log("GET /users")
+			}		
 		}
 		res.send(users)
 	}, function(err) {
 			res.sendStatus(400)
-			console.log(err)
-	})
+			if(test) {
+				console.log(err)
+			}	
+		})
 })
 
 // Create a user (POST /users)
@@ -68,7 +80,9 @@ app.post("/users", (req, res) => {
     var key = ref.once("value").then(function(snapshot) {
     	if (snapshot.hasChild(req.body.username)) {
     		res.sendStatus(400)
-    		console.log("post at /users/" + req.body.username + " failed: username exists")
+    		if(test) {
+    			console.log("post at /users/" + req.body.username + " failed: username exists")
+    		}    	
     	} else {
     		ref.child(req.body.username).set({
     			password: req.body.password,
@@ -81,15 +95,21 @@ app.post("/users", (req, res) => {
         		credits: 0.00
     		}).then(function() {
     			res.send(req.body.username)
-    			console.log("POST /users/" + req.body.username)
+    			if(test) {
+    				console.log("POST /users/" + req.body.username)
+    			}    		
     		}, function(err) {
     			res.sendStatus(400)
-    			console.log(err)
+    			if(test) {
+    				console.log(err)
+    			}    		
     		})
     	}
     }, function(err) {
     	res.sendStatus(400)
-    	console.log(err)
+    	if(test) {
+    		console.log(err)
+    	}    
     })
 })
 
@@ -119,18 +139,26 @@ app.post('/put/users', (req, res) => {
 			}
 			ref.child(req.body.username).update(update).then(function() {
 				res.sendStatus(200)
-				console.log("PUT /users/" + req.body.username)
+				if(test) {
+					console.log("PUT /users/" + req.body.username)
+				}			
 			}, function(err) {
 				res.sendStatus(400)
-				console.log(err)
+				if(test) {
+					console.log(err)
+				}			
 			})
 		} else {
 			res.sendStatus(400)
-			console.log("put /users/" + req.body.username + " failed: username does not exist")
+			if(test) {
+				console.log("put /users/" + req.body.username + " failed: username does not exist")
+			}		
 		}
 	}, function(err) {
 		res.sendStatus(400)
-		console.log(err)
+		if(test) {
+			console.log(err)
+		}	
 	})
 })
 
@@ -142,18 +170,26 @@ app.post("/delete/users", (req, res) => {
     	if (snapshot.hasChild(req.body.username)) {
     		ref.child(req.body.username).remove().then(function() {
     			res.sendStatus(200)
-    			console.log("DELETE /users/" + req.body.username)
+    			if(test) {
+    				console.log("DELETE /users/" + req.body.username)
+    			}    		
     		}, function(err) {
     			res.sendStatus(400)
-    			console.log(err)
+    			if(test) {
+    				console.log(err)
+    			}    		
     		})
     	} else {
     		res.sendStatus(400)
-    		console.log("delete /users/" + req.body.username + " failed: username does not exist")
+    		if(test) {
+    			console.log("delete /users/" + req.body.username + " failed: username does not exist")
+    		}    	
     	}
   	}, function(err) {
   		res.sendStatus(400)
-  		console.log(err)
+  		if(test) {
+  			console.log(err)
+  		}  	
   	});
 })
 
@@ -183,10 +219,14 @@ app.get('/jobs', (req, res) => {
 				var job = {}
 				job[req.query.jobID] = snapshot.child(req.query.jobID).val()
 				jobs.push(job)
-				console.log("GET /jobs/" + req.query.jobID)
+				if(test) {
+					console.log("GET /jobs/" + req.query.jobID)
+				}			
 			} else {
 				res.sendStatus(400)
-				console.log("get /jobs/" + req.query.jobID + " failed: jobID does not exist")
+				if(test) {
+					console.log("get /jobs/" + req.query.jobID + " failed: jobID does not exist")
+				}			
 			}
 		}
 		// Get job by search
@@ -196,12 +236,16 @@ app.get('/jobs', (req, res) => {
 					var job = {}
 					job[childSnapshot.key] = childSnapshot.val()
 					jobs.push(job)
-					console.log("GET /jobs with " + req.query.search)
+					if(test) {
+						console.log("GET /jobs with " + req.query.search)
+					}				
 				}
 			})
 			if (jobs.length == 0) {
 				res.sendStatus(400)
-				console.log("get /jobs/ with " + req.query.search + " failed: no jobs found")
+				if(test) {
+					console.log("get /jobs/ with " + req.query.search + " failed: no jobs found")
+				}			
 			}
 		}
 		// Get jobs by specific employer
@@ -211,12 +255,16 @@ app.get('/jobs', (req, res) => {
 					var job = {}
 					job[childSnapshot.key] = childSnapshot.val()
 					jobs.push(job)
-					console.log("GET /jobs by " + req.query.employer)
+					if(test) {
+						console.log("GET /jobs by " + req.query.employer)
+					}			
 				}
 			})
 			if (jobs.length == 0) {
 				res.sendStatus(400)
-				console.log("get /jobs/ by " + req.query.employer + " failed: no jobs found")
+				if(test) {
+					console.log("get /jobs/ by " + req.query.employer + " failed: no jobs found")
+				}			
 			}
 		}
 		// Get jobs
@@ -226,12 +274,16 @@ app.get('/jobs', (req, res) => {
 					var job = {}
 					job[childSnapshot.key] = childSnapshot.val()
 					jobs.push(job)
-					console.log("GET /jobs")
+					if(test) {
+						console.log("GET /jobs")
+					}			
 				}
 			})
 			if (jobs.length == 0) {
 				res.sendStatus(400)
-				console.log("get /jobs failed: no jobs found")
+				if(test) {
+					console.log("get /jobs failed: no jobs found")
+				}			
 			}
 		}
 		// Order the jobs
@@ -247,7 +299,9 @@ app.get('/jobs', (req, res) => {
 						return 0
 					}
 				})
-				console.log("GET /jobs sorted by pay")
+				if(test) {
+					console.log("GET /jobs sorted by pay")
+				}		
 			}
 			// Order by distance
 			else if (req.query.order == "distance" && req.query.longitude && req.query.latitude) {
@@ -260,7 +314,9 @@ app.get('/jobs', (req, res) => {
 						return 0
 					}
 				}) 
-				console.log("GET /jobs sorted by distance")
+				if(test) {
+					console.log("GET /jobs sorted by distance")
+				}			
 			}
 		}
 		// Filter the jobs by distance
@@ -271,15 +327,21 @@ app.get('/jobs', (req, res) => {
 				}
 			} if (jobs.length == 0) {
 				res.sendStatus(400)
-				console.log("get /jobs filtered by distance failed: no jobs found")
+				if(test) {
+					console.log("get /jobs filtered by distance failed: no jobs found")
+				}			
 			} else {
-				console.log("GET /jobs filtered by distance")
+				if(test) {
+					console.log("GET /jobs filtered by distance")
+				}			
 			}
 		}
 		res.send(jobs)
 	}, function(err) {
 		res.sendStatus(400)
-		console.log(err)
+		if(test) {
+			console.log(err)
+		}	
 	})
 })
 
@@ -304,11 +366,15 @@ app.post('/jobs', (req, res) => {
 		hired: ""
     }).then(function() {
     	res.send(key)
-    	console.log("POST /jobs/" + key)
+    	if(test) {
+    		console.log("POST /jobs/" + key)
+    	}    
     }, function(err) {
     	res.sendStatus(400)
-    	console.log(err)
-    })
+    	if(test) {
+    		console.log(err)
+   		}    
+	})
 })
 
 // Update a job (POST /put/jobs)
@@ -349,18 +415,26 @@ app.post('/put/jobs', (req, res) => {
 			}
 			ref.child(req.body.jobID).update(update).then(function() {
 				res.sendStatus(200)
-				console.log("PUT /jobs/" + req.body.jobID)
+				if(test) {
+					console.log("PUT /jobs/" + req.body.jobID)
+				}			
 			}, function(err) {
 				res.sendStatus(400)
-				console.log(err)
+				if(test) {
+					console.log(err)
+				}			
 			})
 		} else {
 			res.sendStatus(400)
-			console.log("put /jobs/" + req.body.jobID + " failed: jobID does not exist")
+			if(test) {
+				console.log("put /jobs/" + req.body.jobID + " failed: jobID does not exist")
+			}		
 		}
 	}, function(err) {
 		res.sendStatus(400)
-		console.log(err)
+		if(test) {
+			console.log(err)
+		}	
 	})
 })
 
@@ -372,18 +446,26 @@ app.post("/delete/jobs", (req, res) => {
     	if (snapshot.hasChild(req.body.jobID)) {
     		ref.child(req.body.jobID).remove().then(function() {
     			res.sendStatus(200)
-    			console.log("DELETE /users/" + req.body.jobID)
+    			if(test) {
+    				console.log("DELETE /users/" + req.body.jobID)
+    			}    		
     		}, function(err) {
     			res.sendStatus(400)
-    			console.log(err)
+    			if(test) {
+    				console.log(err)
+    			}    		
     		})
     	} else {
     		res.sendStatus(400)
-    		console.log("delete /users/" + req.body.jobID + " failed: username does not exist")
+    		if(test) {
+    			console.log("delete /users/" + req.body.jobID + " failed: username does not exist")
+    		}    	
     	}
   	}, function(err) {
   		res.sendStatus(400)
-  		console.log(err)
+  		if(test) {
+  			console.log(err)
+  		}  	
   	});
 })
 
@@ -395,7 +477,9 @@ app.get('/', (req, res) => {
 
 if(!module.parent) {
 	app.listen(PORT, () => {
-	console.log(`Server listening on port ${PORT}`);
+		if(test) {
+			console.log(`Server listening on port ${PORT}`);
+		}	
 	});
 }
 
