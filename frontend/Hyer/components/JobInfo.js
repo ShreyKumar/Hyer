@@ -87,6 +87,8 @@ export default class JobInfo extends React.Component {
                   return (<Button key={eachDetail["field"]} onPress={this.apply.bind(this)}><Text>Apply now</Text></Button>)
                 } else if(eachDetail["field"] == "applicants" && eachDetail["value"] == this.props.thisUser){
                   return (<Text key={eachDetail["field"]}>You've already applied.</Text>)
+                } else if(eachDetail["field"] == "latitude" || eachDetail["field"] == "longitude" || eachDetail["field"] == "photo"){
+                  return null
                 } else {
                   return (
                       <CardItem key={eachDetail["field"]}>

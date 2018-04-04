@@ -64,6 +64,7 @@ export default class App extends React.Component {
           {(this.state.thisuser != "") ? <Button onPress={() => this.setState({"view": "profile"})} title="Profile" /> : null}
           {(this.state.thisuser != "") ? <Button onPress={() => this.setState({"view": "login", "thisuser": ""})} title="Log out" /> : null}
           {(this.state.thisuser != "") ? <Button onPress={() => this.setState({"view": "jobs"})} title="Jobs" /> : null}
+          {(this.state.thisuser != "") ? <Button onPress={() => this.setState({"view": "requests"})} title="Requests" /> : null}
         </View>
       )
     }
@@ -81,6 +82,7 @@ export default class App extends React.Component {
           {(this.state.view == "phoneverification") ? <PhoneVerification /> : null}
           {(this.state.view == "jobs") ? <Jobs changeView={this.changeView.bind(this)} updateMain={this.changeToJobInfo.bind(this)} /> : null}
           {(this.state.view == "jobinfo") ? <JobInfo thisUser={this.state.thisuser} changeView={this.changeView.bind(this)} id={this.state.thisjobid} /> : null}
+          {(this.state.view == "requests") ? <Requests thisUser={this.state.thisuser} /> : null}
 
           {(this.state.view == "start") ? <Start /> : null}
         </Content>
