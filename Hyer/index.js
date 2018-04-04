@@ -99,7 +99,6 @@ app.post('/put/users', (req, res) => {
 	var ref = firebase.database().ref("users");
 	ref.once("value").then(function(snapshot) {
 		if (snapshot.hasChild(req.body.username)) {
-			ref = ref.child(req.body.username);
 			var update = {};
 			if (req.body.password) {
 				update.password = req.body.password;

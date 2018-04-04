@@ -33,9 +33,9 @@ describe('Server', () => {
         var userInfo2 = {username: "b", userID: "a", firstName: "a", lastName: "a", email: "a", phoneNumber: "a", bio: "b", photo: "a", password: "a"}
         var userInfo3 = {username: "c", userID: "a", firstName: "a", lastName: "a", email: "a", phoneNumber: "a", bio: "c", photo: "a", password: "a"}
 
-        var jobInfo1 = {name: "a", description: "a", xCoordinate: "1", yCoordinate: "1", value: "3", type: "a", duration: "3", photo: "a", tags: "a", prerequisites: "a", employer: "a", status: "a"}
-        var jobInfo2 = {name: "a", description: "a", xCoordinate: "1", yCoordinate: "1", value: "2", type: "a", duration: "2", photo: "a", tags: "a", prerequisites: "a", employer: "a", status: "a"}
-        var jobInfo3 = {name: "a", description: "a", xCoordinate: "1", yCoordinate: "1", value: "1", type: "a", duration: "1", photo: "a", tags: "a", prerequisites: "a", employer: "a", status: "a"}
+        var jobInfo1 = {name: "a", description: "a", longitude: "1", latitude: "1", value: "3", type: "a", duration: "3", photo: "a", tags: "a", prerequisites: "a", employer: "a", status: "a", applicants: "a", hired: "a"}
+        var jobInfo2 = {name: "a", description: "a", longitude: "1", latitude: "1", value: "3", type: "a", duration: "3", photo: "a", tags: "a", prerequisites: "a", employer: "a", status: "a", applicants: "a", hired: "a"}
+        var jobInfo3 = {name: "a", description: "a", longitude: "1", latitude: "1", value: "3", type: "a", duration: "3", photo: "a", tags: "a", prerequisites: "a", employer: "a", status: "a", applicants: "a", hired: "a"}
 
         chai.request(app)
         .post('/users')
@@ -172,7 +172,7 @@ describe('Server', () => {
     describe('Delete a job that does not exist, then add and delete one', () => {
         var key;
         var job = {jobID: "1"}
-        var jobInfo = {name: "a", description: "a", xCoordinate: "1", yCoordinate: "1", value: "1", type: "a", duration: "1", photo: "a", tags: "a", prerequisites: "a", employer: "a", status: "a"}
+        var jobInfo = {name: "a", description: "a", longitude: "1", latitude: "1", value: "3", type: "a", duration: "3", photo: "a", tags: "a", prerequisites: "a", employer: "a", status: "a", applicants: "a", hired: "a"}
 
         it('Delete a job that does not exist: should return 400', (done) => {
             chai.request(app)
@@ -210,7 +210,7 @@ describe('Server', () => {
     describe('Delete a user that does not exist, then add and delete one', () => {
         var key = "aaa"
         var user = {username: key}
-        var userInfo = {username: key, userID: "aaaa", firstName: "a", lastName: "a", email: "a", phoneNumber: "a", bio: "a", photo: "a", password: "a"}
+        var userInfo = {username: key, userID: "aaaa", firstName: "a", lastName: "a", email: "a", phoneNumber: "a", bio: "a", photo: "a", password: "a", credits: 0.00}
 
         it('Delete a user that does not exist: should return 400', (done) => {
             chai.request(app)
@@ -253,15 +253,24 @@ describe('Server', () => {
         var user1 = {username: "a"}
         var user2 = {username: "b"}
         var user3 = {username: "c"}
-        var expected1 = {bio: "a", email: "a", name: {firstName: "a", lastName: "a"}, password: "a", phoneNumber: "a", photo: "a"}
-        var expected2 = {bio: "b", email: "a", name: {firstName: "a", lastName: "a"}, password: "a", phoneNumber: "a", photo: "a"}
-        var expected3 = {bio: "c", email: "a", name: {firstName: "a", lastName: "a"}, password: "a", phoneNumber: "a", photo: "a"}
+        var expected1 = {bio: "a", credits: 0.00, email: "a", firstName: "a", lastName: "a", password: "a", phoneNumber: "a", photo: "a"}
+        var expected2 = {bio: "b", credits: 0.00, email: "a", firstName: "a", lastName: "a", password: "a", phoneNumber: "a", photo: "a"}
+        var expected3 = {bio: "c", credits: 0.00, email: "a", firstName: "a", lastName: "a", password: "a", phoneNumber: "a", photo: "a"}
+        var temp1 = {}
+        var temp2 = {}
+        var temp3 = {}
+        temp1["a"] = expected1
+        temp2["b"] = expected2
+        temp3["c"] = expected3
+
+
+        var expected = [temp1, temp2, temp3]
 
         it('Get users: should return all users', (done) => {
             chai.request(app)
             .get('/users')
             .end(function(error, response) {
-                assert.equal(JSON.stringify(response.body), JSON.stringify({a: expected1, b: expected2, c: expected3}));
+                assert.equal(JSON.stringify(response.body), JSON.stringify(expected));
                 done();
             });
         });
@@ -270,7 +279,7 @@ describe('Server', () => {
             chai.request(app)
             .get('/users?username=a')
             .end(function(error, response) {
-                assert.equal(JSON.stringify(response.body), JSON.stringify(expected1));
+                assert.equal(JSON.stringify(response.body), JSON.stringify([temp1]));
                 done();
             });
         });
@@ -278,7 +287,7 @@ describe('Server', () => {
             chai.request(app)
             .get('/users?username=b')
             .end(function(error, response) {
-                assert.equal(JSON.stringify(response.body), JSON.stringify(expected2));
+                assert.equal(JSON.stringify(response.body), JSON.stringify([temp2]));
                 done();
             });
         });
@@ -286,7 +295,7 @@ describe('Server', () => {
             chai.request(app)
             .get('/users?username=c')
             .end(function(error, response) {
-                assert.equal(JSON.stringify(response.body), JSON.stringify(expected3));
+                assert.equal(JSON.stringify(response.body), JSON.stringify([temp3]));
                 done();
             });
         });
@@ -317,7 +326,7 @@ describe('Server', () => {
 
 
     describe("Update a user, but don't change anything", () => {
-        var expected1 = {bio: "a", email: "a", name: {firstName: "a", lastName: "a"}, password: "a", phoneNumber: "a", photo: "a"}
+        var expected1 = [{"a": {bio: "a", credits: 0.00, email: "a", firstName: "a", lastName: "a", password: "a", phoneNumber: "a", photo: "a"}}]
 
         it('Update user: should return 200', (done) => {
             chai.request(app)
@@ -340,7 +349,7 @@ describe('Server', () => {
     });
 
     describe("Update a user, test if changes stick", () => {
-        var expected1 = {bio: "a", email: "b", name: {firstName: "a", lastName: "a"}, password: "a", phoneNumber: "a", photo: "a"}
+        var expected1 = [{"a": {bio: "a", credits: 0.00, email: "b", firstName: "a", lastName: "a", password: "a", phoneNumber: "a", photo: "a"}}]
 
         it('Update user and check changes: should match', (done) => {
             chai.request(app)
@@ -358,9 +367,9 @@ describe('Server', () => {
     });
 
     describe('Test get jobs', () => {
-        var temp1 = {coordinates: {x: 1, y: 1}, description: "a", duration: 3, employer: "a", name: "a", pay: 3, photo: "a" ,prerequisites: "a", status: "a", tags: "a",type: "a"}
-        var temp2 = {coordinates: {x: 1, y: 1}, description: "a", duration: 2, employer: "a", name: "a", pay: 2, photo: "a" ,prerequisites: "a", status: "a", tags: "a",type: "a"}
-        var temp3 = {coordinates: {x: 1, y: 1}, description: "a", duration: 1, employer: "a", name: "a", pay: 1, photo: "a" ,prerequisites: "a", status: "a", tags: "a",type: "a"}
+        var temp1 = {applicants:"",description:"a",duration:3,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:3,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
+        var temp2 = {applicants:"",description:"a",duration:3,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:3,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
+        var temp3 = {applicants:"",description:"a",duration:3,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:3,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
         var expected1 = {}
         var expected2 = {}
         var expected3 = {}
@@ -373,39 +382,39 @@ describe('Server', () => {
                 expected2[key2] = temp2
                 expected3[key3] = temp3
                 var expected = [expected1, expected2, expected3]
-                assert.equal(JSON.stringify(response.body.jobs), JSON.stringify(expected));
+                assert.equal(JSON.stringify(response.body), JSON.stringify(expected));
                 done();
             });
         });
     });
 
     describe('Test get jobs by distance', () => {
-        var temp1 = {coordinates: {x: 1, y: 1}, description: "a", duration: 3, employer: "a", name: "a", pay: 3, photo: "a" ,prerequisites: "a", status: "a", tags: "a",type: "a"}
-        var temp2 = {coordinates: {x: 1, y: 1}, description: "a", duration: 2, employer: "a", name: "a", pay: 2, photo: "a" ,prerequisites: "a", status: "a", tags: "a",type: "a"}
-        var temp3 = {coordinates: {x: 1, y: 1}, description: "a", duration: 1, employer: "a", name: "a", pay: 1, photo: "a" ,prerequisites: "a", status: "a", tags: "a",type: "a"}
+        var temp1 = {applicants:"",description:"a",duration:3,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:3,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
+        var temp2 = {applicants:"",description:"a",duration:3,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:3,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
+        var temp3 = {applicants:"",description:"a",duration:3,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:3,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
         var expected1 = {}
         var expected2 = {}
         var expected3 = {}
 
         it('Get jobs by distance: should match', (done) => {
             chai.request(app)
-            .get('/jobs?lat=1&lon=1&km=1000000')
+            .get('/jobs?longitude=1&latitude=1&km=1000000')
             .end(function(error, response) {
                 expected1[key1] = temp1
                 expected2[key2] = temp2
                 expected3[key3] = temp3
                 var expected = [expected1, expected2, expected3]
-                assert.equal(JSON.stringify(response.body.jobs), JSON.stringify(expected));
+                assert.equal(JSON.stringify(response.body), JSON.stringify(expected));
                 done();
             });
         });
 
         it('Get jobs by distance: should match', (done) => {
             chai.request(app)
-            .get('/jobs?lat=10&lon=10&km=0')
+            .get('/jobs?longitude=2&latitude=2&km=0')
             .end(function(error, response) {
-                var expected = []
-                assert.equal(JSON.stringify(response.body.jobs), JSON.stringify(expected));
+                var expected = {}
+                assert.equal(JSON.stringify(response.body), JSON.stringify(expected));
                 done();
             });
         });
