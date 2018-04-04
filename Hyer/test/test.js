@@ -367,9 +367,9 @@ describe('Server', () => {
     });
 
     describe('Test get jobs', () => {
-        var temp1 = {applicants:"",description:"a",duration:3,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:3,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
-        var temp2 = {applicants:"",description:"a",duration:2,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:2,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
-        var temp3 = {applicants:"",description:"a",duration:1,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:1,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
+        var temp1 = {applicants: "", description: "a", duration: 3, employer: "a", hired: "", latitude: 1, longitude: 1, name: "a", pay: 3, photo: "a", prerequisites: "a", status: "open", tags: "a", type: "a"}
+        var temp2 = {applicants: "", description: "a", duration: 2, employer: "a", hired: "", latitude: 1, longitude: 1, name: "a", pay: 2, photo: "a", prerequisites: "a", status: "open", tags: "a", type: "a"}
+        var temp3 = {applicants: "", description: "a", duration: 1, employer: "a", hired: "", latitude: 1, longitude: 1, name: "a", pay: 1, photo: "a", prerequisites: "a", status: "open", tags: "a", type: "a"}
         var expected1 = {}
         var expected2 = {}
         var expected3 = {}
@@ -389,9 +389,9 @@ describe('Server', () => {
     });
 
     describe('Test get jobs filtered by distance', () => {
-        var temp1 = {applicants:"",description:"a",duration:3,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:3,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
-        var temp2 = {applicants:"",description:"a",duration:2,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:2,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
-        var temp3 = {applicants:"",description:"a",duration:1,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:1,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
+        var temp1 = {applicants: "", description: "a", duration: 3, employer: "a", hired: "", latitude: 1, longitude: 1, name: "a", pay: 3, photo: "a", prerequisites: "a", status: "open", tags: "a", type: "a"}
+        var temp2 = {applicants: "", description: "a", duration: 2, employer: "a", hired: "", latitude: 1, longitude: 1, name: "a", pay: 2, photo: "a", prerequisites: "a", status: "open", tags: "a", type: "a"}
+        var temp3 = {applicants: "", description: "a", duration: 1, employer: "a", hired: "", latitude: 1, longitude: 1, name: "a", pay: 1, photo: "a", prerequisites: "a", status: "open", tags: "a", type: "a"}
         var expected1 = {}
         var expected2 = {}
         var expected3 = {}
@@ -421,9 +421,9 @@ describe('Server', () => {
     });
 
     describe('Test get jobs sorted by pay', () => {
-        var temp1 = {applicants:"",description:"a",duration:3,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:3,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
-        var temp2 = {applicants:"",description:"a",duration:2,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:2,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
-        var temp3 = {applicants:"",description:"a",duration:1,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:1,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
+        var temp1 = {applicants: "", description: "a", duration: 3, employer: "a", hired: "", latitude: 1, longitude: 1, name: "a", pay: 3, photo: "a", prerequisites: "a", status: "open", tags: "a", type: "a"}
+        var temp2 = {applicants: "", description: "a", duration: 2, employer: "a", hired: "", latitude: 1, longitude: 1, name: "a", pay: 2, photo: "a", prerequisites: "a", status: "open", tags: "a", type: "a"}
+        var temp3 = {applicants: "", description: "a", duration: 1, employer: "a", hired: "", latitude: 1, longitude: 1, name: "a", pay: 1, photo: "a", prerequisites: "a", status: "open", tags: "a", type: "a"}
         var expected1 = {}
         var expected2 = {}
         var expected3 = {}
@@ -443,9 +443,9 @@ describe('Server', () => {
     });
 
     describe('Test get jobs sorted by distance', () => {
-        var temp1 = {applicants:"",description:"a",duration:3,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:3,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
-        var temp2 = {applicants:"",description:"a",duration:2,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:2,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
-        var temp3 = {applicants:"",description:"a",duration:1,employer:"a",hired:"",latitude:1,longitude:1,name:"a",pay:1,photo:"a",prerequisites:"a",status:"open",tags:"a",type:"a"}
+        var temp1 = {applicants: "", description: "a", duration: 3, employer: "a", hired: "", latitude: 1, longitude: 1, name: "a", pay: 3, photo: "a", prerequisites: "a", status: "open", tags: "a", type: "a"}
+        var temp2 = {applicants: "", description: "a", duration: 2, employer: "a", hired: "", latitude: 1, longitude: 1, name: "a", pay: 2, photo: "a", prerequisites: "a", status: "open", tags: "a", type: "a"}
+        var temp3 = {applicants: "", description: "a", duration: 1, employer: "a", hired: "", latitude: 1, longitude: 1, name: "a", pay: 1, photo: "a", prerequisites: "a", status: "open", tags: "a", type: "a"}
         var expected1 = {}
         var expected2 = {}
         var expected3 = {}
