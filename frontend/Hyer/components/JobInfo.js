@@ -19,22 +19,14 @@ export default class JobInfo extends React.Component {
         'Content-Type': 'application/json',
       }
     }).then((response) => {
-      console.log("get specific job");
       response.json().then((data) => {
-        for(row in data){
-          console.log("row!");
-          console.log(row);
-
-          if(row == "name"){
-            this.setState({"name": data[row]})
-          } else if(row == "coordinates"){
-          } else {
+        for(jobid in data[0]){
+          for(field in data[0][jobid]){
             this.jobDetails.push({
-              "field": row,
-              "value": data[row]
+              "field": field,
+              "value": data[0][jobid][field]
             })
           }
-
         }
       })
 
@@ -50,6 +42,10 @@ export default class JobInfo extends React.Component {
       console.error(error)
     })
 
+
+  }
+
+  apply = () => {
 
   }
 
@@ -70,6 +66,12 @@ export default class JobInfo extends React.Component {
               })
             }
           </Card>
+
+          <Button block onPress={() => this.apply()}>
+            <Text>Apply for this job</Text>
+          </Button>
+
+
         </View>
       )
     } else {

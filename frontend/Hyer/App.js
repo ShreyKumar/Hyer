@@ -11,6 +11,7 @@ import EditProfile from "./components/EditProfile.js";
 import PhoneVerification from "./components/PhoneVerification.js";
 import Jobs from "./components/Jobs.js";
 import JobInfo from "./components/JobInfo.js";
+import Requests from "./components/Requests.js";
 
 export default class App extends React.Component {
   constructor(props){

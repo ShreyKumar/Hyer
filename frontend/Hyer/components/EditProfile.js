@@ -22,10 +22,10 @@ export default class EditProfile extends React.Component {
         console.log(data);
         this.setState({
           username: this.props.id,
-          firstname: data.name.firstName,
-          lastname: data.name.lastName,
-          email: data.email,
-          bio: data.bio
+          firstname: data[0][this.props.id]["firstName"],
+          lastname: data[0][this.props.id]["lastName"],
+          email: data[0][this.props.id]["email"],
+          bio: data[0][this.props.id]["bio"]
         })
       })
     }).catch((error) => {
@@ -49,7 +49,8 @@ export default class EditProfile extends React.Component {
       email: this.state.email,
       password: "",
       phoneNumber: "",
-      photo: ""
+      photo: "",
+      credits: ""
     }
     console.log("to send");
     console.log(toSend);

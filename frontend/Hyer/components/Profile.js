@@ -20,10 +20,11 @@ export default class Profile extends React.Component {
       res.json().then((data) => {
         this.setState({
           username: this.props.id,
-          firstname: data.name.firstName,
-          lastname: data.name.lastName,
-          email: data.email,
-          bio: data.bio
+          firstname: data[0][this.props.id]["firstName"],
+          lastname: data[0][this.props.id]["lastName"],
+          email: data[0][this.props.id]["email"],
+          bio: data[0][this.props.id]["bio"],
+          credits: data[0][this.props.id]["credits"]
         })
       })
     }).catch((err) => {
@@ -83,6 +84,17 @@ export default class Profile extends React.Component {
               <Text>{this.state.bio}</Text>
             </CardItem>
           </Card>
+
+          <Card>
+            <CardItem header>
+              <Text>Total Credits</Text>
+            </CardItem>
+
+            <CardItem>
+              <Text>{this.state.credits}</Text>
+            </CardItem>
+          </Card>
+
           <Button onPress={() => this.props.changeView("editprofile")} title="Edit Profile" />
         </Content>
       </Container>

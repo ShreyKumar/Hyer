@@ -1,5 +1,9 @@
-import React from "react"
+import React from "react";
 
-export default Requests extends React.Component {
-  
+export default class Requests extends React.Component {
+  constructor(props){
+    super(props)
+  }
+  render(){
+  }
 }
