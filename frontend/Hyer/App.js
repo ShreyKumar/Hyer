@@ -63,7 +63,7 @@ export default class App extends React.Component {
           {(this.state.thisuser == "") ? <Button onPress={() => this.setState({"view": "login"})} title="Login" /> : null}
           {(this.state.thisuser != "") ? <Button onPress={() => this.setState({"view": "profile"})} title="Profile" /> : null}
           {(this.state.thisuser != "") ? <Button onPress={() => this.setState({"view": "login", "thisuser": ""})} title="Log out" /> : null}
-          <Button onPress={() => this.setState({"view": "jobs"})} title="Jobs" />
+          {(this.state.thisuser != "") ? <Button onPress={() => this.setState({"view": "jobs"})} title="Jobs" /> : null}
         </View>
       )
     }
@@ -80,7 +80,7 @@ export default class App extends React.Component {
           {(this.state.view == "editprofile") ? <EditProfile changeView={this.changeView.bind(this)} id={this.state.thisuser} /> : null}
           {(this.state.view == "phoneverification") ? <PhoneVerification /> : null}
           {(this.state.view == "jobs") ? <Jobs changeView={this.changeView.bind(this)} updateMain={this.changeToJobInfo.bind(this)} /> : null}
-          {(this.state.view == "jobinfo") ? <JobInfo changeView={this.changeView.bind(this)} id={this.state.thisjobid} /> : null}
+          {(this.state.view == "jobinfo") ? <JobInfo thisUser={this.state.thisuser} changeView={this.changeView.bind(this)} id={this.state.thisjobid} /> : null}
 
           {(this.state.view == "start") ? <Start /> : null}
         </Content>
