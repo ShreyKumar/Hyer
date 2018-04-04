@@ -15,14 +15,18 @@ export default class Login extends React.Component {
   }
 
   validate = () => {
+    alert("Login!")
     if(this.state.username.length > 0 && this.state.password.length > 0){
 
       var prefix = "https://hyer.herokuapp.com"
       fetch(prefix + "/users?username=" + this.state.username).then((res) => {
         res.json().then((data) => {
-          if(data.password == this.state.password){
-            alert("Logged in!");
-            this.props.updateMain(this.state.username);
+          if(data.length == 0){
+            alert("User not found!")
+          } else if(data[0][this.state.username]["password"] != this.state.password){
+            alert("Incorrect password")
+          } else {
+            this.props.updateMain(this.state.username)
           }
         })
       }).catch((err) => {

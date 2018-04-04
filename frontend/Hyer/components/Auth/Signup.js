@@ -30,13 +30,14 @@ export default class Signup extends React.Component {
       },
       body: JSON.stringify({
         username: this.state.username,
+        password: this.state.password,
         firstName: this.state.firstname,
         lastName: this.state.lastname,
-        password: this.state.password,
         email: this.state.email,
         phoneNumber: "",
         bio: "",
-        photo: ""
+        photo: "",
+        credits: 0.00
       })
     }).then((msg) => {
       console.log(msg);
@@ -65,7 +66,7 @@ export default class Signup extends React.Component {
     } else if(field == "email"){
       this.setState({"email": text});
 
-      if(this.isEmail(text)){
+      if(!this.isEmail(text)){
         currentErrors.email = "Invalid Email!"
       } else {
         delete currentErrors.email
@@ -81,11 +82,12 @@ export default class Signup extends React.Component {
       }
     } else {
       this.setState({"confpassword": text});
-      if(this.state.password == this.state.confpassword){
+      if(this.state.password != this.state.confpassword){
         currentErrors.confpassword = "Passwords do not match!";
       } else {
         delete currentErrors.confpassword
       }
+
     }
 
 
