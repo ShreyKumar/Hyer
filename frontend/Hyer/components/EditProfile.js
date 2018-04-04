@@ -25,7 +25,8 @@ export default class EditProfile extends React.Component {
           firstname: data[0][this.props.id]["firstName"],
           lastname: data[0][this.props.id]["lastName"],
           email: data[0][this.props.id]["email"],
-          bio: data[0][this.props.id]["bio"]
+          bio: data[0][this.props.id]["bio"],
+          credits: data[0][this.props.id]["credits"].toString()
         })
       })
     }).catch((error) => {
@@ -50,7 +51,7 @@ export default class EditProfile extends React.Component {
       password: "",
       phoneNumber: "",
       photo: "",
-      credits: ""
+      credits: this.state.credits
     }
     console.log("to send");
     console.log(toSend);
@@ -92,6 +93,10 @@ export default class EditProfile extends React.Component {
           <Item floatingLabel>
             <Label>Email</Label>
             <Input value={this.state.email} onChangeText={(text) => this.setState({email: text})} />
+          </Item>
+          <Item floatingLabel>
+            <Label>Credits</Label>
+            <Input value={this.state.credits} keyboardType="numeric" onChangeText={(text) => this.setState({credits: text})} />
           </Item>
           <Card style={{
             marginTop: 30
