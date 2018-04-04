@@ -13,6 +13,18 @@ var config = {
 	databaseURL: "https://haier-89e55.firebaseio.com",
 	storageBucket: "gs://haier-89e55.appspot.com",
   };
+
+if(module.parent) {
+	console.log('Running on test config');
+		config = {
+	    apiKey: "AIzaSyCkuP6GeDvKQAFX64XPpO3ZAmdKg9znrWg",
+	    authDomain: "testing-2e99d.firebaseapp.com",
+	    databaseURL: "https://testing-2e99d.firebaseio.com",
+	    projectId: "testing-2e99d",
+	    storageBucket: "",
+	    messagingSenderId: "67777942943"
+  	};
+}
 firebase.initializeApp(config)
 
 // User Requests
@@ -87,7 +99,8 @@ app.post('/put/users', (req, res) => {
 	var ref = firebase.database().ref("users");
 	ref.once("value").then(function(snapshot) {
 		if (snapshot.hasChild(req.body.username)) {
-			var update = {}
+			ref = ref.child(req.body.username);
+			var update = {};
 			if (req.body.password) {
 				update.password = req.body.password;
 			} if (req.body.firstName) {
@@ -381,7 +394,7 @@ app.get('/', (req, res) => {
     res.sendFile(HTMLfile)
 })
 
-if (!module.parent) {
+if(!module.parent) {
 	app.listen(PORT, () => {
 	console.log(`Server listening on port ${PORT}`);
 	});
