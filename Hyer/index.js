@@ -13,6 +13,18 @@ var config = {
 	databaseURL: "https://haier-89e55.firebaseio.com",
 	storageBucket: "gs://haier-89e55.appspot.com",
   };
+
+if(module.parent) {
+	console.log('Running on test config');
+		config = {
+	    apiKey: "AIzaSyCkuP6GeDvKQAFX64XPpO3ZAmdKg9znrWg",
+	    authDomain: "testing-2e99d.firebaseapp.com",
+	    databaseURL: "https://testing-2e99d.firebaseio.com",
+	    projectId: "testing-2e99d",
+	    storageBucket: "",
+	    messagingSenderId: "67777942943"
+  	};
+}
 firebase.initializeApp(config)
 
 
@@ -76,6 +88,7 @@ app.post('/put/users', (req, res) => {
 	var ref = firebase.database().ref("users");
 	ref.once("value").then(function(snapshot) {
 		if (snapshot.hasChild(req.body.username)) {
+			ref = ref.child(req.body.username);
 			var update = {};
 			if (req.body.password) {
 				update.password = req.body.password;
@@ -212,7 +225,7 @@ app.get('/jobs', (req, res) => {
 				snapshot.forEach(function(child) {
 					jobs.jobs.push(JSON.parse('{"' + child.key + '":' + JSON.stringify(child) + '}'))
         		});
-				res.send(jobs);
+				return res.send(jobs);
 			});
 		} else if (req.query.orderby == "pay") {
 			console.log('GET all jobs by pay')
@@ -220,7 +233,7 @@ app.get('/jobs', (req, res) => {
 				snapshot.forEach(function(child) {
 					jobs.jobs.push(JSON.parse('{"' + child.key + '":' + JSON.stringify(child) + '}'))
         		});
-				res.send(jobs);
+				return res.send(jobs);
 			});
 		} else {
 			res.sendStatus(400)
@@ -310,7 +323,7 @@ app.get('/', (req, res) => {
     res.sendFile(HTMLfile)
 })
 
-if (!module.parent) {
+if(!module.parent) {
 	app.listen(PORT, () => {
 	console.log(`Server listening on port ${PORT}`);
 	});
