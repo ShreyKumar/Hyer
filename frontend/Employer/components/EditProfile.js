@@ -1,6 +1,6 @@
 import React from "react";
-import {View, Text, TextInput, KeyboardAvoidingView} from "react-native";
-import {Container, Content, Form, Item, Label, Input, Button, Card, CardItem} from "native-base";
+import {View, Text, TextInput, Button, KeyboardAvoidingView} from "react-native";
+import {Container, Content, Form, Item, Label, Input, Card, CardItem} from "native-base";
 
 export default class EditProfile extends React.Component {
   constructor(props){
@@ -63,7 +63,6 @@ export default class EditProfile extends React.Component {
       },
       body: JSON.stringify(toSend)
     }).then((resp) => {
-      alert("updated!");
       console.log("updated profile");
       this.props.changeView("profile")
       console.log(resp);
@@ -117,6 +116,9 @@ export default class EditProfile extends React.Component {
           <Button block style={{marginTop: 30}} onPress={() => this.update()}>
             <Text>Update</Text>
           </Button>
+          <Button block style={{marginTop: 10}} onPress={() => this.props.changeView("profile")}>
+              <Text>Cancel</Text>
+            </Button>
         </Form>
       </KeyboardAvoidingView>
       </Content>

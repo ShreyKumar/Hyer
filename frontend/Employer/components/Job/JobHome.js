@@ -6,6 +6,7 @@ import JobPost from "./JobPost.js"
 import JobEdit from "./JobEdit.js"
 import JobList from "./JobList.js"
 import JobRequest from "./JobRequest.js"
+import RequestList from "./RequestList.js"
 
 export default class Jobs extends React.Component {
   constructor(props){
@@ -41,6 +42,10 @@ export default class Jobs extends React.Component {
           <Button block style={{marginTop: 10}} onPress={() => this.setState({"view": "list"})}>
                        <Text>View Posted Jobs</Text>
                     </Button>
+
+          <Button block style={{marginTop: 10}} onPress={() => this.setState({"view": "requestList"})}>
+                     <Text>Ongoing Requests</Text>
+                  </Button>
           </View>
         )
     } else {
@@ -55,7 +60,8 @@ export default class Jobs extends React.Component {
                 {(this.state.view == "post") ? <JobPost home={this.home.bind(this)} username={this.state.username}/> : null}
                 {(this.state.view == "edit") ? <JobEdit home={this.home.bind(this)} job={this.state.jobID}/> : null}
                 {(this.state.view == "request") ? <JobRequest home={this.home.bind(this)} job={this.state.jobID}/> : null}
-                {(this.state.view == "list") ? <JobList request={this.request.bind(this)} edit={this.edit.bind(this)} username={this.state.username}/> : null}
+                {(this.state.view == "list") ? <JobList home={this.home.bind(this)} request={this.request.bind(this)} edit={this.edit.bind(this)} username={this.state.username}/> : null}
+                {(this.state.view == "requestList") ? <RequestList home={this.home.bind(this)} job={this.state.jobID}/> : null}
                 </View>
             </Content>
         </Container>

@@ -87,7 +87,7 @@ export default class Profile extends React.Component {
               </CardItem>
             </Card>
 
-           <Button onPress={() => this.props.changeView("editprofile")} title="Edit Profile" />
+           <Button block onPress={() => this.props.changeView("editprofile")} title="Edit Profile" />
         </Content>
       </Container>
     )

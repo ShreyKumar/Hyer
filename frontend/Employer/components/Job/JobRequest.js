@@ -68,12 +68,10 @@ export default class JobRequest extends React.Component {
             hired: this.state.applicant
           })
         }).then((resp) => {
-          resp.json.then((res) => {
-              alert("accepted!");
+
                 console.log("updated Job");
-                console.log(res);
+                console.log(resp)
                 this.props.home();
-            })
         }).catch((err) => {
           console.error(err);
         })
@@ -93,12 +91,9 @@ export default class JobRequest extends React.Component {
             applicants: " "
           })
         }).then((resp) => {
-          resp.json.then((res) => {
-            alert("declined");
               console.log("updated Job");
-              console.log(res);
+              console.log(resp);
               this.props.home();
-          })
 
         }).catch((err) => {
           console.error(err);
@@ -138,6 +133,9 @@ render(){
                 onPress={() => this.decline()}
                 color="#ff0000"
                 title="Decline" />
+            <Button
+                onPress={() => this.props.home}
+                title="Home" />
           </View>
         </Content>
       </Container>

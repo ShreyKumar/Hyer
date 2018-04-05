@@ -65,7 +65,6 @@ export default class EditProfile extends React.Component {
       },
       body: JSON.stringify(toSend)
     }).then((resp) => {
-      alert("updated!");
       console.log("updated Job");
       console.log(resp);
       this.props.home();
@@ -85,7 +84,6 @@ export default class EditProfile extends React.Component {
             jobID: this.state.jobID
         })
     }).then((res) => {
-        alert("Job Deleted!")
         console.log("removed job");
         console.log(res)
         this.props.home();
