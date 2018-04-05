@@ -16,7 +16,6 @@ export default class Profile extends React.Component {
 
     var prefix = "https://hyer.herokuapp.com"
     fetch(prefix + "/users?username=" + this.props.id).then((res) => {
-      alert("found profile");
       res.json().then((data) => {
         this.setState({
           username: this.props.id,

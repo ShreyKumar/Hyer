@@ -18,7 +18,6 @@ export default class EditProfile extends React.Component {
     var prefix = "https://hyer.herokuapp.com";
     fetch(prefix + "/users?username=" + this.state.username).then((resp) => {
       resp.json().then((data) => {
-        alert("loaded!");
         console.log(data);
         this.setState({
           username: this.props.id,
@@ -30,7 +29,6 @@ export default class EditProfile extends React.Component {
         })
       })
     }).catch((error) => {
-      alert("Error loading profile!");
       console.error(error);
     })
 
@@ -64,7 +62,6 @@ export default class EditProfile extends React.Component {
       },
       body: JSON.stringify(toSend)
     }).then((resp) => {
-      alert("updated!");
       console.log("updated profile");
       this.props.changeView("profile")
       console.log(resp);

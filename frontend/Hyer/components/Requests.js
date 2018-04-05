@@ -44,7 +44,6 @@ export default class Requests extends React.Component {
                   })
                 })
               }).catch((err) => {
-                alert("error")
                 console.error(err)
               })
             }
@@ -60,12 +59,10 @@ export default class Requests extends React.Component {
         }
       })
     }).catch((err) => {
-      alert("error");
       console.error(err)
     })
 
     setTimeout(() => {
-      alert("loaded jobs")
       if(this.appliedjobs != [] && this.hiredjobs != []){
         this.setState({
           appliedjobs: this.appliedjobs,
