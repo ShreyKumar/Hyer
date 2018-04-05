@@ -113,12 +113,8 @@ export default class EditProfile extends React.Component {
               allowFontScaling />
             </CardItem>
           </Card>
-          <Button block style={{marginTop: 30}} onPress={() => this.update()}>
-            <Text>Update</Text>
-          </Button>
-          <Button block style={{marginTop: 10}} onPress={() => this.props.changeView("profile")}>
-              <Text>Cancel</Text>
-            </Button>
+          <Button block style={{marginTop: 30}} onPress={() => this.update()} title="Update"/>
+          <Button block style={{marginTop: 10}} onPress={() => this.props.changeView("profile")} title="Cancel"/>
         </Form>
       </KeyboardAvoidingView>
       </Content>

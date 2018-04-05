@@ -54,7 +54,8 @@ export default class RequestList extends React.Component {
   render(){
     if(this.state.loaded){
       if (this.jobs.length < 1){
-          return(<Text>You have no job request!</Text>);
+          return(<View><Text>You have no ongoing request!</Text>
+          <Button block style={{marginTop: 10}} onPress={() => this.props.home()} title="Back"/></View>);
         } else
       return (
         <View>
@@ -82,19 +83,16 @@ export default class RequestList extends React.Component {
                              flexDirection: 'row',
                              justifyContent: 'flex-end'
                            }}>
-                       <Button onPress={() => this.props.request(eachJob["id"])}
-                       color="#4d9900"
-                       title="More Info"
-                       disabled={(eachJob["info"]["applicants"] == "" || eachJob["info"]["applicants"] == " " || eachJob["info"]["status"] != "open") ? true : false}/>
-
                       <Button block style={{marginLeft: 20}}
-                      onPress={() => this.props.finish(eachJob["id"])}
-                      title="More Info"/>
+                      onPress={() => this.props.request(eachJob["id"])}
+                      title="More"
+                      />
                     </View>
                   </Card>
                 )
             })
           }
+        <Button block style={{marginTop: 10}} onPress={() => this.props.home()} title="Back"/>
         </View>
       )
     } else {

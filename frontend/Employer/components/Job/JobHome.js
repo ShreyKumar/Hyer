@@ -44,7 +44,7 @@ export default class Jobs extends React.Component {
                     </Button>
 
           <Button block style={{marginTop: 10}} onPress={() => this.setState({"view": "requestList"})}>
-                     <Text>Ongoing Requests</Text>
+                     <Text>View Requests</Text>
                   </Button>
           </View>
         )
@@ -61,7 +61,7 @@ export default class Jobs extends React.Component {
                 {(this.state.view == "edit") ? <JobEdit home={this.home.bind(this)} job={this.state.jobID}/> : null}
                 {(this.state.view == "request") ? <JobRequest home={this.home.bind(this)} job={this.state.jobID}/> : null}
                 {(this.state.view == "list") ? <JobList home={this.home.bind(this)} request={this.request.bind(this)} edit={this.edit.bind(this)} username={this.state.username}/> : null}
-                {(this.state.view == "requestList") ? <RequestList home={this.home.bind(this)} job={this.state.jobID}/> : null}
+                {(this.state.view == "requestList") ? <RequestList request={this.request.bind(this)} home={this.home.bind(this)} username={this.state.username}/> : null}
                 </View>
             </Content>
         </Container>
