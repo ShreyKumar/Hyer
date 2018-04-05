@@ -2,64 +2,140 @@ import React from "react";
 import {View, Text, Button} from "react-native";
 import {Container, Content, Card, CardItem} from "native-base";
 
-export default class JobEdit extends React.Component {
+export default class JobRequest extends React.Component {
   constructor(props){
     super(props);
 
-    var url = "https://hyer.herokuapp.com/jobs"
     this.state = {
-        loaded: false
+        jobID: this.props.job,
+        Jname: "",
+        Jpay: "",
+        Jstatus: "",
+        applicant: "",
+        firstname: "",
+        lastname: "",
+        bio: "",
     }
 
-//    fetch(url + "?employer=" + username, {
-//      method: "GET",
-//      headers: {
-//        'Accept': 'application/json',
-//        'Content-Type': 'application/json',
-//      },
-//    }).then((response) => {
-//            alert("found jobs");
-//            console.log("start response");
-//            response.json().then((jobs) => {
-//              console.log(jobs)
-//
-//              for(var i = 0; i < jobs.length; i++){
-//                for(jobid in jobs[i]){
-//                  this.jobs.push({
-//                    id: jobid,
-//                    info: jobs[i][jobid]
-//                  })
-//                }
-//              }
-//            })
-//
-//            setTimeout(() => {
-//              console.log("saved?");
-//              console.log(this.jobs);
-//
-//              if(this.jobs != []){
-//                this.setState({"loaded": true})
-//              }
-//            }, 2000)
-//
-//            console.log("end reponse");
-//          }).catch((error) => {
-//            console.error(error);
-//          })
-//        }
-  }
+    fetch("https://hyer.herokuapp.com/jobs?jobID=" + this.props.job, {
+      method: "GET",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then((response) => {
+            response.json().then((jobs) => {
+              console.log("Found jobs by id")
+              this.setState({applicant: jobs[0][this.props.job]["applicants"],
+                Jname: jobs[0][this.props.job]["name"],
+                Jpay: jobs[0][this.props.job]["pay"],
+                Jstatus: jobs[0][this.props.job]["status"]
+              });
+              console.log("applicant " + this.state.applicant)
+
+              fetch("https://hyer.herokuapp.com/users?username=" + jobs[0][this.props.job]["applicants"], {
+              }).then((res) => {
+                res.json().then((user) => {
+                    console.log("Found Applicant")
+                    console.log(user)
+                    this.setState({
+                         firstname: user[0][this.state.applicant]["firstName"],
+                         lastname: user[0][this.state.applicant]["lastName"],
+                         bio: user[0][this.state.applicant]["bio"]
+                    })
+                })
+              }).catch((err) => {
+                console.log(err);
+              })
+            })
+          }).catch((error) => {
+            console.error(error);
+          })
+        }
+
+    accept = () => {
+        this.setState({Jstatus: "in progress"})
+        fetch("https://hyer.herokuapp.com" + "/put/jobs", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            jobID: this.state.jobID,
+            status: "in progress",
+            applicants: "",
+            hired: this.state.applicant
+          })
+        }).then((resp) => {
+          resp.json.then((res) => {
+              alert("accepted!");
+                console.log("updated Job");
+                console.log(res);
+                this.props.home();
+            })
+        }).catch((err) => {
+          console.error(err);
+        })
+    }
+
+    decline = () => {
+        this.setState({Jstatus: "open"})
+        fetch("https://hyer.herokuapp.com" + "/put/jobs", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            jobID: this.state.jobID,
+            status: "open",
+            applicants: " "
+          })
+        }).then((resp) => {
+          resp.json.then((res) => {
+            alert("declined");
+              console.log("updated Job");
+              console.log(res);
+              this.props.home();
+          })
+
+        }).catch((err) => {
+          console.error(err);
+        })
+    }
 
 render(){
     return (
       <Container>
         <Content>
+          <Text>Applicant profile for {this.state.Jname}</Text>
+          <Card>
+          <CardItem header>
+            <Text>Name</Text>
+          </CardItem>
+
+          <CardItem>
+            <Text>{this.state.firstname} , {this.state.lastname}</Text>
+          </CardItem>
+        </Card>
+
+        <Card>
+          <CardItem header>
+            <Text>Bio</Text>
+          </CardItem>
+
+          <CardItem>
+            <Text>{this.state.bio}</Text>
+          </CardItem>
+        </Card>
           <View>
             <Button
-                onPress={() => alert("Job Request Accepted!")}
+                onPress={() => this.accept()}
                 color="#2db300"
                 title="Accept"/>
             <Button
-                onPress={() => alert("Job Request Declined.")}
+                onPress={() => this.decline()}
                 color="#ff0000"
                 title="Decline" />
           </View>

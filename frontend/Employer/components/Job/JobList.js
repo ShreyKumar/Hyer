@@ -66,6 +66,9 @@ export default class JobList extends React.Component {
                     </CardItem>
                     <CardItem>
                       <Text>
+                        Status: {eachJob["info"]["status"] + "    "}
+                      </Text>
+                      <Text>
                         Applicant: {eachJob["info"]["applicants"]}
                       </Text>
                     </CardItem>
@@ -77,7 +80,7 @@ export default class JobList extends React.Component {
                        <Button onPress={() => this.props.request(eachJob["id"])}
                        color="#4d9900"
                        title="View Request"
-                       disabled={eachJob["info"]["applicants"] == "" ? true : false}/>
+                       disabled={(eachJob["info"]["applicants"] == "" || eachJob["info"]["applicants"] == " " || eachJob["info"]["status"] != "open") ? true : false}/>
 
                       <Button block style={{marginLeft: 20}}
                       onPress={() => this.props.edit(eachJob["id"])}
