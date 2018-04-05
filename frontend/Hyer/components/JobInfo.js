@@ -64,12 +64,10 @@ export default class JobInfo extends React.Component {
         "applicants": this.props.thisUser
       })
     }).then((resp) => {
-      alert("applied!");
       //console.log(resp)
       this.loadjobs();
       //this.forceUpdate();
     }).catch((err) => {
-      alert("error!");
       console.error(err)
     })
   }

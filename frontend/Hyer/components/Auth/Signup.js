@@ -43,7 +43,6 @@ export default class Signup extends React.Component {
       console.log(msg);
       this.props.updateMain(this.state.username)
     }).catch((err) => {
-      alert("error!")
       console.error(err)
     });
 
