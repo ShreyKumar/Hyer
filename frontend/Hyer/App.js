@@ -12,6 +12,7 @@ import PhoneVerification from "./components/PhoneVerification.js";
 import Jobs from "./components/Jobs.js";
 import JobInfo from "./components/JobInfo.js";
 import Requests from "./components/Requests.js";
+import Filters from "./components/Filters.js";
 
 export default class App extends React.Component {
   constructor(props){
@@ -19,7 +20,8 @@ export default class App extends React.Component {
     this.state = {
       "view": "start",
       "thisjobid": "",
-      "thisuser": ""
+      "thisuser": "",
+      "searchcrit": {}
     }
     this.navbar = null;
 
@@ -51,7 +53,16 @@ export default class App extends React.Component {
       this.setState({"view": "editprofile"})
     } else if(view == "profile"){
       this.setState({"view": "profile"})
+    } else if(view == "search"){
+      this.setState({"view": "search"})
     }
+  }
+
+  searchcriteria = (criteria) => {
+    this.setState({
+      "searchcrit": criteria,
+      "view": "jobs"
+    })
   }
 
 
@@ -62,7 +73,7 @@ export default class App extends React.Component {
           {(this.state.thisuser == "") ? <Button onPress={() => this.setState({"view": "signup"})} style={{marginBottom: 50}} title="Signup" /> : null }
           {(this.state.thisuser == "") ? <Button onPress={() => this.setState({"view": "login"})} title="Login" /> : null}
           {(this.state.thisuser != "") ? <Button onPress={() => this.setState({"view": "profile"})} title="Profile" /> : null}
-          {(this.state.thisuser != "") ? <Button onPress={() => this.setState({"view": "login", "thisuser": ""})} title="Log out" /> : null}
+          {(this.state.thisuser != "") ? <Button onPress={() => this.setState({"view": "login", "thisuser": "", "searchcrit": {}})} title="Log out" /> : null}
           {(this.state.thisuser != "") ? <Button onPress={() => this.setState({"view": "jobs"})} title="Jobs" /> : null}
           {(this.state.thisuser != "") ? <Button onPress={() => this.setState({"view": "requests"})} title="Requests" /> : null}
         </View>
@@ -80,9 +91,10 @@ export default class App extends React.Component {
           {(this.state.view == "profile") ? <Profile changeView={this.changeView.bind(this)} id={this.state.thisuser} /> : null}
           {(this.state.view == "editprofile") ? <EditProfile changeView={this.changeView.bind(this)} id={this.state.thisuser} /> : null}
           {(this.state.view == "phoneverification") ? <PhoneVerification /> : null}
-          {(this.state.view == "jobs") ? <Jobs changeView={this.changeView.bind(this)} updateMain={this.changeToJobInfo.bind(this)} /> : null}
+          {(this.state.view == "jobs") ? <Jobs searchcriteria={this.state.searchcrit} changeView={this.changeView.bind(this)} updateMain={this.changeToJobInfo.bind(this)} /> : null}
           {(this.state.view == "jobinfo") ? <JobInfo thisUser={this.state.thisuser} changeView={this.changeView.bind(this)} id={this.state.thisjobid} /> : null}
-          {(this.state.view == "requests") ? <Requests thisUser={this.state.thisuser} /> : null}
+          {(this.state.view == "requests") ? <Requests thisUser={this.state.thisuser} updateMain={this.changeToJobInfo.bind(this)} /> : null}
+          {(this.state.view == "search") ? <Filters search={this.searchcriteria.bind(this)} /> : null}
 
           {(this.state.view == "start") ? <Start /> : null}
         </Content>

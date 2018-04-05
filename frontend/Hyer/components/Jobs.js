@@ -10,19 +10,50 @@ export default class Jobs extends React.Component {
       "loaded": false
     }
 
+    var endpoint = ""
+    //handle search criteria
+    if(this.isNormalSearch(this.props.searchcriteria)){
+      endpoint = "/jobs"
+    } else {
+      var queries = ""
+      const crit = this.props.searchcriteria;
+      console.log(crit)
+
+      if(crit.orderby != undefined){
+        if(queries != ""){
+          queries += "&"
+        }
+        queries += "order=" + crit.orderby
+      }
+
+      if(crit.searchby != "" && crit.searchquery != ""){
+        if(queries != ""){
+          queries += "&"
+        }
+        queries += crit.searchby + "=" + crit.searchquery
+      }
+
+      if(crit.radius != 0 && crit.fromx != 0 && crit.fromy != 0 && crit.orderby == "distance"){
+        if(queries != ""){
+          queries += "&"
+        }
+        queries += "km=" + crit.radius + "&longitude=" + crit.fromx + "&latitude=" + crit.fromy
+      }
+
+      endpoint = "/jobs?" + queries
+    }
+
+
     this.jobs = []
 
-    fetch("https://hyer.herokuapp.com/jobs", {
+    fetch("https://hyer.herokuapp.com" + endpoint, {
       method: "GET",
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       }
     }).then((response) => {
-      alert("found jobs");
-      console.log("start response");
       response.json().then((jobs) => {
-        console.log(jobs)
 
         for(var i = 0; i < jobs.length; i++){
           for(jobid in jobs[i]){
@@ -48,28 +79,36 @@ export default class Jobs extends React.Component {
       })
 
       setTimeout(() => {
-        console.log("saved?");
-        console.log(this.jobs);
 
         if(this.jobs != []){
           this.setState({"loaded": true})
         }
       }, 2000)
 
-      console.log("end reponse");
     }).catch((error) => {
       console.error(error);
     })
+  }
+
+  isNormalSearch = (obj) => {
+    for(var prop in obj) {
+      if(obj.hasOwnProperty(prop)){
+        return false;
+      }
+    }
+
+    return JSON.stringify(obj) === JSON.stringify({});
+
   }
 
   render(){
     if(this.state.loaded){
       return (
         <View>
+        <Button onPress={() => this.props.changeView("search")} title="Search Jobs" />
           <Text>Jobs</Text>
           {
             this.jobs.map((eachJob) => {
-                console.log(this.jobs);
                 return (
                   <Card key={eachJob["id"]}>
                     <CardItem>
