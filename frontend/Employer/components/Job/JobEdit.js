@@ -74,6 +74,7 @@ export default class EditProfile extends React.Component {
   }
 
   remove = () => {
+    console.log("removing job  " + this.props.job)
     fetch("https://hyer.herokuapp.com/delete/jobs", {
         method: "POST",
         header: {
@@ -81,7 +82,7 @@ export default class EditProfile extends React.Component {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            jobID: this.state.jobID
+            jobID: this.props.job
         })
     }).then((res) => {
         console.log("removed job");
@@ -122,23 +123,11 @@ export default class EditProfile extends React.Component {
             <Label>Prerequisites</Label>
             <Input value={this.state.prerequisites} onChangeText={(text) => this.setState({prerequisites: text})} />
           </Item>
-          <Card style={{
-            marginTop: 30
-          }}>
-            <CardItem>
-                <Label>Description</Label>
-              <TextInput style={{
-                width: "100%"
-              }}
-              multiline={true}
-              numberOfLines={6}
-              maxLength={300}
-              placeholder="Description"
-              value={this.state.description}
-              onChangeText={(text) => this.setState({description: text})}
-              allowFontScaling />
-            </CardItem>
-          </Card>
+          <Item floatingLabel>
+              <Label>Description</Label>
+              <Input value={this.state.description} onChangeText={(text) => this.setState({description: text})} />
+            </Item>
+
           <Button block style={{marginTop: 10}} onPress={() => this.update()}>
             <Text>Update</Text>
           </Button>

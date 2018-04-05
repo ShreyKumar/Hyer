@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text, Button} from "react-native";
+import {View, ScrollView, Text, Button} from "react-native";
 import {Card, CardItem} from "native-base";
 
 export default class JobList extends React.Component {
@@ -32,7 +32,7 @@ export default class JobList extends React.Component {
           }
         }
 
-      })
+      }).catch((err) => {console.log(err)})
 
       setTimeout(() => {
         console.log("saved?");
@@ -51,9 +51,14 @@ export default class JobList extends React.Component {
 
   render(){
     if(this.state.loaded){
+
+        if (this.jobs.length < 1)
+            text="You have no posted jobs!"
+        else
+            text=""
       return (
-        <View>
-          <Text>Jobs</Text>
+        <ScrollView>
+          <Text>{text}</Text>
           {
             this.jobs.map((eachJob) => {
                 console.log(this.jobs);
@@ -94,7 +99,7 @@ export default class JobList extends React.Component {
             })
           }
         <Button block style={{marginTop: 10}} onPress={() => this.props.home()} title="Back"/>
-        </View>
+        </ScrollView>
       )
     } else {
       return (<Text>Loading jobs...</Text>);
