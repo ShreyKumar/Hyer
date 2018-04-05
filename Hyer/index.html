@@ -12,6 +12,18 @@
       <button type="submit">Get All Jobs</button>
     </form>
 
+    <form action="/jobs" method="GET">
+    	<input type="text" placeholder="Order By" name="orderby">
+    	<button type="submit">Get Jobs</button>
+    </form>
+
+    <form action="/jobs" method="GET">
+    	<input type="text" placeholder="Latitude" name="lat">
+    	<input type="text" placeholder="Longitude" name="lon">
+    	<input type="text" placeholder="Kilometers" name="km">
+    	<button type="submit">Get Jobs</button>
+    </form>
+
     <p>Add Job</p>
     <form action="/jobs" method="POST">
       <input type="text" placeholder="Job Name" name="name">
@@ -42,7 +54,7 @@
     </form>
     
     <p>Delete a job</p>
-    <form action="/delete/users" method="POST">
+    <form action="/delete/jobs" method="POST">
       <input type="text" placeholder="Job ID" name="jobID">
       <button type="submit">Delete Job</button>
     </form>
@@ -81,6 +93,7 @@
       <input type="text" placeholder="Phone Number" name="phoneNumber">
       <input type="text" placeholder="Bio" name="bio">
       <input type="text" placeholder="Photo" name="photo">
+      <input type="text" placeholder="Password" name="password">
       <button type="submit">Add User</button>
     </form>
     
