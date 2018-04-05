@@ -7,21 +7,17 @@ export default class JobPost extends React.Component {
     super(props);
 
     this.state = {
-        url : "https://hyer.herokuapp.com/jobs",
-        latitude: null,
-        longitude: null,
-        post : {
-            name: null,
-            description: "N/A",
-            pay: null,
-            type: null,
-            duration: null,
-            photo: "N/A",
-            tags: "N/A",
-            prerequisites: "N/A",
-            employer: this.props.username,
-            status: null
-        }
+        latitude: 0,
+        longitude: 0,
+        name: null,
+        description: "",
+        pay: null,
+        type: null,
+        duration: null,
+        photo: "N/A",
+        tags: "N/A",
+        prerequisites: "",
+        employer: this.props.username
     }
     console.log(this.state.username);
   }
@@ -34,31 +30,27 @@ export default class JobPost extends React.Component {
           <Form>
             <Item floatingLabel>
               <Label>Job Name</Label>
-              <Input onChangeText={(value) => this._updatePost("name", value)}/>
-            </Item>
-            <Item floatingLabel>
-              <Label>Job Description</Label>
-              <Input onChangeText={(value) => this._updatePost("description", value)}/>
-            </Item>
-            <Item floatingLabel>
-              <Label>Total Pay</Label>
-              <Input onChangeText={(value) => this._updatePost("pay", value)}/>
+              <Input onChangeText={(value) => this.setState({"name": value})}/>
             </Item>
             <Item floatingLabel>
               <Label>Job Type</Label>
-              <Input onChangeText={(value) => this._updatePost("type", value)}/>
+              <Input onChangeText={(value) => this.setState({"type": value})}/>
             </Item>
             <Item floatingLabel>
               <Label>Job Duration</Label>
-              <Input onChangeText={(value) => this._updatePost("duration", value)}/>
+              <Input keyboardType="numeric" onChangeText={(value) => this.setState({"duration": value})}/>
             </Item>
             <Item floatingLabel>
-              <Label>Job Status</Label>
-              <Input onChangeText={(value) => this._updatePost("status", value)}/>
+              <Label>Total Pay</Label>
+              <Input keyboardType="numeric" onChangeText={(value) => this.setState({"pay": value})} />
             </Item>
             <Item floatingLabel>
               <Label>Prerequisites</Label>
-              <Input onChangeText={(value) => this._updatePost("prerequisites", value)}/>
+              <Input onChangeText={(value) => this.setState({"prerequisites": value})}/>
+            </Item>
+            <Item floatingLabel>
+              <Label>Job Description</Label>
+              <Input onChangeText={(value) => this.setState({"description": value})}/>
             </Item>
             <Button block style={{marginTop: 30}} onPress={() => this.postJob()}>
               <Text>Create Posting</Text>
@@ -86,45 +78,43 @@ export default class JobPost extends React.Component {
     }
 
   _updatePost(key, value){
-    let post = Object.assign({}, this.state.post);
+    let post = Object.assign({}, this.state);
     post[key] = value;
     this.setState({post});
   }
 
   postJob(){
-    console.log(JSON.stringify({
-                         name: this.state.post.name,
-                         description: this.state.post.description,
-                         xCoordinate: this.state.latitude,
-                         yCoordinate: this.state.longitude,
-                         value: this.state.post.pay,
-                         type: this.state.post.type,
-                         duration: this.state.post.duration,
-                         photo: this.state.post.photo,
-                         tags: this.state.post.tags,
-                         prerequisites:this.state.post.prerequisites,
-                         employer: this.state.username,
-                         status: this.state.post.status
-                      }))
-    return fetch(this.state.url, {
+  console.log(JSON.stringify({
+       name: this.state.name,
+       description: this.state.description,
+       longitude: parseFloat(this.state.longitude),
+       latitude: parseFloat(this.state.latitude),
+       pay: parseFloat(this.state.pay),
+       type: this.state.type,
+       duration: parseFloat(this.state.duration),
+       photo: this.state.photo,
+       tags: this.state.tags,
+       prerequisites: this.state.prerequisites,
+       employer: this.state.username
+    }))
+    return fetch("https://hyer.herokuapp.com/jobs", {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-type': 'application/json',
       },
       body: JSON.stringify({
-         name: this.state.post.name,
-         description: this.state.post.description,
-         xCoordinate: this.state.latitude,
-         yCoordinate: this.state.longitude,
-         value: this.state.post.pay,
-         type: this.state.post.type,
-         duration: this.state.post.duration,
-         photo: this.state.post.photo,
-         tags: this.state.post.tags,
-         prerequisites:this.state.post.prerequisites,
-         employer: this.state.username,
-         status: this.state.post.status
+         name: this.state.name,
+         description: this.state.description,
+         longitude: this.state.longitude,
+         latitude: this.state.latitude,
+         value: this.state.pay,
+         type: this.state.type,
+         duration: this.state.duration,
+         photo: this.state.photo,
+         tags: this.state.tags,
+         prerequisites: this.state.prerequisites,
+         employer: this.state.employer
       })
     }).then((response) => {
         console.log(response)
@@ -132,6 +122,7 @@ export default class JobPost extends React.Component {
             alert("Invalid Fields!");
         } else {
             alert("Success! We'll notify you when a request has been made!");
+            this.props.home();
         }
     }).catch((error) => {
       console.error(error);
