@@ -9,50 +9,31 @@ export default class Login extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      validated: false,
-      email: "",
+      username: "",
       password: ""
     }
   }
 
   validate = () => {
-    if(this.state.validated){
-      //check with backend here
-      console.log("email");
-      console.log(this.state.email);
+    alert("Login!")
+    if(this.state.username.length > 0 && this.state.password.length > 0){
 
-      console.log("pwd");
-      console.log(this.state.password)
-
-      //if user is found, log user in and send him to phone verification if 
-      this.props.updateMain()
-
-    }
-  }
-
-  validateEmail = (email) => {
-    this.setState({
-      "email": email
-    })
-
-    if(email.length == 0){
-      alert("empty email!")
-      this.setState({"validated": false})
+      var prefix = "https://hyer.herokuapp.com"
+      fetch(prefix + "/users?username=" + this.state.username).then((res) => {
+        res.json().then((data) => {
+          if(data.length == 0){
+            alert("User not found!")
+          } else if(data[0][this.state.username]["password"] != this.state.password){
+            alert("Incorrect password")
+          } else {
+            this.props.updateMain(this.state.username)
+          }
+        })
+      }).catch((err) => {
+        console.error(err);
+      })
     } else {
-      this.setState({"validated": true})
-    }
-  }
-
-  validatePassword = (pwd) => {
-    this.setState({
-      "password": pwd
-    })
-
-    if(pwd.length == 0){
-      alert("empty email!")
-      this.setState({"validated": false})
-    } else {
-      this.setState({"validated": true})
+      alert("Some fields are missing!")
     }
   }
 
@@ -64,18 +45,17 @@ export default class Login extends React.Component {
         <Content>
           <Form>
             <Item floatingLabel>
-              <Label>Email</Label>
-              <Input value={this.props.email} onChangeText={this.validateEmail.bind(this)}/>
+              <Label>Username</Label>
+              <Input onChangeText={(text) => this.setState({username: text})}/>
             </Item>
             <Item floatingLabel last>
               <Label>Password</Label>
-              <Input value={this.props.password} onChangeText={this.validatePassword.bind(this)}/>
+              <Input onChangeText={(text) => this.setState({password: text})} secureTextEntry/>
             </Item>
             <Button block style={{marginTop: 30}} onPress={this.validate.bind(this)}>
               <Text>Login</Text>
             </Button>
           </Form>
-          {(!this.state.validated) ? <Text>Please make sure you haven't left any field blank!</Text> : null}
         </Content>
       </Container>
     )

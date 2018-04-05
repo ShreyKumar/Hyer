@@ -21,10 +21,21 @@ export default class Jobs extends React.Component {
     }).then((response) => {
       alert("found jobs");
       console.log("start response");
-      response.json().then((data) => {
-        console.log(data)
+      response.json().then((jobs) => {
+        console.log(jobs)
 
+        for(var i = 0; i < jobs.length; i++){
+          for(jobid in jobs[i]){
+            this.jobs.push({
+              id: jobid,
+              info: jobs[i][jobid]
+            })
+          }
+        }
+
+        /*
         for(row in data){
+
           this.jobs.push({
             id: row,
             info: data[row]
@@ -32,7 +43,7 @@ export default class Jobs extends React.Component {
           console.log("inside");
           console.log(this.jobs);
         }
-
+        */
 
       })
 

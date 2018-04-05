@@ -1,127 +1,106 @@
 <html>
-   <head>
-      <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
-      <script src="https://cdn.firebase.com/libs/firebaseui/2.6.3/firebaseui.js"></script>
-      <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
-    </head>
-   <body>
-    <h1>Job Functions</h1>
-    
-    <p>Get All Jobs</p>
-    <form action="/jobs" method="GET">
-      <button type="submit">Get All Jobs</button>
-    </form>
+	<head>
+    	<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    	<script src="https://cdn.firebase.com/libs/firebaseui/2.6.3/firebaseui.js"></script>
+    	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+	</head>
+	<body>
+   		<h1>User Functions</h1>
 
-    <form action="/jobs" method="GET">
-    	<input type="text" placeholder="Order By" name="orderby">
-    	<button type="submit">Get Jobs</button>
-    </form>
-
-    <form action="/jobs" method="GET">
-    	<input type="text" placeholder="Latitude" name="lat">
-    	<input type="text" placeholder="Longitude" name="lon">
-    	<input type="text" placeholder="Kilometers" name="km">
-    	<button type="submit">Get Jobs</button>
-    </form>
-
-    <p>Add Job</p>
-    <form action="/jobs" method="POST">
-      <input type="text" placeholder="Job Name" name="name">
-      <input type="text" placeholder="Description" name="description">
-      <input type="text" placeholder="X coordinate" name="xCoordinate">
-      <input type="text" placeholder="Y coordinate" name="yCoordinate">
-      <input type="text" placeholder="Pay Value" name="value">
-      <input type="text" placeholder="Pay Type" name="type">
-      <input type="text" placeholder="Job Duration" name="duration">
-      <input type="text" placeholder="Photo" name="photo">
-      <input type="text" placeholder="Tags" name="tags">
-      <input type="text" placeholder="Prerequisites" name="prerequisites">
-      <input type="text" placeholder="Employer" name="employer">
-      <input type="text" placeholder="Status" name="status">
-      <button type="submit">Add Job</button>
-    </form>
-    
-    <p>Search for a Job by name</p>
-    <form action="/jobs" method="GET">
-      <input type="text" placeholder="Job Name" name="jobName">
-      <button type="submit">Get Job</button>
-    </form>
-
-    <p>Get Job by ID</p>
-    <form action="/jobs" method="GET">
-      <input type="text" placeholder="Job ID" name="jobID">
-      <button type="submit">Get Job</button>
-    </form>
-    
-    <p>Delete a job</p>
-    <form action="/delete/jobs" method="POST">
-      <input type="text" placeholder="Job ID" name="jobID">
-      <button type="submit">Delete Job</button>
-    </form>
-    
-    <p>Update a job</p>
-    <form action="/put/jobs" method="POST">
-      <input type="text" placeholder="Job ID" name="jobID">
-      <input type="text" placeholder="Job Name" name="name">
-      <input type="text" placeholder="Description" name="description">
-      <input type="text" placeholder="X coordinate" name="xCoordinate">
-      <input type="text" placeholder="Y coordinate" name="yCoordinate">
-      <input type="text" placeholder="Pay Value" name="value">
-      <input type="text" placeholder="Pay Type" name="type">
-      <input type="text" placeholder="Job Duration" name="duration">
-      <input type="text" placeholder="Photo" name="photo">
-      <input type="text" placeholder="Tags" name="tags">
-      <input type="text" placeholder="Prerequisites" name="prerequisites">
-      <input type="text" placeholder="Employer" name="employer">
-      <input type="text" placeholder="Status" name="status">
-      <button type="submit">Update Job</button>
-    </form>
-    
-    <h1>User Functions</h1>
-
-    <p>Get all Users</p>
-    <form action="/users" method="GET">
-      <button type="submit">Get All Users</button>
-    </form>
-
-    <p>Add User</p>
-    <form action="/users" method="POST">
-      <input type="text" placeholder="Username" name="username">
-      <input type="text" placeholder="First Name" name="firstName">
-      <input type="text" placeholder="Last Name" name="lastName">
-      <input type="text" placeholder="Email" name="email">
-      <input type="text" placeholder="Phone Number" name="phoneNumber">
-      <input type="text" placeholder="Bio" name="bio">
-      <input type="text" placeholder="Photo" name="photo">
-      <input type="text" placeholder="Password" name="password">
-      <button type="submit">Add User</button>
-    </form>
-    
-    <p>Get User by username</p>
-    <form action="/users" method="GET">
-      <input type="text" placeholder="Username" name="username">
-      <button type="submit">Get User</button>
-    </form>
-
-    <p>Delete a user</p>
-    <form action="/delete/users" method="POST">
-      <input type="text" placeholder="Username" name="username">
-      <button type="submit">Delete User</button>
-    </form>
+		  <p>Get users</p>
+      	<form action="/users" method="GET">
+          <input type="text" placeholder="Username" name="username">
+      		<button type="submit">Get All Users</button>
+    	</form>
 
 
-    <p>Update a user</p>
-    <form action="/put/users" method="POST">
-      <input type="text" placeholder="User ID" name="userID">
-      <input type="text" placeholder="First Name" name="firstName">
-      <input type="text" placeholder="Last Name" name="lastName">
-      <input type="text" placeholder="Email" name="email">
-      <input type="text" placeholder="Phone Number" name="phoneNumber">
-      <input type="text" placeholder="Bio" name="bio">
-      <input type="text" placeholder="Photo" name="photo">
-      <button type="submit">Update User</button>
-    </form>
+    	<p>Add a user</p>
+    	<form action="/users" method="POST">
+      		<input type="text" placeholder="Username" name="username">
+      		<input type="text" placeholder="Password" name="password">
+      		<input type="text" placeholder="First Name" name="firstName">
+      		<input type="text" placeholder="Last Name" name="lastName">
+      		<input type="text" placeholder="Email" name="email">
+      		<input type="text" placeholder="Phone Number" name="phoneNumber">
+      		<input type="text" placeholder="Bio" name="bio">
+      		<input type="text" placeholder="Photo" name="photo">
+      		<button type="submit">Add User</button>
+    	</form>
 
-    <p> </p>
+    	<p>Update a user</p>
+    	<form action="/put/users" method="POST">
+      		<input type="text" placeholder="Username" name="username">
+      		<input type="text" placeholder="Password" name="password">
+      		<input type="text" placeholder="First Name" name="firstName">
+      		<input type="text" placeholder="Last Name" name="lastName">
+      		<input type="text" placeholder="Email" name="email">
+      		<input type="text" placeholder="Phone Number" name="phoneNumber">
+      		<input type="text" placeholder="Bio" name="bio">
+      		<input type="text" placeholder="Photo" name="photo">
+          <input type="text" placeholder="Credits" name="credits">
+      		<button type="submit">Update User</button>
+    	</form>
+
+    	<p>Delete a user</p>
+    	<form action="/delete/users" method="POST">
+      		<input type="text" placeholder="Username" name="username">
+      	<button type="submit">Delete User</button>
+    	</form>
+
+    	<h1>Job Functions</h1>
+
+      <p>Get jobs</p>
+      <form action="/jobs" method="GET">
+          <input type="text" placeholder="Job ID" name="jobID">
+          <input type="text" placeholder="Search" name="search">
+          <input type="text" placeholder="Employer" name="employer">
+          <input type="text" placeholder="Order" name="order">
+          <input type="text" placeholder="Latitude" name="latitude">
+          <input type="text" placeholder="Longitude" name="longitude">
+          <input type="text" placeholder="Kilometers" name="km">
+          <button type="submit">Get Job</button>
+      </form>
+
+    	<p>Add a job</p>
+    	<form action="/jobs" method="POST">
+      		<input type="text" placeholder="Job Name" name="name">
+      		<input type="text" placeholder="Description" name="description">
+      		<input type="text" placeholder="Longitude" name="longitude">
+      		<input type="text" placeholder="Latitude" name="latitude">
+      		<input type="text" placeholder="Pay Value" name="value">
+      		<input type="text" placeholder="Pay Type" name="type">
+      		<input type="text" placeholder="Job Duration" name="duration">
+      		<input type="text" placeholder="Photo" name="photo">
+      		<input type="text" placeholder="Prerequisites" name="prerequisites">
+      		<input type="text" placeholder="Employer" name="employer">
+      		<input type="text" placeholder="Tags" name="tags">
+      		<button type="submit">Add Job</button>
+    	</form>
+
+    	<p>Delete a job</p>
+    	<form action="/delete/jobs" method="POST">
+      		<input type="text" placeholder="Job ID" name="jobID">
+      		<button type="submit">Delete Job</button>
+    	</form>
+
+    	<p>Update a job</p>
+    	<form action="/put/jobs" method="POST">
+      		<input type="text" placeholder="Job ID" name="jobID">
+      		<input type="text" placeholder="Job Name" name="name">
+      		<input type="text" placeholder="Description" name="description">
+      		<input type="text" placeholder="X coordinate" name="longitude">
+      		<input type="text" placeholder="Y coordinate" name="latitude">
+      		<input type="text" placeholder="Pay Value" name="value">
+      		<input type="text" placeholder="Pay Type" name="type">
+      		<input type="text" placeholder="Job Duration" name="duration">
+      		<input type="text" placeholder="Photo" name="photo">
+      		<input type="text" placeholder="Prerequisites" name="prerequisites">
+      		<input type="text" placeholder="Employer" name="employer">
+      		<input type="text" placeholder="Tags" name="tags">
+          <input type="text" placeholder="Status" name="status">
+      		<input type="text" placeholder="Applicants" name="applicants">
+      		<input type="text" placeholder="Hired" name="hired">
+      		<button type="submit">Update Job</button>
+    	</form>
   </body>
 </html>
