@@ -82,7 +82,7 @@ export default class App extends React.Component {
           {(this.state.view == "phoneverification") ? <PhoneVerification /> : null}
           {(this.state.view == "jobs") ? <Jobs changeView={this.changeView.bind(this)} updateMain={this.changeToJobInfo.bind(this)} /> : null}
           {(this.state.view == "jobinfo") ? <JobInfo thisUser={this.state.thisuser} changeView={this.changeView.bind(this)} id={this.state.thisjobid} /> : null}
-          {(this.state.view == "requests") ? <Requests thisUser={this.state.thisuser} /> : null}
+          {(this.state.view == "requests") ? <Requests thisUser={this.state.thisuser} updateMain={this.changeToJobInfo.bind(this)} /> : null}
 
           {(this.state.view == "start") ? <Start /> : null}
         </Content>
