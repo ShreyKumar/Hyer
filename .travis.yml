@@ -1,6 +1,0 @@
-script:
-  - cd Hyer
-  - npm install
-  - npm test
-notifications:
-  email: false
