@@ -1,5 +1,5 @@
 # Hyer
-High School and University Students often times struggle to find jobs during breaks, which is why we have created Hyer. Hyer allows anyone with the neccessary skills to find jobs from their phone. Do you need to hire a new restaurant staff? Just use Hyer to post a job posting. Have some free time and need to make fast cash with your skills? Use Hyer to apply to any job anytime. 
+Hyer was created during the Winter of 2018. High School and University Students often times struggle to find jobs during breaks, which is why we have created Hyer. Hyer allows anyone with the neccessary skills to find jobs from their phone. Do you need to hire a new restaurant staff? Just use Hyer to post a job posting. Have some free time and need to make fast cash with your skills? Use Hyer to apply to any job anytime. 
 
 ## My Contribution
 I worked in a team of 5 and I was primarily responsible for overlooking the project and setting deadlines for us to finish. Along with this, I also worked on the Hyer frontend. 
