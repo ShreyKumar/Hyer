@@ -1,7 +1,20 @@
+# Hyer
+High School and University Students often times struggle to find jobs during breaks, which is why we have created Hyer. Hyer allows anyone with the neccessary skills to find jobs from their phone. Do you need to hire a new restaurant staff? Just use Hyer to post a job posting. Have some free time and need to make fast cash with your skills? Use Hyer to apply to any job anytime. 
 
+## My Contribution
+I worked in a team of 5 and I was primarily responsible for overlooking the project and setting deadlines for us to finish. Along with this, I also worked on the Hyer frontend. 
+
+## Team
+Huge thanks to these people who've helped me along the way: <br />
+<ul>
+  <li><a href="https://github.com/RaymondChoi54">Raymond Choi</a></li>
+  <li><a href="https://github.com/XXXXXXXXXIII">Tim</a></li>
+  <li><a href="https://github.com/ryanro97">Ryan Ro</a></li>
+  <li><a href="https://github.com/pghandour">Patrick Ghandour</a></li>
+</ul>
 
 ## Backend
-## How to use the backend:
+### How to use the backend:
 
 cd frontend/Employer
 
@@ -20,7 +33,7 @@ Detailed setup for android found here: https://facebook.github.io/react-native/d
 
 
 ## Frontend
-## How to run frontend:
+### How to run frontend:
 
 cd to frontend/Hyer or frontend/Employer
 
