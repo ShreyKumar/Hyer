@@ -1,8 +1,4 @@
 
-# proj-Yreamiest Employer App
-
-## How to run:
-# proj-Yreamiest Hyer
 
 ## Backend
 ## How to use the backend:
